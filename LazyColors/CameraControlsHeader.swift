@@ -89,7 +89,7 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
             
             isSettingsMenuVisible = false
             animateCameraOverlay(view: self, values: [50, 100], positionY: 100)
-            animateCameraOverlay(view: footerView, values: [120, 70], positionY: 170)
+            animateCameraOverlay(view: footerView, values: [120, 170], positionY: 170)
             sender.setImage(UIImage(named: "settings_white"), for: UIControlState.normal)
         }
     }
