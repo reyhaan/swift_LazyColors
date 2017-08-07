@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate {
     
     var captureSession = AVCaptureSession()
     var backCamera: AVCaptureDevice?
@@ -17,6 +17,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var currentCamera: AVCaptureDevice?
     
     var photoOutput: AVCapturePhotoOutput?
+    
+    var outputData: AVCaptureVideoDataOutput?
     
     var cameraPreviewLayer: AVCaptureVideoPreviewLayer?
     
@@ -27,6 +29,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         
+        // calculate center position for target
         touchX = (self.view.frame.width / 2) - 9
         touchY = (self.view.frame.height / 2) - 9
         
@@ -36,6 +39,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         setupInputOutput()
         setupPreviewLayer()
         startRunningCaptureSession()
+        printDetails()
     }
   
     let cameraButtons: CameraControlsOverlay = {
@@ -43,7 +47,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return cb
     }()
     
-    let icon: UIImageView = {
+    let targetIcon: UIImageView = {
         let img = UIImageView()
         img.image = UIImage(named: "target_white")
         return img
@@ -58,6 +62,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }()
     
     // captyure touch event on the camera view
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first
+        let location = touch?.location(in: UIView())
+        touchX = (location?.x)!
+        touchY = (location?.y)!
+        target.frame.origin.x = touchX!
+        target.frame.origin.y = touchY!
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
         let location = touch?.location(in: UIView())
@@ -70,9 +83,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func addCameraControls () {
         view.addSubview(cameraButtons)
         
-        icon.frame.size.height = 18
-        icon.frame.size.width = 18
-        target.addSubview(icon)
+        // set target icon here
+        targetIcon.frame.size.height = 18
+        targetIcon.frame.size.width = 18
+        
+        // inject target's icon to target view
+        target.addSubview(targetIcon)
+        
+        // set target initial postion
         target.frame.origin.x = touchX!
         target.frame.origin.y = touchY!
         
@@ -115,12 +133,27 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         cameraPreviewLayer?.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
         cameraPreviewLayer?.frame = self.view.frame
         self.view.layer.insertSublayer(cameraPreviewLayer!, at: 0)
+    }
+    
+    func printDetails () {
+        outputData = AVCaptureVideoDataOutput()
+        outputData?.videoSettings = [
+            kCVPixelBufferPixelFormatTypeKey as AnyHashable : Int(kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange)
+        ]
         
+        let captureSessionQueue = DispatchQueue(label: "CameraSessionQueue", attributes: [])
+        outputData?.setSampleBufferDelegate(self, queue: captureSessionQueue)
+        captureSession.addOutput(outputData)
     }
     
     func startRunningCaptureSession () {
+        captureSession.commitConfiguration()
         captureSession.startRunning()
     }
-    
+
+    @objc func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
+        // Do more fancy stuff with sampleBuffer.
+        
+    }
     
 }
