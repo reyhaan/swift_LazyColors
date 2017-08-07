@@ -14,21 +14,29 @@ class CameraControlsOverlay: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor.blue
+        setupViews()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let cameraButton: UIView = {
-        let button = UIView()
-        return button
+    let footerContainer: CameraControlsFooter = {
+        let fc = CameraControlsFooter()
+        return fc
     }()
     
+    let headerContainer: CameraControlsHeader = {
+        let hc = CameraControlsHeader()
+        return hc
+    }()
     
     func setupViews() {
-        addSubview(cameraButton)
+        addSubview(headerContainer)
+        addSubview(footerContainer)
+        addConstraintsWithFormat(format: "V:[v1(90)]-0-[v0(50)]|", views: footerContainer, headerContainer)
+        addConstraintsWithFormat(format: "H:|[v0]|", views: footerContainer)
+        addConstraintsWithFormat(format: "H:|[v0]|", views: headerContainer)
     }
     
 }

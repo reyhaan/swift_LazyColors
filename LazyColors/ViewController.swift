@@ -1,5 +1,5 @@
 //
-//  CameraViewController.swift
+//  ViewController.swift
 //  LazyColors
 //
 //  Created by Mohammad Rehaan on 8/6/17.
@@ -30,7 +30,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         setupInputOutput()
         setupPreviewLayer()
         startRunningCaptureSession()
-        
     }
     
     let cameraButton: CameraControlsOverlay = {
@@ -41,7 +40,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func addCameraControls () {
         view.addSubview(cameraButton)
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: cameraButton)
-        view.addConstraintsWithFormat(format: "V:[v0(50)]|", views: cameraButton)
+        view.addConstraintsWithFormat(format: "V:[v0(140)]|", views: cameraButton)
     }
     
     func setupCaptureSession () {
@@ -59,7 +58,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 frontCamera = device
             }
         }
-        
         currentCamera = backCamera
     }
     
@@ -71,8 +69,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         } catch {
             print(error)
         }
-        
-        
     }
     
     func setupPreviewLayer () {
@@ -89,17 +85,4 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     
-}
-
-extension UIView {
-    func addConstraintsWithFormat(format: String, views: UIView...) {
-        var viewsDictionary = [String: UIView]()
-        for (index, view) in views.enumerated() {
-            let key = "v\(index)"
-            view.translatesAutoresizingMaskIntoConstraints = false
-            viewsDictionary[key] = view
-        }
-        
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
-    }
 }

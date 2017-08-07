@@ -16,6 +16,9 @@
 		9752F0421F36E4D500D9272C /* LazyColorsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9752F0411F36E4D500D9272C /* LazyColorsUITests.swift */; };
 		97B1073C1F37AA3500E36CF8 /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B1073B1F37AA3500E36CF8 /* PreviewController.swift */; };
 		97B1073E1F37B47A00E36CF8 /* CameraControlsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B1073D1F37B47A00E36CF8 /* CameraControlsOverlay.swift */; };
+		97B107531F3808F500E36CF8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B107521F3808F500E36CF8 /* Extensions.swift */; };
+		97B107551F38153D00E36CF8 /* CameraControlsFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B107541F38153D00E36CF8 /* CameraControlsFooter.swift */; };
+		97B107571F38154C00E36CF8 /* CameraControlsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B107561F38154C00E36CF8 /* CameraControlsHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,9 @@
 		9752F0431F36E4D500D9272C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		97B1073B1F37AA3500E36CF8 /* PreviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
 		97B1073D1F37B47A00E36CF8 /* CameraControlsOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraControlsOverlay.swift; sourceTree = "<group>"; };
+		97B107521F3808F500E36CF8 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		97B107541F38153D00E36CF8 /* CameraControlsFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraControlsFooter.swift; sourceTree = "<group>"; };
+		97B107561F38154C00E36CF8 /* CameraControlsHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraControlsHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +107,7 @@
 		9752F0201F36E4D500D9272C /* LazyColors */ = {
 			isa = PBXGroup;
 			children = (
+				97B107511F3808D900E36CF8 /* Utils */,
 				97B1073A1F379F5600E36CF8 /* Controller */,
 				97B107391F379F5100E36CF8 /* View */,
 				97B107381F379F4600E36CF8 /* Model */,
@@ -142,6 +149,8 @@
 			isa = PBXGroup;
 			children = (
 				97B1073D1F37B47A00E36CF8 /* CameraControlsOverlay.swift */,
+				97B107541F38153D00E36CF8 /* CameraControlsFooter.swift */,
+				97B107561F38154C00E36CF8 /* CameraControlsHeader.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -153,6 +162,14 @@
 				97B1073B1F37AA3500E36CF8 /* PreviewController.swift */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		97B107511F3808D900E36CF8 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				97B107521F3808F500E36CF8 /* Extensions.swift */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,7 +309,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97B107531F3808F500E36CF8 /* Extensions.swift in Sources */,
+				97B107551F38153D00E36CF8 /* CameraControlsFooter.swift in Sources */,
 				97B1073C1F37AA3500E36CF8 /* PreviewController.swift in Sources */,
+				97B107571F38154C00E36CF8 /* CameraControlsHeader.swift in Sources */,
 				97B1073E1F37B47A00E36CF8 /* CameraControlsOverlay.swift in Sources */,
 				9752F0241F36E4D500D9272C /* ViewController.swift in Sources */,
 				9752F0221F36E4D500D9272C /* AppDelegate.swift in Sources */,
