@@ -64,6 +64,15 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
         return cell
     }
     
+    func animateCameraOverlay(view: UIView!, values: Array<Any>, positionY: NSInteger) {
+        let animation = CAKeyframeAnimation(keyPath: "position.y")
+        animation.values = values
+        animation.duration = TimeInterval(0.15)
+        animation.calculationMode = kCAAnimationCubic
+        view.layer.add(animation, forKey: nil)
+        view.layer.position.y = CGFloat(positionY)
+    }
+    
     func openSettings(sender: UIButton!) {
         // Slide up the settings menu somehow (-_-)
         
@@ -72,41 +81,15 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
         if !isSettingsMenuVisible {
             
             isSettingsMenuVisible = true
-            
-            let animation = CAKeyframeAnimation(keyPath: "position.y")
-            animation.values = [90, 50]
-            animation.duration = TimeInterval(0.15)
-            animation.calculationMode = kCAAnimationCubic
-            self.layer.add(animation, forKey: nil)
-            self.layer.position.y = 50
-            
-            let footerAnimation = CAKeyframeAnimation(keyPath: "position.y")
-            footerAnimation.values = [160, 120]
-            footerAnimation.duration = TimeInterval(0.15)
-            footerAnimation.calculationMode = kCAAnimationCubic
-            footerView.layer.add(footerAnimation, forKey: nil)
-            footerView.layer.position.y = 120
-            
+            animateCameraOverlay(view: self, values: [90, 50], positionY: 50)
+            animateCameraOverlay(view: footerView, values: [160, 120], positionY: 120)
             sender.setImage(UIImage(named: "close_white"), for: UIControlState.normal)
             
         } else {
             
             isSettingsMenuVisible = false
-            
-            let animation = CAKeyframeAnimation(keyPath: "position.y")
-            animation.values = [50 ,100]
-            animation.duration = TimeInterval(0.15)
-            animation.calculationMode = kCAAnimationCubic
-            self.layer.add(animation, forKey: nil)
-            self.layer.position.y = 100
-            
-            let footerAnimation = CAKeyframeAnimation(keyPath: "position.y")
-            footerAnimation.values = [120, 170]
-            footerAnimation.duration = TimeInterval(0.15)
-            footerAnimation.calculationMode = kCAAnimationCubic
-            footerView.layer.add(footerAnimation, forKey: nil)
-            footerView.layer.position.y = 170
-            
+            animateCameraOverlay(view: self, values: [50, 100], positionY: 100)
+            animateCameraOverlay(view: footerView, values: [120, 70], positionY: 170)
             sender.setImage(UIImage(named: "settings_white"), for: UIControlState.normal)
         }
     }
