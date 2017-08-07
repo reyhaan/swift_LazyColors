@@ -20,9 +20,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     var cameraPreviewLayer: AVCaptureVideoPreviewLayer?
     
+    var touchX: CGFloat?
+    var touchY: CGFloat?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
+        
+        touchX = (self.view.frame.width / 2) - 5
+        touchY = (self.view.frame.height / 2) - 5
         
         addCameraControls()
         setupCaptureSession()
@@ -31,16 +37,38 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         setupPreviewLayer()
         startRunningCaptureSession()
     }
-    
-    let cameraButton: CameraControlsOverlay = {
+  
+    let cameraButtons: CameraControlsOverlay = {
         let cb = CameraControlsOverlay()
         return cb
     }()
     
+    let target: UIView = {
+        let tg = UIView()
+        tg.backgroundColor = UIColor.white
+        tg.frame.size.height = 10
+        tg.frame.size.width = 10
+        
+        return tg
+    }()
+    
+    // captyure touch event on the camera view
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first
+        let location = touch?.location(in: UIView())
+        touchX = (location?.x)!
+        touchY = (location?.y)!
+        target.frame.origin.x = touchX!
+        target.frame.origin.y = touchY!
+    }
+    
     func addCameraControls () {
-        view.addSubview(cameraButton)
-        view.addConstraintsWithFormat(format: "H:|[v0]|", views: cameraButton)
-        view.addConstraintsWithFormat(format: "V:[v0(140)]|", views: cameraButton)
+        view.addSubview(cameraButtons)
+        target.frame.origin.x = touchX!
+        target.frame.origin.y = touchY!
+        view.addSubview(target)
+        view.addConstraintsWithFormat(format: "H:|[v0]|", views: cameraButtons)
+        view.addConstraintsWithFormat(format: "V:[v0(140)]|", views: cameraButtons)
     }
     
     func setupCaptureSession () {
