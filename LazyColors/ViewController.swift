@@ -27,8 +27,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         
-        touchX = (self.view.frame.width / 2) - 5
-        touchY = (self.view.frame.height / 2) - 5
+        touchX = (self.view.frame.width / 2) - 9
+        touchY = (self.view.frame.height / 2) - 9
         
         addCameraControls()
         setupCaptureSession()
@@ -43,12 +43,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return cb
     }()
     
+    let icon: UIImageView = {
+        let img = UIImageView()
+        img.image = UIImage(named: "target_white")
+        return img
+    }()
+    
     let target: UIView = {
         let tg = UIView()
-        tg.backgroundColor = UIColor.white
+        tg.backgroundColor = UIColor.clear
         tg.frame.size.height = 10
         tg.frame.size.width = 10
-        
         return tg
     }()
     
@@ -64,8 +69,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func addCameraControls () {
         view.addSubview(cameraButtons)
+        
+        icon.frame.size.height = 18
+        icon.frame.size.width = 18
+        target.addSubview(icon)
         target.frame.origin.x = touchX!
         target.frame.origin.y = touchY!
+        
         view.addSubview(target)
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: cameraButtons)
         view.addConstraintsWithFormat(format: "V:[v0(140)]|", views: cameraButtons)
