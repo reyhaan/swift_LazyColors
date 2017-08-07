@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CameraViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var captureSession = AVCaptureSession()
     var backCamera: AVCaptureDevice?
@@ -24,24 +24,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         
-        addCameraControls()
         setupCaptureSession()
         setupDevice()
         setupInputOutput()
         setupPreviewLayer()
         startRunningCaptureSession()
         
-    }
-    
-    let cameraButton: CameraControlsOverlay = {
-        let cb = CameraControlsOverlay()
-        return cb
-    }()
-    
-    func addCameraControls () {
-        view.addSubview(cameraButton)
-        view.addConstraintsWithFormat(format: "H:|[v0]|", views: cameraButton)
-        view.addConstraintsWithFormat(format: "V:[v0(50)]|", views: cameraButton)
     }
     
     func setupCaptureSession () {
@@ -65,6 +53,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func setupInputOutput () {
         do {
+            
             let captureDeviceInput =  try AVCaptureDeviceInput(device: currentCamera)
             captureSession.addInput(captureDeviceInput)
             photoOutput?.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecJPEG])], completionHandler: nil)
@@ -91,15 +80,3 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
 }
 
-extension UIView {
-    func addConstraintsWithFormat(format: String, views: UIView...) {
-        var viewsDictionary = [String: UIView]()
-        for (index, view) in views.enumerated() {
-            let key = "v\(index)"
-            view.translatesAutoresizingMaskIntoConstraints = false
-            viewsDictionary[key] = view
-        }
-        
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
-    }
-}

@@ -14,6 +14,8 @@
 		9752F02C1F36E4D500D9272C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9752F02A1F36E4D500D9272C /* LaunchScreen.storyboard */; };
 		9752F0371F36E4D500D9272C /* LazyColorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9752F0361F36E4D500D9272C /* LazyColorsTests.swift */; };
 		9752F0421F36E4D500D9272C /* LazyColorsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9752F0411F36E4D500D9272C /* LazyColorsUITests.swift */; };
+		97B1073C1F37AA3500E36CF8 /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B1073B1F37AA3500E36CF8 /* PreviewController.swift */; };
+		97B1073E1F37B47A00E36CF8 /* CameraControlsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B1073D1F37B47A00E36CF8 /* CameraControlsOverlay.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		9752F03D1F36E4D500D9272C /* LazyColorsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LazyColorsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9752F0411F36E4D500D9272C /* LazyColorsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyColorsUITests.swift; sourceTree = "<group>"; };
 		9752F0431F36E4D500D9272C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		97B1073B1F37AA3500E36CF8 /* PreviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
+		97B1073D1F37B47A00E36CF8 /* CameraControlsOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraControlsOverlay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +101,10 @@
 		9752F0201F36E4D500D9272C /* LazyColors */ = {
 			isa = PBXGroup;
 			children = (
+				97B1073A1F379F5600E36CF8 /* Controller */,
+				97B107391F379F5100E36CF8 /* View */,
+				97B107381F379F4600E36CF8 /* Model */,
 				9752F0211F36E4D500D9272C /* AppDelegate.swift */,
-				9752F0231F36E4D500D9272C /* ViewController.swift */,
 				9752F0251F36E4D500D9272C /* Main.storyboard */,
 				9752F0281F36E4D500D9272C /* Assets.xcassets */,
 				9752F02A1F36E4D500D9272C /* LaunchScreen.storyboard */,
@@ -123,6 +129,30 @@
 				9752F0431F36E4D500D9272C /* Info.plist */,
 			);
 			path = LazyColorsUITests;
+			sourceTree = "<group>";
+		};
+		97B107381F379F4600E36CF8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		97B107391F379F5100E36CF8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				97B1073D1F37B47A00E36CF8 /* CameraControlsOverlay.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		97B1073A1F379F5600E36CF8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9752F0231F36E4D500D9272C /* ViewController.swift */,
+				97B1073B1F37AA3500E36CF8 /* PreviewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,6 +292,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97B1073C1F37AA3500E36CF8 /* PreviewController.swift in Sources */,
+				97B1073E1F37B47A00E36CF8 /* CameraControlsOverlay.swift in Sources */,
 				9752F0241F36E4D500D9272C /* ViewController.swift in Sources */,
 				9752F0221F36E4D500D9272C /* AppDelegate.swift in Sources */,
 			);
@@ -516,6 +548,7 @@
 				9752F0481F36E4D500D9272C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9752F0491F36E4D500D9272C /* Build configuration list for PBXNativeTarget "LazyColorsTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +557,7 @@
 				9752F04B1F36E4D500D9272C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9752F04C1F36E4D500D9272C /* Build configuration list for PBXNativeTarget "LazyColorsUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +566,7 @@
 				9752F04E1F36E4D500D9272C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
