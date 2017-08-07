@@ -13,7 +13,7 @@ class CameraControlsFooter: UIView, UICollectionViewDataSource, UICollectionView
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        footerCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+        footerCollectionView.register(CameraControlsFooterCell.self, forCellWithReuseIdentifier: cellId)
         setupViews()
     }
     
@@ -28,7 +28,6 @@ class CameraControlsFooter: UIView, UICollectionViewDataSource, UICollectionView
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.dataSource = self
         cv.delegate = self
-        cv.backgroundColor = UIColor.red
         return cv
     }()
     
@@ -38,7 +37,6 @@ class CameraControlsFooter: UIView, UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-        cell.backgroundColor = UIColor.red
         return cell
     }
     

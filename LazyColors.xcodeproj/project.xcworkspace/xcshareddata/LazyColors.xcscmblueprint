@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "15ABBF00E43B347C456AFEB1744E4A2A3E46FC1F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "292F648D5ED0A9BF77454509D65450212DAC26CA" : 9223372036854775807,
+    "15ABBF00E43B347C456AFEB1744E4A2A3E46FC1F" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "E8710398-0D7E-4761-BE2F-DDE7E8177262",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "292F648D5ED0A9BF77454509D65450212DAC26CA" : "",
+    "15ABBF00E43B347C456AFEB1744E4A2A3E46FC1F" : "LazyColors\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "LazyColors",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "LazyColors.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:reyhaan\/swift_LazyColors.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "15ABBF00E43B347C456AFEB1744E4A2A3E46FC1F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:reyhaan\/swift_LazyColors.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "292F648D5ED0A9BF77454509D65450212DAC26CA"
+    }
+  ]
+}

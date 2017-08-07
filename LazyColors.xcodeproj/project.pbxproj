@@ -19,6 +19,8 @@
 		97B107531F3808F500E36CF8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B107521F3808F500E36CF8 /* Extensions.swift */; };
 		97B107551F38153D00E36CF8 /* CameraControlsFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B107541F38153D00E36CF8 /* CameraControlsFooter.swift */; };
 		97B107571F38154C00E36CF8 /* CameraControlsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B107561F38154C00E36CF8 /* CameraControlsHeader.swift */; };
+		97B107591F38226600E36CF8 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B107581F38226600E36CF8 /* BaseCell.swift */; };
+		97B1075B1F38233100E36CF8 /* CameraControlsFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B1075A1F38233100E36CF8 /* CameraControlsFooterCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		97B107521F3808F500E36CF8 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		97B107541F38153D00E36CF8 /* CameraControlsFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraControlsFooter.swift; sourceTree = "<group>"; };
 		97B107561F38154C00E36CF8 /* CameraControlsHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraControlsHeader.swift; sourceTree = "<group>"; };
+		97B107581F38226600E36CF8 /* BaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
+		97B1075A1F38233100E36CF8 /* CameraControlsFooterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraControlsFooterCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +155,8 @@
 				97B1073D1F37B47A00E36CF8 /* CameraControlsOverlay.swift */,
 				97B107541F38153D00E36CF8 /* CameraControlsFooter.swift */,
 				97B107561F38154C00E36CF8 /* CameraControlsHeader.swift */,
+				97B107581F38226600E36CF8 /* BaseCell.swift */,
+				97B1075A1F38233100E36CF8 /* CameraControlsFooterCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -312,7 +318,9 @@
 				97B107531F3808F500E36CF8 /* Extensions.swift in Sources */,
 				97B107551F38153D00E36CF8 /* CameraControlsFooter.swift in Sources */,
 				97B1073C1F37AA3500E36CF8 /* PreviewController.swift in Sources */,
+				97B1075B1F38233100E36CF8 /* CameraControlsFooterCell.swift in Sources */,
 				97B107571F38154C00E36CF8 /* CameraControlsHeader.swift in Sources */,
+				97B107591F38226600E36CF8 /* BaseCell.swift in Sources */,
 				97B1073E1F37B47A00E36CF8 /* CameraControlsOverlay.swift in Sources */,
 				9752F0241F36E4D500D9272C /* ViewController.swift in Sources */,
 				9752F0221F36E4D500D9272C /* AppDelegate.swift in Sources */,
