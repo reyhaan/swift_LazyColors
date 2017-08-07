@@ -13,7 +13,6 @@ class CameraControlsHeaderCell: BaseCell {
     
     let icon: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "big_camera")
         return iv
     }()
     

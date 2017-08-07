@@ -12,7 +12,7 @@ import UIKit
 class CameraControlsFooter: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor.red
+        backgroundColor = UIColor.clear
         footerCollectionView.register(CameraControlsFooterCell.self, forCellWithReuseIdentifier: cellId)
         setupViews()
     }
