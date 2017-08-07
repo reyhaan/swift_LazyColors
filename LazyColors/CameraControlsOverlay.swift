@@ -34,7 +34,7 @@ class CameraControlsOverlay: UIView {
     func setupViews() {
         addSubview(headerContainer)
         addSubview(footerContainer)
-        addConstraintsWithFormat(format: "V:[v1(90)]-0-[v0(50)]|", views: footerContainer, headerContainer)
+        addConstraintsWithFormat(format: "V:[v1(90)]-0-[v0(50)]-(-50)-|", views: footerContainer, headerContainer)
         addConstraintsWithFormat(format: "H:|[v0]|", views: footerContainer)
         addConstraintsWithFormat(format: "H:|[v0]|", views: headerContainer)
     }

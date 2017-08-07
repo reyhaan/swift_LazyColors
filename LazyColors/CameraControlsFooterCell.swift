@@ -21,12 +21,11 @@ class CameraControlsFooterCell: BaseCell {
         super.setupViews()
         
         addSubview(icon)
-        addConstraintsWithFormat(format: "H:[v0(28)]", views: icon)
-        addConstraintsWithFormat(format: "V:[v0(28)]", views: icon)
+        addConstraintsWithFormat(format: "H:[v0(18)]", views: icon)
+        addConstraintsWithFormat(format: "V:[v0(18)]", views: icon)
         
         addConstraint(NSLayoutConstraint(item: icon, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
         addConstraint(NSLayoutConstraint(item: icon, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
-        
-        backgroundColor = UIColor.white
+
     }
 }

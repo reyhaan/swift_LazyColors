@@ -13,7 +13,7 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        headerCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+        headerCollectionView.register(CameraControlsHeaderCell.self, forCellWithReuseIdentifier: cellId)
         headerCollectionView.contentInset = UIEdgeInsetsMake(-20, 0, 0, 0)
         headerCollectionView.scrollIndicatorInsets = UIEdgeInsetsMake(-20, 0, 0, 0)
         setupViews()
@@ -24,13 +24,14 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
     }
     
     let cellId = "cellId"
+    let imageNames = ["colors_white", "camera_white", "settings_white"]
     
     lazy var headerCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.dataSource = self
         cv.delegate = self
-        cv.backgroundColor = UIColor.darkGray
+        cv.backgroundColor = UIColor.clear
         return cv
     }()
     
@@ -39,9 +40,31 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-        cell.backgroundColor = UIColor.lightGray
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! CameraControlsHeaderCell
+        
+        cell.button.setImage(UIImage(named: imageNames[indexPath.item]), for: UIControlState.normal)
+        cell.button.imageView?.contentMode = .scaleAspectFit
+        cell.button.imageView?.clipsToBounds = true
+        
+        if indexPath.item == 0 {
+            // Go to color's list
+            
+            
+        } else if indexPath.item == 1 {
+            // Capture the color
+            cell.backgroundColor = UIColor.white
+            
+        } else if indexPath.item == 2 {
+            // Open settings
+            cell.button.addTarget(self, action: #selector(self.openSettings), for: .touchUpInside)
+        }
+        
         return cell
+    }
+    
+    func openSettings(sender: UIButton!) {
+        // Slide up the settings menu somehow (-_-)
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

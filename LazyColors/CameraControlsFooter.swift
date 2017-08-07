@@ -22,12 +22,14 @@ class CameraControlsFooter: UIView, UICollectionViewDataSource, UICollectionView
     }
     
     let cellId = "cellId"
+    let imageNames = ["freeze_white", "hue_white", "flash_white", "color_blind_white"]
     
     lazy var footerCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.dataSource = self
         cv.delegate = self
+        cv.backgroundColor = UIColor.clear
         return cv
     }()
     
@@ -36,7 +38,28 @@ class CameraControlsFooter: UIView, UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! CameraControlsFooterCell
+        cell.icon.image = UIImage(named: imageNames[indexPath.item])
+        cell.icon.contentMode = .scaleAspectFit
+        cell.icon.clipsToBounds = true
+        
+        if indexPath.item == 0 {
+            // Freeze frame
+            
+            
+        } else if indexPath.item == 1 {
+            // Show hue slider
+            
+            
+        } else if indexPath.item == 2 {
+            // Activate flash
+            
+            
+        } else if indexPath.item == 3 {
+            // Enable color blind mode
+            
+        }
+        
         return cell
     }
     
