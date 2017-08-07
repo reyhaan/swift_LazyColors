@@ -25,6 +25,7 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
     
     let cellId = "cellId"
     let imageNames = ["colors_white", "camera_white", "settings_white"]
+    var isSettingsMenuVisible = false
     
     lazy var headerCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -45,6 +46,7 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
         cell.button.setImage(UIImage(named: imageNames[indexPath.item]), for: UIControlState.normal)
         cell.button.imageView?.contentMode = .scaleAspectFit
         cell.button.imageView?.clipsToBounds = true
+        cell.button.backgroundColor = UIColor.clear
         
         if indexPath.item == 0 {
             // Go to color's list
@@ -56,7 +58,7 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
             
         } else if indexPath.item == 2 {
             // Open settings
-            cell.button.addTarget(self, action: #selector(self.openSettings), for: .touchUpInside)
+            cell.button.addTarget(self, action: #selector(self.openSettings), for: .touchDown)
         }
         
         return cell
@@ -65,6 +67,40 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
     func openSettings(sender: UIButton!) {
         // Slide up the settings menu somehow (-_-)
         
+        if !isSettingsMenuVisible {
+            
+            print("Done")
+            
+            isSettingsMenuVisible = true
+            
+            UIView.animate(
+                withDuration: 0.1,
+                delay: 0,
+                options: [],
+                animations: {
+                    self.center.y -= 50
+            },
+                completion: nil
+            )
+            
+            sender.setImage(UIImage(named: "close_white"), for: UIControlState.normal)
+            
+        } else {
+            
+            isSettingsMenuVisible = false
+            
+            UIView.animate(
+                withDuration: 0.1,
+                delay: 0,
+                options: [],
+                animations: {
+                    self.center.y += 50
+            },
+                completion: nil
+            )
+            
+            sender.setImage(UIImage(named: "settings_white"), for: UIControlState.normal)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

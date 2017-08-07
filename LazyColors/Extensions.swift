@@ -48,3 +48,27 @@ func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
     
     return newImage!
 }
+
+// Useful codes
+
+// cell.button.contentEdgeInsets = UIEdgeInsetsMake(28, 28, 28, 28)
+
+// Animation
+
+//UIView.animate(
+//    withDuration: 0.1,
+//    delay: 0,
+//    options: [],
+//    animations: {
+//        self.center.y -= 50
+//},
+//    completion: nil
+//)
+
+//            // Animation for tab item image icons
+//            let bounceAnimation = CAKeyframeAnimation(keyPath: "position")
+//            bounceAnimation.values = [1.0 ,1.4, 0.9, 1.15, 0.95, 1.02, 1.0]
+//            bounceAnimation.duration = TimeInterval(0.5)
+//            bounceAnimation.calculationMode = kCAAnimationCubic
+//
+//            self.layer.add(bounceAnimation, forKey: nil)
