@@ -54,7 +54,7 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
             
         } else if indexPath.item == 1 {
             // Capture the color
-            cell.backgroundColor = UIColor.white
+            cell.backgroundColor = UIColor.clear
             
         } else if indexPath.item == 2 {
             // Open settings
