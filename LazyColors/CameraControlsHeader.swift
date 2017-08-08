@@ -24,7 +24,7 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
     }
     
     let cellId = "cellId"
-    let imageNames = ["colors_white", "camera_white", "settings_white"]
+    let imageNames = ["colors_white", "", "settings_white"]
     var isSettingsMenuVisible = false
     
     lazy var headerCollectionView: UICollectionView = {

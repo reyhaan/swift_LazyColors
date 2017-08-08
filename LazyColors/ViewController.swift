@@ -37,12 +37,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         printDetails()
         startRunningCaptureSession()
     }
-    
-    override func viewWillAppear(_ animated: Bool){
-        
-        //Doesn`t neeed to call super to work
-        view.setNeedsLayout()
-    }
   
     let cameraButtons: CameraControlsOverlay = {
         let cb = CameraControlsOverlay()
@@ -85,6 +79,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         touchY = (location?.y)!
         target.frame.origin.x = touchX!
         target.frame.origin.y = touchY!
+        view.setNeedsLayout()
     }
     
     func addCameraControls () {
@@ -107,14 +102,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         capturedImage.frame.origin.y = 0
         capturedImage.frame.size.height = view.frame.height
         capturedImage.frame.size.width = view.frame.width
-//        view.addSubview(capturedImage)
         
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: cameraButtons)
         view.addConstraintsWithFormat(format: "V:[v0(140)]|", views: cameraButtons)
     }
     
     func setupCaptureSession () {
-        captureSession.sessionPreset = AVCaptureSessionPreset1920x1080
+        captureSession.sessionPreset = AVCaptureSessionPreset1280x720
     }
     
     func setupDevice () {
@@ -163,32 +157,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         captureSession.startRunning()
     }
     
-    func getPixelColorAtPoint(point:CGPoint, sourceView: UIView) -> UIColor{
-        
-        let pixel = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: 4)
-        let colorSpace = CGColorSpaceCreateDeviceRGB()
-        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
-        let context = CGContext(data: pixel, width: 1, height: 1, bitsPerComponent: 8, bytesPerRow: 4, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)
-        
-        context!.translateBy(x: -point.x, y: -point.y)
-        sourceView.layer.render(in: context!)
-        let color:UIColor = UIColor(red: CGFloat(pixel[0])/255.0,
-                                    green: CGFloat(pixel[1])/255.0,
-                                    blue: CGFloat(pixel[2])/255.0,
-                                    alpha: CGFloat(pixel[3])/255.0)
-        
-        pixel.deallocate(capacity: 4)
-        return color
-    }
-    
     func updateColorPreview (color: UIColor) {
-        view.subviews[0].subviews[0].backgroundColor = color
-        view.subviews[0].subviews[0].setNeedsLayout()
-//        let headerCollectionView = controlsHeader
-//        
-//        let previewCell = headerCollectionView.cellForItem(at: IndexPath(item: 2, section: 1))
-//        
-//        previewCell?.backgroundColor = color
+        DispatchQueue.main.async() {
+            // Do stuff to UI
+            let collectionView = self.cameraButtons.headerContainer.headerCollectionView
+            let cell = collectionView.cellForItem(at: IndexPath(item: 1, section: 0))
+            cell?.backgroundColor = color
+            cell?.setNeedsLayout()
+        }
+        
     }
 
     @objc func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
@@ -201,8 +178,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
         let color = capturedImage.getPixelColorAt(point: CGPoint(x: touchX!, y: touchY!))
         updateColorPreview(color: color)
-        
-        print(color)
 
     }
     
