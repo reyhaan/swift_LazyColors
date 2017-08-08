@@ -26,8 +26,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.navigationController?.isNavigationBarHidden = true
         
         // calculate center position for target
-        touchX = (self.view.frame.width / 2) - 9
-        touchY = (self.view.frame.height / 2) - 9
+        touchX = (self.view.frame.width / 2) - 0
+        touchY = (self.view.frame.height / 2) - 10
         
         addCameraControls()
         setupCaptureSession()
@@ -70,6 +70,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         touchY = (location?.y)!
         target.frame.origin.x = touchX!
         target.frame.origin.y = touchY!
+        view.setNeedsLayout()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -162,8 +163,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             // Do stuff to UI
             let collectionView = self.cameraButtons.headerContainer.headerCollectionView
             let cell = collectionView.cellForItem(at: IndexPath(item: 1, section: 0))
-            cell?.backgroundColor = color
-            cell?.setNeedsLayout()
+            cell?.subviews[2].backgroundColor = color
+            cell?.subviews[2].setNeedsLayout()
         }
         
     }

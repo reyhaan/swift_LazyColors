@@ -36,6 +36,11 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
         return cv
     }()
     
+    let previewImageView: UIImageView = {
+        let pi = UIImageView()
+        return pi
+    }()
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
     }
@@ -55,6 +60,23 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
         } else if indexPath.item == 1 {
             // Capture the color
             cell.backgroundColor = UIColor.clear
+            
+
+            
+            previewImageView.frame.size.height = 80
+            previewImageView.frame.size.width = 80
+            previewImageView.frame.origin.x = 15
+            previewImageView.frame.origin.y = 5
+            previewImageView.layer.cornerRadius = 40
+            previewImageView.clipsToBounds = true
+            
+            previewImageView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+            previewImageView.layer.masksToBounds =  false
+            previewImageView.layer.shadowColor = UIColor.black.cgColor
+            previewImageView.layer.shadowRadius = 3.0
+            previewImageView.layer.shadowOpacity = 0.4
+            
+            cell.addSubview(previewImageView)
             
         } else if indexPath.item == 2 {
             // Open settings
@@ -88,7 +110,7 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
         } else {
             
             isSettingsMenuVisible = false
-            animateCameraOverlay(view: self, values: [50, 100], positionY: 100)
+            animateCameraOverlay(view: self, values: [50, 90], positionY: 90)
             animateCameraOverlay(view: footerView, values: [120, 170], positionY: 170)
             sender.setImage(UIImage(named: "settings_white"), for: UIControlState.normal)
         }
