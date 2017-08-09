@@ -57,6 +57,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return tg
     }()
     
+    // layout captured image on this view, not really add it as a subview
     let capturedImage: UIImageView = {
         let img = UIImageView()
         return img
@@ -99,9 +100,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         view.addSubview(target)
         
+        // setting overlay for pixel calculation
         capturedImage.frame.origin.x = 0
         capturedImage.frame.origin.y = 0
-        
         capturedImage.frame.size.height = self.view.frame.height
         capturedImage.frame.size.width = self.view.frame.width
         
@@ -161,7 +162,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func updateColorPreview (image: UIImage) {
         DispatchQueue.main.async() {
-            // Do stuff to UI
             self.capturedImage.image = image
             let color = self.capturedImage.getPixelColorAt(point: CGPoint(x: self.touchX!, y: self.touchY!))
             let collectionView = self.cameraButtons.headerContainer.headerCollectionView
@@ -169,17 +169,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             cell?.subviews[2].backgroundColor = color
             cell?.subviews[2].setNeedsLayout()
         }
-        
     }
 
     @objc func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
-        // Do more fancy stuff with sampleBuffer.
         let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
         var ciImage = CIImage(cvPixelBuffer: pixelBuffer!)
         ciImage = ciImage.applyingOrientation(6)
         let image = UIImage(ciImage: ciImage)
         
-        
+        // update UI asynchronously
         updateColorPreview(image: image)
 
     }
