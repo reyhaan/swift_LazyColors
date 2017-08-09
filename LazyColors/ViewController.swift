@@ -65,7 +65,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // capture touch event on the camera view
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
-        let location = touch?.location(in: UIView())
+        let location = touch?.location(in: self.view)
         touchX = (location?.x)!
         touchY = (location?.y)!
         target.frame.origin.x = touchX!
@@ -75,7 +75,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
-        let location = touch?.location(in: UIView())
+        let location = touch?.location(in: self.view)
         touchX = (location?.x)!
         touchY = (location?.y)!
         target.frame.origin.x = touchX!
@@ -101,8 +101,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         capturedImage.frame.origin.x = 0
         capturedImage.frame.origin.y = 0
-        capturedImage.frame.size.height = view.frame.height
-        capturedImage.frame.size.width = view.frame.width
+        
+        capturedImage.frame.size.height = self.view.frame.height
+        capturedImage.frame.size.width = self.view.frame.width
         
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: cameraButtons)
         view.addConstraintsWithFormat(format: "V:[v0(140)]|", views: cameraButtons)
@@ -158,9 +159,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         captureSession.startRunning()
     }
     
-    func updateColorPreview (color: UIColor) {
+    func updateColorPreview (image: UIImage) {
         DispatchQueue.main.async() {
             // Do stuff to UI
+            self.capturedImage.image = image
+            let color = self.capturedImage.getPixelColorAt(point: CGPoint(x: self.touchX!, y: self.touchY!))
             let collectionView = self.cameraButtons.headerContainer.headerCollectionView
             let cell = collectionView.cellForItem(at: IndexPath(item: 1, section: 0))
             cell?.subviews[2].backgroundColor = color
@@ -172,13 +175,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @objc func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
         // Do more fancy stuff with sampleBuffer.
         let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
-        let ciImage = CIImage(cvPixelBuffer: pixelBuffer!)
+        var ciImage = CIImage(cvPixelBuffer: pixelBuffer!)
+        ciImage = ciImage.applyingOrientation(6)
         let image = UIImage(ciImage: ciImage)
         
-        capturedImage.image = image
-
-        let color = capturedImage.getPixelColorAt(point: CGPoint(x: touchX!, y: touchY!))
-        updateColorPreview(color: color)
+        
+        updateColorPreview(image: image)
 
     }
     

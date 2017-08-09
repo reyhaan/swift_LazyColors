@@ -61,8 +61,6 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
             // Capture the color
             cell.backgroundColor = UIColor.clear
             
-
-            
             previewImageView.frame.size.height = 80
             previewImageView.frame.size.width = 80
             previewImageView.frame.origin.x = 15
