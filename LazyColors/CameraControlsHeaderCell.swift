@@ -40,11 +40,11 @@ class CameraControlsHeaderCell: BaseCell {
         super.setupViews()
         
         addSubview(button)
-        addConstraintsWithFormat(format: "H:[v0(20)]", views: button)
-        addConstraintsWithFormat(format: "V:[v0(20)]", views: button)
+//        addConstraintsWithFormat(format: "H:[v0(20)]", views: button)
+//        addConstraintsWithFormat(format: "V:[v0(20)]", views: button)
         
-        addConstraint(NSLayoutConstraint(item: button, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
-        addConstraint(NSLayoutConstraint(item: button, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
+//        addConstraint(NSLayoutConstraint(item: button, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
+//        addConstraint(NSLayoutConstraint(item: button, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
 
     }
 }

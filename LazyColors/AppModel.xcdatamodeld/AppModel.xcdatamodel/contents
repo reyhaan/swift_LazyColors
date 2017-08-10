@@ -3,7 +3,7 @@
     <entity name="Color" representedClassName="Color" syncable="YES">
         <attribute name="b" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="cmyk" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="data" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="g" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="hex" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="hsb" optional="YES" attributeType="String" syncable="YES"/>

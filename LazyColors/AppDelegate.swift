@@ -63,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // SEE BELOW LINE OF CODE WHERE THE 'name' IS SET AS THE FILE NAME (SampleData) FOR THE CONTAINER
         
-        let container = NSPersistentContainer(name: "SampleData")
+        let container = NSPersistentContainer(name: "AppModel")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.

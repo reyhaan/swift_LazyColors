@@ -20,6 +20,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var cameraPreviewLayer: AVCaptureVideoPreviewLayer?
     var touchX: CGFloat?
     var touchY: CGFloat?
+    var color: UIColor?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         setupPreviewLayer()
         printDetails()
         startRunningCaptureSession()
+        
+        setupData()
+        
     }
   
     let cameraButtons: CameraControlsOverlay = {
@@ -82,6 +86,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         target.frame.origin.x = touchX! - 5
         target.frame.origin.y = touchY! - 5
         view.setNeedsLayout()
+    }
+    
+    func getColor() -> UIColor {
+        return self.color!
     }
     
     func addCameraControls () {
@@ -163,11 +171,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func updateColorPreview (image: UIImage) {
         DispatchQueue.main.async() {
             self.capturedImage.image = image
-            let color = self.capturedImage.getPixelColorAt(point: CGPoint(x: self.touchX!, y: self.touchY!))
+            self.color = self.capturedImage.getPixelColorAt(point: CGPoint(x: self.touchX!, y: self.touchY!))
             let collectionView = self.cameraButtons.headerContainer.headerCollectionView
             let cell = collectionView.cellForItem(at: IndexPath(item: 1, section: 0))
-            cell?.subviews[2].backgroundColor = color
-            cell?.subviews[2].setNeedsLayout()
+            
+            if ((self.color?.getName()) != "nil") {
+                cell?.subviews[1].backgroundColor = self.color
+                cell?.subviews[1].setNeedsLayout()
+            }
         }
     }
 

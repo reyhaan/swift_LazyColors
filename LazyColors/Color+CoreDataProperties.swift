@@ -16,7 +16,7 @@ extension Color {
         return NSFetchRequest<Color>(entityName: "Color")
     }
 
-    @NSManaged public var data: NSDate?
+    @NSManaged public var date: NSDate?
     @NSManaged public var name: String?
     @NSManaged public var r: Int16
     @NSManaged public var g: Int16

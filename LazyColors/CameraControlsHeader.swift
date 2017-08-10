@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
@@ -67,20 +68,18 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
             // Capture the color
             cell.backgroundColor = UIColor.clear
             
-            previewImageView.frame.size.height = 80
-            previewImageView.frame.size.width = 80
-            previewImageView.frame.origin.x = 15
-            previewImageView.frame.origin.y = 5
-            previewImageView.layer.cornerRadius = 40
-            previewImageView.clipsToBounds = true
+            cell.button.frame.size.height = 80
+            cell.button.frame.size.width = 80
+            cell.button.frame.origin.x = 15
+            cell.button.frame.origin.y = 5
+            cell.button.layer.cornerRadius = 40
+            cell.button.clipsToBounds = true
             
-            previewImageView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-            previewImageView.layer.masksToBounds =  false
-            previewImageView.layer.shadowColor = UIColor.black.cgColor
-            previewImageView.layer.shadowRadius = 3.0
-            previewImageView.layer.shadowOpacity = 0.4
-            
-            cell.addSubview(previewImageView)
+            cell.button.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+            cell.button.layer.masksToBounds =  false
+            cell.button.layer.shadowColor = UIColor.black.cgColor
+            cell.button.layer.shadowRadius = 3.0
+            cell.button.layer.shadowOpacity = 0.4
             
             cell.button.addTarget(self, action: #selector(self.saveColor), for: .touchDown)
             
@@ -102,15 +101,40 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
     }
     
     func saveColor(sender: UIButton!) {
+        // Save current color
         
+        let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+        let color = NSEntityDescription.insertNewObject(forEntityName: "Color", into: context!) as! Color
+        
+        let selectedColor = sender.backgroundColor
+        
+        print(selectedColor?.getHex() ?? "error")
+        print(selectedColor?.getName() ?? "error")
+        
+//        color.name = selectedColor?.getName(selectedColor)
+//        color.r = Int16((selectedColor?.redValue)!)
+//        color.g = Int16((selectedColor?.greenValue)!)
+//        color.b = Int16((selectedColor?.blueValue)!)
+//        color.hex = selectedColor?.getHex(selectedColor)
+//        color.date = NSDate()
+//        color.rgb = selectedColor?.getRgb(selectedColor)
+//        color.cmyk = selectedColor?.getCmyk(selectedColor)
+//        color.hsb = selectedColor?.getHsb(selectedColor)
+//        color.shades = selectedColor?.getShades(selectedColor)
+        
+        
+        do {
+//            try context?.save()
+        }
+        catch{
+            print("There was an error in saving data")
+        }
     }
     
     func openColorList(sender: UIButton!) {
         // open the list of collected colors
         
         if let window = UIApplication.shared.keyWindow {
-            
-            print(window.frame.height)
             
             colorCollectionView.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: (window.frame.height))
             colorCollectionView.backgroundColor = UIColor.white
