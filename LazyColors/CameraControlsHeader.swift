@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -41,6 +42,11 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
         return pi
     }()
     
+    let colorCollectionView: UIView = {
+        let ccv = UIView()
+        return ccv
+    }()
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
     }
@@ -55,7 +61,7 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
         
         if indexPath.item == 0 {
             // Go to color's list
-            
+            cell.button.addTarget(self, action: #selector(self.openColorList), for: .touchDown)
             
         } else if indexPath.item == 1 {
             // Capture the color
@@ -76,6 +82,8 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
             
             cell.addSubview(previewImageView)
             
+            cell.button.addTarget(self, action: #selector(self.saveColor), for: .touchDown)
+            
         } else if indexPath.item == 2 {
             // Open settings
             cell.button.addTarget(self, action: #selector(self.openSettings), for: .touchDown)
@@ -93,6 +101,36 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
         view.layer.position.y = CGFloat(positionY)
     }
     
+    func saveColor(sender: UIButton!) {
+        
+    }
+    
+    func openColorList(sender: UIButton!) {
+        // open the list of collected colors
+        
+        if let window = UIApplication.shared.keyWindow {
+            
+            print(window.frame.height)
+            
+            colorCollectionView.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: (window.frame.height))
+            colorCollectionView.backgroundColor = UIColor.white
+            window.addSubview(colorCollectionView)
+            
+            UIView.animate(
+                withDuration: 0.5,
+                delay: 0,
+                usingSpringWithDamping: 1,
+                initialSpringVelocity: 1,
+                options: .curveEaseOut,
+                animations: {
+                    self.colorCollectionView.frame = CGRect(x: 0, y: 0, width: window.frame.width, height: window.frame.height)
+            },
+                completion: nil
+            )
+        }
+
+    }
+    
     func openSettings(sender: UIButton!) {
         // Slide up the settings menu somehow (-_-)
         
@@ -101,15 +139,61 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
         if !isSettingsMenuVisible {
             
             isSettingsMenuVisible = true
-            animateCameraOverlay(view: self, values: [90, 50], positionY: 50)
-            animateCameraOverlay(view: footerView, values: [160, 120], positionY: 120)
+            
+            UIView.animate(
+                withDuration: 0.4,
+                delay: 0,
+                usingSpringWithDamping: 1,
+                initialSpringVelocity: 1,
+                options: .curveEaseOut,
+                animations: {
+                    self.frame = CGRect(x: 0, y: -20, width: self.frame.width, height: 90)
+                },
+                completion: nil
+            )
+            
+            UIView.animate(
+                withDuration: 0.4,
+                delay: 0,
+                usingSpringWithDamping: 1,
+                initialSpringVelocity: 1,
+                options: .curveEaseOut,
+                animations: {
+                    footerView.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: 40)
+                },
+                completion: nil
+            )
+            
             sender.setImage(UIImage(named: "close_white"), for: UIControlState.normal)
             
         } else {
             
             isSettingsMenuVisible = false
-            animateCameraOverlay(view: self, values: [50, 90], positionY: 90)
-            animateCameraOverlay(view: footerView, values: [120, 170], positionY: 170)
+            
+            UIView.animate(
+                withDuration: 0.4,
+                delay: 0,
+                usingSpringWithDamping: 1,
+                initialSpringVelocity: 1,
+                options: .curveEaseOut,
+                animations: {
+                    self.frame = CGRect(x: 0, y: 50, width: self.frame.width, height: 90)
+            },
+                completion: nil
+            )
+            
+            UIView.animate(
+                withDuration: 0.4,
+                delay: 0,
+                usingSpringWithDamping: 1,
+                initialSpringVelocity: 1,
+                options: .curveEaseOut,
+                animations: {
+                    footerView.frame = CGRect(x: 0, y: self.frame.height + 50, width: self.frame.width, height: 40)
+            },
+                completion: nil
+            )
+            
             sender.setImage(UIImage(named: "settings_white"), for: UIControlState.normal)
         }
     }
@@ -124,6 +208,7 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
     
     func setupViews() {
         addSubview(headerCollectionView)
+        
         addConstraintsWithFormat(format: "V:|[v0]|", views: headerCollectionView)
         addConstraintsWithFormat(format: "H:|[v0]|", views: headerCollectionView)
     }

@@ -26,8 +26,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.navigationController?.isNavigationBarHidden = true
         
         // calculate center position for target
-        touchX = (self.view.frame.width / 2) - 0
-        touchY = (self.view.frame.height / 2) - 10
+        touchX = (self.view.frame.width / 2)
+        touchY = (self.view.frame.height / 2)
         
         addCameraControls()
         setupCaptureSession()
@@ -69,8 +69,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let location = touch?.location(in: self.view)
         touchX = (location?.x)!
         touchY = (location?.y)!
-        target.frame.origin.x = touchX!
-        target.frame.origin.y = touchY!
+        target.frame.origin.x = touchX! - 5
+        target.frame.origin.y = touchY! - 5
         view.setNeedsLayout()
     }
     
@@ -79,8 +79,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let location = touch?.location(in: self.view)
         touchX = (location?.x)!
         touchY = (location?.y)!
-        target.frame.origin.x = touchX!
-        target.frame.origin.y = touchY!
+        target.frame.origin.x = touchX! - 5
+        target.frame.origin.y = touchY! - 5
         view.setNeedsLayout()
     }
     
@@ -95,8 +95,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         target.addSubview(targetIcon)
         
         // set target initial postion
-        target.frame.origin.x = touchX!
-        target.frame.origin.y = touchY!
+        target.frame.origin.x = touchX! - 5
+        target.frame.origin.y = touchY! - 5
         
         view.addSubview(target)
         
