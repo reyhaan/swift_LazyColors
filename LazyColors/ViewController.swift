@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import CoreImage
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate {
     
@@ -21,6 +22,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var touchX: CGFloat?
     var touchY: CGFloat?
     var color: UIColor?
+    let ciContext = CIContext(options: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,10 +90,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         view.setNeedsLayout()
     }
     
-    func getColor() -> UIColor {
-        return self.color!
-    }
-    
     func addCameraControls () {
         view.addSubview(cameraButtons)
         
@@ -111,8 +109,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // setting overlay for pixel calculation
         capturedImage.frame.origin.x = 0
         capturedImage.frame.origin.y = 0
-        capturedImage.frame.size.height = self.view.frame.height
-        capturedImage.frame.size.width = self.view.frame.width
+        capturedImage.frame.size.height = view.frame.height
+        capturedImage.frame.size.width = view.frame.width
         
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: cameraButtons)
         view.addConstraintsWithFormat(format: "V:[v0(140)]|", views: cameraButtons)
@@ -168,29 +166,87 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         captureSession.startRunning()
     }
     
-    func updateColorPreview (image: UIImage) {
-        DispatchQueue.main.async() {
-            self.capturedImage.image = image
-            self.color = self.capturedImage.getPixelColorAt(point: CGPoint(x: self.touchX!, y: self.touchY!))
-            let collectionView = self.cameraButtons.headerContainer.headerCollectionView
-            let cell = collectionView.cellForItem(at: IndexPath(item: 1, section: 0))
+    func getUIImage(image: CIImage) -> UIImage {
+        let image2: CIImage = image
+        let image3: CGImage = {
+            return ciContext.createCGImage(image2, from: image2.extent)!
+        }()
+        return UIImage(cgImage: image3)
+    }
+    
+    func applyFilter(image: CIImage, name: String) -> UIImage {
+        // 1
+        let originalImage = image
+        var ouputImage: CIImage?
+        
+        switch name {
+        case "sepia":
+            // define filter here
+            let filter = CIFilter(name: "CIPhotoEffectMono")
+            filter?.setDefaults()
+            filter?.setValue(originalImage, forKey: kCIInputImageKey)
+            ouputImage = filter?.outputImage
+            break
+        default:
+            // handle default case
             
-            if ((self.color?.getName()) != "nil") {
-                cell?.subviews[1].backgroundColor = self.color
-                cell?.subviews[1].setNeedsLayout()
-            }
+            let filter = CIFilter(name: "CICrop")
+            filter?.setDefaults()
+            filter?.setValue(originalImage, forKey: kCIInputImageKey)
+            ouputImage = filter?.outputImage
+            
+            break
+        }
+   
+        let newImage = getUIImage(image: ouputImage!)
+        
+        return newImage
+        
+    }
+    
+    func cropImage (image: CIImage, touchX: CGFloat, touchY: CGFloat) -> UIImage {
+        let CropBoxHeight = CGFloat(10)
+        let CropBoxWidth = CGFloat(10)
+        
+        // fix orientation of image
+        var inputCiImage = image
+        inputCiImage = inputCiImage.applyingOrientation(6)
+
+        // actual image size and screen size is different, so scale the touch points to match image size cordinates
+        let img = UIImage(ciImage: inputCiImage)
+        let scaleFactorY = img.size.height / view.frame.height
+        let scaleFactorX = img.size.width / view.frame.width
+        
+        // apply cropping
+        let croppedImage = inputCiImage.cropping(to: CGRect(x: touchX * scaleFactorX, y: ((view.frame.height * scaleFactorY) - (touchY * scaleFactorY)), width: CropBoxWidth, height: CropBoxHeight))
+        
+        let cgImage = ciContext.createCGImage(croppedImage, from: (croppedImage.extent))
+        return UIImage(cgImage: cgImage!)
+    }
+    
+    func updateColorPreview (image: UIImage) {
+        
+        let dominantColor = image.dominantColors()[0]
+        self.color = dominantColor
+        let collectionView = self.cameraButtons.headerContainer.headerCollectionView
+        let cell = collectionView.cellForItem(at: IndexPath(item: 1, section: 0))
+            
+        if ((self.color?.getName()) != "nil") {
+            cell?.subviews[1].backgroundColor = self.color
+            cell?.subviews[1].setNeedsLayout()
         }
     }
 
     @objc func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
         let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
-        var ciImage = CIImage(cvPixelBuffer: pixelBuffer!)
-        ciImage = ciImage.applyingOrientation(6)
-        let image = UIImage(ciImage: ciImage)
+        let ciImage = CIImage(cvPixelBuffer: pixelBuffer!)
         
         // update UI asynchronously
-        updateColorPreview(image: image)
-
+        DispatchQueue.main.async() {
+            // Apply filter to crop it here
+            let image = self.cropImage(image: ciImage, touchX: self.touchX!, touchY: self.touchY!)
+            self.updateColorPreview(image: image)
+        }
     }
     
 }
