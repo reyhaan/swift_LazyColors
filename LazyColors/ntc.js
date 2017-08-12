@@ -112,6 +112,46 @@ rgb: function(color) {
     return [parseInt('0x' + color.substring(1, 3)), parseInt('0x' + color.substring(3, 5)),  parseInt('0x' + color.substring(5, 7))];
 },
     
+cmyk: function(color) {
+    
+    function CMYK(c, m, y, k) {
+        if (c <= 0) { c = 0; }
+        if (m <= 0) { m = 0; }
+        if (y <= 0) { y = 0; }
+        if (k <= 0) { k = 0; }
+        
+        if (c > 100) { c = 100; }
+        if (m > 100) { m = 100; }
+        if (y > 100) { y = 100; }
+        if (k > 100) { k = 100; }
+        
+        this.c = c;
+        this.m = m;
+        this.y = y;
+        this.k = k;
+    }
+    
+    var result = new CMYK(0, 0, 0, 0);
+    
+    RGB = ntc.rgb(color)
+    
+    r = RGB[0] / 255;
+    g = RGB[1] / 255;
+    b = RGB[2] / 255;
+        
+    result.k = Math.min( 1 - r, 1 - g, 1 - b );
+    result.c = ( 1 - r - result.k ) / ( 1 - result.k );
+    result.m = ( 1 - g - result.k ) / ( 1 - result.k );
+    result.y = ( 1 - b - result.k ) / ( 1 - result.k );
+        
+    result.c = Math.round( result.c * 100 );
+    result.m = Math.round( result.m * 100 );
+    result.y = Math.round( result.y * 100 );
+    result.k = Math.round( result.k * 100 );
+        
+    return [result.c, result.m, result.y, result.k];
+},
+    
 names: [
         ["000000", "Black"],
         ["000080", "Navy Blue"],

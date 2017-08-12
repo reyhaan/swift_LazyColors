@@ -39,13 +39,15 @@ class CameraControlsFooter: UIView, UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! CameraControlsFooterCell
-        cell.icon.image = UIImage(named: imageNames[indexPath.item])
-        cell.icon.contentMode = .scaleAspectFit
-        cell.icon.clipsToBounds = true
+        
+        cell.button.setImage(UIImage(named: imageNames[indexPath.item]), for: UIControlState.normal)
+        cell.button.imageView?.contentMode = .scaleAspectFit
+        cell.button.imageView?.clipsToBounds = true
+        cell.button.backgroundColor = UIColor.clear
         
         if indexPath.item == 0 {
             // Freeze frame
-            
+            cell.button.addTarget(self, action: #selector(self.freezeFrame), for: .touchDown)
             
         } else if indexPath.item == 1 {
             // Show hue slider
@@ -69,6 +71,11 @@ class CameraControlsFooter: UIView, UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    
+    func freezeFrame() {
+        print("FREEZING")
+        
     }
     
     func setupViews() {

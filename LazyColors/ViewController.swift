@@ -75,8 +75,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let location = touch?.location(in: self.view)
         touchX = (location?.x)!
         touchY = (location?.y)!
-        target.frame.origin.x = touchX! - 5
-        target.frame.origin.y = touchY! - 5
+        target.frame.origin.x = touchX! - 9
+        target.frame.origin.y = touchY! - 9
         view.setNeedsLayout()
     }
     
@@ -85,8 +85,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let location = touch?.location(in: self.view)
         touchX = (location?.x)!
         touchY = (location?.y)!
-        target.frame.origin.x = touchX! - 5
-        target.frame.origin.y = touchY! - 5
+        target.frame.origin.x = touchX! - 9
+        target.frame.origin.y = touchY! - 9
         view.setNeedsLayout()
     }
     
@@ -101,8 +101,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         target.addSubview(targetIcon)
         
         // set target initial postion
-        target.frame.origin.x = touchX! - 5
-        target.frame.origin.y = touchY! - 5
+        target.frame.origin.x = touchX! - 9
+        target.frame.origin.y = touchY! - 9
         
         view.addSubview(target)
         
@@ -222,11 +222,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func updateColorPreview (image: UIImage) {
         
         let dominantColor = image.dominantColors()
-//        print(dominantColor[1])
         self.color = dominantColor[0]
         let collectionView = self.cameraButtons.headerContainer.headerCollectionView
         let cell = collectionView.cellForItem(at: IndexPath(item: 1, section: 0))
-        print(self.color?.getName() ?? "")
         cell?.subviews[1].backgroundColor = self.color
         cell?.subviews[1].setNeedsLayout()
     }

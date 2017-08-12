@@ -62,6 +62,12 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
         
         if indexPath.item == 0 {
             // Go to color's list
+            
+            cell.button.frame.size.height = 80
+            cell.button.frame.size.width = 80
+            cell.button.frame.origin.x = 15
+            cell.button.frame.origin.y = 5
+            
             cell.button.addTarget(self, action: #selector(self.openColorList), for: .touchDown)
             
         } else if indexPath.item == 1 {
@@ -85,6 +91,12 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
             
         } else if indexPath.item == 2 {
             // Open settings
+            
+            cell.button.frame.size.height = 80
+            cell.button.frame.size.width = 80
+            cell.button.frame.origin.x = 15
+            cell.button.frame.origin.y = 5
+            
             cell.button.addTarget(self, action: #selector(self.openSettings), for: .touchDown)
         }
         

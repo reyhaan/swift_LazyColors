@@ -17,15 +17,20 @@ class CameraControlsFooterCell: BaseCell {
         return iv
     }()
     
+    let button: UIButton = {
+        let btn = UIButton()
+        return btn
+    }()
+    
     override func setupViews() {
         super.setupViews()
         
-        addSubview(icon)
-        addConstraintsWithFormat(format: "H:[v0(18)]", views: icon)
-        addConstraintsWithFormat(format: "V:[v0(18)]", views: icon)
+        addSubview(button)
+        addConstraintsWithFormat(format: "H:[v0(18)]", views: button)
+        addConstraintsWithFormat(format: "V:[v0(18)]", views: button)
         
-        addConstraint(NSLayoutConstraint(item: icon, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
-        addConstraint(NSLayoutConstraint(item: icon, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
+        addConstraint(NSLayoutConstraint(item: button, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
+        addConstraint(NSLayoutConstraint(item: button, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
 
     }
 }
