@@ -190,11 +190,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         default:
             // handle default case
             
-            let filter = CIFilter(name: "CICrop")
-            filter?.setDefaults()
-            filter?.setValue(originalImage, forKey: kCIInputImageKey)
-            ouputImage = filter?.outputImage
-            
             break
         }
    
@@ -226,15 +221,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func updateColorPreview (image: UIImage) {
         
-        let dominantColor = image.dominantColors()[0]
-        self.color = dominantColor
+        let dominantColor = image.dominantColors()
+//        print(dominantColor[1])
+        self.color = dominantColor[0]
         let collectionView = self.cameraButtons.headerContainer.headerCollectionView
         let cell = collectionView.cellForItem(at: IndexPath(item: 1, section: 0))
-            
-        if ((self.color?.getName()) != "nil") {
-            cell?.subviews[1].backgroundColor = self.color
-            cell?.subviews[1].setNeedsLayout()
-        }
+        print(self.color?.getName() ?? "")
+        cell?.subviews[1].backgroundColor = self.color
+        cell?.subviews[1].setNeedsLayout()
     }
 
     @objc func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {

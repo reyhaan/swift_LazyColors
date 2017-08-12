@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import JavaScriptCore
 
 extension UIColor {
     var redValue: Int16{ return Int16(CIColor(color: self).red * 255) }
@@ -16,25 +17,31 @@ extension UIColor {
     var alphaValue: CGFloat{ return CIColor(color: self).alpha }
     
     func getName() -> String {
-        let hexVal = getHex()
-        if (HexColorNames[hexVal] != nil) {
-            return HexColorNames[hexVal]!
-        } else {
-            return "nil"
+        
+        let jsContext = JSContext()
+        
+        let color = getHex()
+        
+        var name: JSValue?
+        
+        // Specify the path to the jssource.js file.
+        if let jsSourcePath = Bundle.main.path(forResource: "ntc", ofType: "js") {
+            do {
+                // Load its contents to a String variable.
+                let ntc_lib = try String(contentsOfFile: jsSourcePath)
+                
+                // Add the Javascript code that currently exists in the jsSourceContents to the Javascript Runtime through the jsContext object.
+                _ = jsContext?.evaluateScript(ntc_lib)
+                let fn = jsContext?.objectForKeyedSubscript("ntc")
+                name = fn?.invokeMethod("name", withArguments: [color])
+
+            }
+            catch {
+                print(error.localizedDescription)
+            }
         }
-    }
-    
-    func getNameUsingRgb() -> String {
         
-//        let rgbVal = getRgb()
-//        
-//        if (RgbColorNames[rgbVal] != nil) {
-//            return RgbColorNames[rgbVal]!
-//        } else {
-//            return "nil"
-//        }
-        
-        return ""
+        return (name?.toString())!
     }
     
     func getHex() -> String {

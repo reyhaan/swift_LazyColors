@@ -108,7 +108,6 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
         
         let selectedColor = sender.backgroundColor
         
-        print(selectedColor?.getHex() ?? "error")
         print(selectedColor?.getName() ?? "error")
         
 //        color.name = selectedColor?.getName(selectedColor)
