@@ -332,7 +332,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         DispatchQueue.main.async() {
 //            colorNameView.name.text = self.color?.getName()[1] as? String
 //            colorNameView.code.font = UIFont(name: "ProximaNovaRegular", size: 5)
-            colorNameView.code.text = "This is proxima nova" // "#" + (self.color?.getHex())!
+            colorNameView.code.text = "#" + (self.color?.getHex())!
         }
         
 

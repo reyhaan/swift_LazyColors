@@ -137,7 +137,7 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
         
         
         do {
-//            try context?.save()
+            try context?.save()
         }
         catch{
             print("There was an error in saving data")

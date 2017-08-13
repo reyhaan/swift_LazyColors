@@ -45,8 +45,7 @@
 	</array>
 	<key>UIAppFonts</key>
 	<array>
-		<string>ProximaNovaRegular.otf</string>
-		<string>ProximaNovaBlack.otf</string>
+		<string>Proxima Nova Regular.otf</string>
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Trying to open your stuff bro</string>

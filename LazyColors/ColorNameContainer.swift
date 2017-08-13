@@ -23,7 +23,7 @@ class ColorNameContainer: UIView {
         let nm = UILabel()
         nm.textAlignment = NSTextAlignment.center
         nm.textColor = UIColor.white
-        nm.font = UIFont(name: "Proxima Nova Regular", size: 10)
+        nm.font = UIFont(name: "ProximaNova-Regular", size: 10)
         return nm
     }()
     
@@ -31,7 +31,7 @@ class ColorNameContainer: UIView {
         let cd = UILabel()
         cd.textAlignment = NSTextAlignment.center
         cd.textColor = UIColor.white
-        cd.font = UIFont(name: "ProximaNovaBlack", size: 15)
+        cd.font = UIFont(name: "ProximaNova-Regular", size: 15)
         return cd
     }()
     
