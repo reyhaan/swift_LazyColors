@@ -15,6 +15,7 @@ class CameraControlsOverlay: UIView {
         super.init(frame: frame)
         backgroundColor = UIColor.clear
         setupViews()
+
     }
     
     required init?(coder aDecoder: NSCoder) {

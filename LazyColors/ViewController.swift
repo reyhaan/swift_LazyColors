@@ -10,7 +10,12 @@ import UIKit
 import AVFoundation
 import CoreImage
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate {
+protocol ViewControllerDelegate: class {
+    func toggleFrameFreeze()
+    func toggleFlash()
+}
+
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, ViewControllerDelegate {
     
     var captureSession = AVCaptureSession()
     var backCamera: AVCaptureDevice?
@@ -23,6 +28,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var touchY: CGFloat?
     var color: UIColor?
     let ciContext = CIContext(options: nil)
+    var footerCell: CameraControlsFooter?
+    var ciImage: CIImage?
+    var isFlashOn = false
+    var isFrameFrozen = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +50,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         startRunningCaptureSession()
         
         setupData()
+        
+        footerCell = cameraButtons.footerContainer
+        footerCell?.delegate = self
         
     }
   
@@ -77,6 +89,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         touchY = (location?.y)!
         target.frame.origin.x = touchX! - 9
         target.frame.origin.y = touchY! - 9
+        
+        if !captureSession.isRunning {
+            generateLivePreview()
+        }
+        
         view.setNeedsLayout()
     }
     
@@ -87,6 +104,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         touchY = (location?.y)!
         target.frame.origin.x = touchX! - 9
         target.frame.origin.y = touchY! - 9
+        
+        if !captureSession.isRunning {
+            generateLivePreview()
+        }
+        
+        
         view.setNeedsLayout()
     }
     
@@ -120,10 +143,57 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         captureSession.sessionPreset = AVCaptureSessionPreset1280x720
     }
     
+    public func toggleFrameFreeze() {
+        if isFrameFrozen {
+            captureSession.startRunning()
+            isFrameFrozen = false
+        } else {
+            captureSession.stopRunning()
+            isFrameFrozen = true
+        }
+    }
+    
+    public func unfreezeFrame () {
+        captureSession.startRunning()
+    }
+    
+    let deviceDiscoverySession = AVCaptureDeviceDiscoverySession(deviceTypes: [AVCaptureDeviceType.builtInWideAngleCamera], mediaType: AVMediaTypeVideo, position: AVCaptureDevicePosition.unspecified)
+    
+    
+    public func toggleFlash() {
+        if isFlashOn {
+            let devices = deviceDiscoverySession?.devices
+            for device in (devices)! {
+                if device.hasFlash {
+                    do {
+                        try device.lockForConfiguration()
+                        device.torchMode = AVCaptureTorchMode.off
+                    } catch {
+                        
+                    }
+                }
+                device.unlockForConfiguration()
+            }
+            isFlashOn = false
+        } else {
+            let devices = deviceDiscoverySession?.devices
+            for device in (devices)! {
+                if device.hasFlash {
+                    do {
+                        try device.lockForConfiguration()
+                        device.torchMode = AVCaptureTorchMode.on
+                    } catch {
+                        
+                    }
+                }
+                device.unlockForConfiguration()
+            }
+            isFlashOn = true
+        }
+    }
+    
     func setupDevice () {
-        let deviceDiscoverySession = AVCaptureDeviceDiscoverySession(deviceTypes: [AVCaptureDeviceType.builtInWideAngleCamera], mediaType: AVMediaTypeVideo, position: AVCaptureDevicePosition.unspecified)
         let devices = deviceDiscoverySession?.devices
-        
         for device in (devices)! {
             if device.position == AVCaptureDevicePosition.back {
                 backCamera = device
@@ -220,7 +290,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func updateColorPreview (image: UIImage) {
-        
         let dominantColor = image.dominantColors()
         self.color = dominantColor[0]
         let collectionView = self.cameraButtons.headerContainer.headerCollectionView
@@ -228,17 +297,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         cell?.subviews[1].backgroundColor = self.color
         cell?.subviews[1].setNeedsLayout()
     }
-
-    @objc func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
-        let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
-        let ciImage = CIImage(cvPixelBuffer: pixelBuffer!)
-        
+    
+    func generateLivePreview() {
         // update UI asynchronously
         DispatchQueue.main.async() {
             // Apply filter to crop it here
-            let image = self.cropImage(image: ciImage, touchX: self.touchX!, touchY: self.touchY!)
+            let image = self.cropImage(image: self.ciImage!, touchX: self.touchX!, touchY: self.touchY!)
             self.updateColorPreview(image: image)
         }
+    }
+
+    @objc func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
+        let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
+        ciImage = CIImage(cvPixelBuffer: pixelBuffer!)
+        generateLivePreview()
     }
     
 }

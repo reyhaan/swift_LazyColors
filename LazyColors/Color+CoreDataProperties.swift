@@ -24,7 +24,7 @@ extension Color {
     @NSManaged public var hex: String?
     @NSManaged public var rgb: String?
     @NSManaged public var cmyk: String?
-    @NSManaged public var hsb: String?
+    @NSManaged public var hsl: String?
     @NSManaged public var shades: String?
 
 }

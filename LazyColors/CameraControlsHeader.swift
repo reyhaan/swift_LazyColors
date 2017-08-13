@@ -122,16 +122,16 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
         
         print(selectedColor?.getName() ?? "error")
         
-//        color.name = selectedColor?.getName(selectedColor)
-//        color.r = Int16((selectedColor?.redValue)!)
-//        color.g = Int16((selectedColor?.greenValue)!)
-//        color.b = Int16((selectedColor?.blueValue)!)
-//        color.hex = selectedColor?.getHex(selectedColor)
-//        color.date = NSDate()
-//        color.rgb = selectedColor?.getRgb(selectedColor)
-//        color.cmyk = selectedColor?.getCmyk(selectedColor)
-//        color.hsb = selectedColor?.getHsb(selectedColor)
-//        color.shades = selectedColor?.getShades(selectedColor)
+        color.name = selectedColor?.getName()[1] as? String
+        color.r = Int16((selectedColor?.redValue)!)
+        color.g = Int16((selectedColor?.greenValue)!)
+        color.b = Int16((selectedColor?.blueValue)!)
+        color.hex = selectedColor?.getHex()
+        color.date = NSDate()
+        color.rgb = selectedColor?.getRgb()
+        color.cmyk = "\(String(describing: selectedColor?.getCmyk()[0])), \(String(describing: selectedColor?.getCmyk()[1])), \(String(describing: selectedColor?.getCmyk()[2])), \(String(describing: selectedColor?.getCmyk()[3]))"
+        color.hsl = "\(String(describing: selectedColor?.getHsl()[0])), \(String(describing: selectedColor?.getHsl()[1])), \(String(describing: selectedColor?.getHsl()[2]))"
+//        color.shades = selectedColor?.getShades()
         
         
         do {

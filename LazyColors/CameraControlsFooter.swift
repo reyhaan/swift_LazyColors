@@ -10,6 +10,9 @@ import Foundation
 import UIKit
 
 class CameraControlsFooter: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
+    weak var delegate: ViewControllerDelegate?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor.clear
@@ -20,6 +23,9 @@ class CameraControlsFooter: UIView, UICollectionViewDataSource, UICollectionView
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    var isFrameFrozen = false
     
     let cellId = "cellId"
     let imageNames = ["freeze_white", "hue_white", "flash_white", "color_blind_white"]
@@ -47,7 +53,7 @@ class CameraControlsFooter: UIView, UICollectionViewDataSource, UICollectionView
         
         if indexPath.item == 0 {
             // Freeze frame
-            cell.button.addTarget(self, action: #selector(self.freezeFrame), for: .touchDown)
+            cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.toggleFreezeFrame))) // .addTarget(self, action: #selector(self.toggleFreezeFrame), for: .touchDown)
             
         } else if indexPath.item == 1 {
             // Show hue slider
@@ -55,7 +61,7 @@ class CameraControlsFooter: UIView, UICollectionViewDataSource, UICollectionView
             
         } else if indexPath.item == 2 {
             // Activate flash
-            
+            cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.toggleFlash)))
             
         } else if indexPath.item == 3 {
             // Enable color blind mode
@@ -73,9 +79,12 @@ class CameraControlsFooter: UIView, UICollectionViewDataSource, UICollectionView
         return 0
     }
     
-    func freezeFrame() {
-        print("FREEZING")
-        
+    func toggleFreezeFrame(sender: CameraControlsFooterCell!) {
+        delegate?.toggleFrameFreeze()
+    }
+    
+    func toggleFlash() {
+        delegate?.toggleFlash()
     }
     
     func setupViews() {
