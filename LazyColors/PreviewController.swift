@@ -7,13 +7,14 @@
 //
 
 import UIKit
-import Foundation
-
 
 class PreviewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = false
+        print("Inside new view controller! yay!")
+        
     }
 
 }

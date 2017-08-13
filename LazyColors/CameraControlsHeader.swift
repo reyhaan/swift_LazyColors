@@ -12,6 +12,8 @@ import CoreData
 
 class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
+    weak var delegate: ViewControllerDelegate?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -170,6 +172,7 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
         // Slide up the settings menu somehow (-_-)
         
         let footerView: UIView = (superview?.subviews[1])!
+        let labelView: UIView = (superview?.subviews[2])!
         
         if !isSettingsMenuVisible {
             
@@ -182,7 +185,7 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
                 initialSpringVelocity: 1,
                 options: .curveEaseOut,
                 animations: {
-                    self.frame = CGRect(x: 0, y: -20, width: self.frame.width, height: 90)
+                    self.frame = CGRect(x: 0, y: 10, width: self.frame.width, height: 90)
                 },
                 completion: nil
             )
@@ -194,8 +197,20 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
                 initialSpringVelocity: 1,
                 options: .curveEaseOut,
                 animations: {
-                    footerView.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: 40)
+                    footerView.frame = CGRect(x: 0, y: self.frame.height + 10, width: self.frame.width, height: 40)
                 },
+                completion: nil
+            )
+            
+            UIView.animate(
+                withDuration: 0.4,
+                delay: 0,
+                usingSpringWithDamping: 1,
+                initialSpringVelocity: 1,
+                options: .curveEaseOut,
+                animations: {
+                    labelView.frame = CGRect(x: 0, y: -40, width: self.frame.width, height: 40)
+            },
                 completion: nil
             )
             
@@ -225,6 +240,18 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
                 options: .curveEaseOut,
                 animations: {
                     footerView.frame = CGRect(x: 0, y: self.frame.height + 50, width: self.frame.width, height: 40)
+            },
+                completion: nil
+            )
+            
+            UIView.animate(
+                withDuration: 0.4,
+                delay: 0,
+                usingSpringWithDamping: 1,
+                initialSpringVelocity: 1,
+                options: .curveEaseOut,
+                animations: {
+                    labelView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: 40)
             },
                 completion: nil
             )

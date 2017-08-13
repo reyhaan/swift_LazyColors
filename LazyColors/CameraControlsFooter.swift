@@ -57,7 +57,7 @@ class CameraControlsFooter: UIView, UICollectionViewDataSource, UICollectionView
             
         } else if indexPath.item == 1 {
             // Show hue slider
-            
+            cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.openImagePicker)))
             
         } else if indexPath.item == 2 {
             // Activate flash
@@ -85,6 +85,10 @@ class CameraControlsFooter: UIView, UICollectionViewDataSource, UICollectionView
     
     func toggleFlash() {
         delegate?.toggleFlash()
+    }
+    
+    func openImagePicker() {
+        delegate?.openImagePicker()
     }
     
     func setupViews() {

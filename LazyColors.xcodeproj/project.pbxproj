@@ -36,6 +36,7 @@
 		97C66F791F3D2D2300FB8C56 /* KMeans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C66F721F3D2D2300FB8C56 /* KMeans.swift */; };
 		97C66F7A1F3D2D2300FB8C56 /* Memoization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C66F731F3D2D2300FB8C56 /* Memoization.swift */; };
 		97C66F7B1F3D2D2300FB8C56 /* PlatformExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C66F741F3D2D2300FB8C56 /* PlatformExtensions.swift */; };
+		97EC46E91F4026C3001EA9CC /* ColorNameContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EC46E81F4026C3001EA9CC /* ColorNameContainer.swift */; };
 		97FCF7541F3C1DA40003DADD /* ColorProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FCF7531F3C1DA40003DADD /* ColorProcessor.swift */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +97,9 @@
 		97C66F721F3D2D2300FB8C56 /* KMeans.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMeans.swift; sourceTree = "<group>"; };
 		97C66F731F3D2D2300FB8C56 /* Memoization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Memoization.swift; sourceTree = "<group>"; };
 		97C66F741F3D2D2300FB8C56 /* PlatformExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformExtensions.swift; sourceTree = "<group>"; };
+		97EC46E81F4026C3001EA9CC /* ColorNameContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorNameContainer.swift; sourceTree = "<group>"; };
+		97EC47421F403B67001EA9CC /* ProximaNovaRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ProximaNovaRegular.otf; sourceTree = "<group>"; };
+		97EC47431F403B79001EA9CC /* ProximaNovaBlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ProximaNovaBlackItalic.otf; sourceTree = "<group>"; };
 		97FCF7531F3C1DA40003DADD /* ColorProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorProcessor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,6 +153,7 @@
 		9752F0201F36E4D500D9272C /* LazyColors */ = {
 			isa = PBXGroup;
 			children = (
+				97EC46EA1F403666001EA9CC /* Resources */,
 				97C66F671F3D2CDD00FB8C56 /* DominantColor */,
 				97B107381F379F4600E36CF8 /* Model */,
 				97B107391F379F5100E36CF8 /* View */,
@@ -207,6 +212,7 @@
 				97B107581F38226600E36CF8 /* BaseCell.swift */,
 				97B1075A1F38233100E36CF8 /* CameraControlsFooterCell.swift */,
 				97B1075C1F38281700E36CF8 /* CameraControlsHeaderCell.swift */,
+				97EC46E81F4026C3001EA9CC /* ColorNameContainer.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -249,6 +255,15 @@
 				97C66F6A1F3D2D2300FB8C56 /* LazyColors-Bridging-Header.h */,
 			);
 			name = DominantColor;
+			sourceTree = "<group>";
+		};
+		97EC46EA1F403666001EA9CC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				97EC47431F403B79001EA9CC /* ProximaNovaBlackItalic.otf */,
+				97EC47421F403B67001EA9CC /* ProximaNovaRegular.otf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -389,6 +404,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97EC46E91F4026C3001EA9CC /* ColorNameContainer.swift in Sources */,
 				97C66F7A1F3D2D2300FB8C56 /* Memoization.swift in Sources */,
 				97B107531F3808F500E36CF8 /* Extensions.swift in Sources */,
 				977F30221F3BF75600AE1901 /* Color+CoreDataClass.swift in Sources */,

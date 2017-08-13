@@ -13,6 +13,8 @@ import CoreImage
 protocol ViewControllerDelegate: class {
     func toggleFrameFreeze()
     func toggleFlash()
+    func openImagePicker()
+    func openColorsList()
 }
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, ViewControllerDelegate {
@@ -29,13 +31,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var color: UIColor?
     let ciContext = CIContext(options: nil)
     var footerCell: CameraControlsFooter?
+    var headerCells: CameraControlsHeader?
     var ciImage: CIImage?
     var isFlashOn = false
     var isFrameFrozen = false
+    let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
+        
+        imagePicker.delegate = self
         
         // calculate center position for target
         touchX = (self.view.frame.width / 2)
@@ -52,6 +58,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         setupData()
         
         footerCell = cameraButtons.footerContainer
+        headerCells = cameraButtons.headerContainer
+        headerCells?.delegate = self
         footerCell?.delegate = self
         
     }
@@ -153,12 +161,36 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    public func unfreezeFrame () {
-        captureSession.startRunning()
+    func openImagePicker() {
+        
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .photoLibrary
+        
+        present(imagePicker, animated: true, completion: nil)
+        
+    }
+    
+    let pc = PreviewController()
+    
+    func openColorsList() {
+        captureSession.stopRunning()
+        navigationController?.pushViewController(pc, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+//            cameraPreviewLayer.contentMode = .ScaleAspectFit
+//            cameraPreviewLayer.image = pickedImage
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
     
     let deviceDiscoverySession = AVCaptureDeviceDiscoverySession(deviceTypes: [AVCaptureDeviceType.builtInWideAngleCamera], mediaType: AVMediaTypeVideo, position: AVCaptureDevicePosition.unspecified)
-    
     
     public func toggleFlash() {
         if isFlashOn {
@@ -294,6 +326,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.color = dominantColor[0]
         let collectionView = self.cameraButtons.headerContainer.headerCollectionView
         let cell = collectionView.cellForItem(at: IndexPath(item: 1, section: 0))
+        
+        let colorNameView = self.cameraButtons.colorNameContainer
+        
+        DispatchQueue.main.async() {
+//            colorNameView.name.text = self.color?.getName()[1] as? String
+//            colorNameView.code.font = UIFont(name: "ProximaNovaRegular", size: 5)
+            colorNameView.code.text = "This is proxima nova" // "#" + (self.color?.getHex())!
+        }
+        
+
+        
         cell?.subviews[1].backgroundColor = self.color
         cell?.subviews[1].setNeedsLayout()
     }

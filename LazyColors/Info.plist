@@ -43,5 +43,12 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>ProximaNovaRegular.otf</string>
+		<string>ProximaNovaBlack.otf</string>
+	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Trying to open your stuff bro</string>
 </dict>
 </plist>

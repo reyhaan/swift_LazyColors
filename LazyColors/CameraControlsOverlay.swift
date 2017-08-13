@@ -32,12 +32,19 @@ class CameraControlsOverlay: UIView {
         return hc
     }()
     
+    let colorNameContainer: ColorNameContainer = {
+        let cnc = ColorNameContainer()
+        return cnc
+    }()
+    
     func setupViews() {
         addSubview(headerContainer)
         addSubview(footerContainer)
-        addConstraintsWithFormat(format: "V:[v1(90)]-0-[v0(50)]-(-50)-|", views: footerContainer, headerContainer)
+        addSubview(colorNameContainer)
+        addConstraintsWithFormat(format: "V:[v2(50)]-0-[v1(90)]-0-[v0(40)]-(-40)-|", views: footerContainer, headerContainer, colorNameContainer)
         addConstraintsWithFormat(format: "H:|[v0]|", views: footerContainer)
         addConstraintsWithFormat(format: "H:|[v0]|", views: headerContainer)
+        addConstraintsWithFormat(format: "H:|[v0]|", views: colorNameContainer)
     }
     
 }
