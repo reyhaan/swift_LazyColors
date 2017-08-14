@@ -76,8 +76,6 @@ class ColorCollectionView: UIView, UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? SingleColorCell
         
-//        cell?.backgroundColor = UIColor.orange
-        
         if let color = colorsArray?[indexPath.item] {
             cell?.colorObject = color
         }
