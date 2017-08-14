@@ -19,7 +19,6 @@ class ColorCollectionView: UIView, UICollectionViewDataSource, UICollectionViewD
         colorCollectionView.register(SingleColorCell.self, forCellWithReuseIdentifier: cellId)
         setupHeader()
         setupViews()
-//        loadData()
 //        clearData()
     }
     

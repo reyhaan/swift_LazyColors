@@ -14,9 +14,8 @@ class SingleColorCell: BaseCell {
     var colorObject: Color? {
         didSet {
             color.backgroundColor = UIColor(red: CGFloat((colorObject?.r)!) / 255, green: CGFloat((colorObject?.g)!) / 255, blue: CGFloat((colorObject?.b)!) / 255, alpha: 1)
-            name.text = colorObject?.name
-            code.text = "#" + ((colorObject?.hex)!)!
-
+            name.text = colorObject?.cmyk
+            code.text = (colorObject?.rgb)! + "" + (colorObject?.hex)!
         }
     }
     

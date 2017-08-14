@@ -86,7 +86,7 @@ extension UIColor {
     func getCmyk() -> Array<Any> {
         let jsContext = JSContext()
         
-        let color = getHex()
+//        let color = getHex()
         
         var cmyk: JSValue?
         
@@ -99,7 +99,7 @@ extension UIColor {
                 // Add the Javascript code that currently exists in the jsSourceContents to the Javascript Runtime through the jsContext object.
                 _ = jsContext?.evaluateScript(ntc_lib)
                 let fn = jsContext?.objectForKeyedSubscript("ntc")
-                cmyk = fn?.invokeMethod("cmyk", withArguments: [color])
+                cmyk = fn?.invokeMethod("cmyk2", withArguments: [self.redValue, self.greenValue, self.blueValue])
                 
             }
             catch {
