@@ -13,13 +13,10 @@ class SingleColorCell: BaseCell {
     
     var colorObject: Color? {
         didSet {
-            color.backgroundColor = UIColor(red: CGFloat((colorObject?.r)!), green: CGFloat((colorObject?.g)!), blue: CGFloat((colorObject?.b)!), alpha: 1)
+            color.backgroundColor = UIColor(red: CGFloat((colorObject?.r)!) / 255, green: CGFloat((colorObject?.g)!) / 255, blue: CGFloat((colorObject?.b)!) / 255, alpha: 1)
             name.text = colorObject?.name
-            if let data = colorObject?.hex {
-                
-                code.text = data
-                
-            }
+            code.text = "#" + ((colorObject?.hex)!)!
+
         }
     }
     
@@ -43,7 +40,7 @@ class SingleColorCell: BaseCell {
         cd.frame.size.width = 120
         cd.textColor = UIColor.gray
         cd.padding = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
-        cd.font = UIFont(name: "ProximaNova-Regular", size: 12)
+        cd.font = UIFont(name: "ProximaNova-Regular", size: 10)
         return cd
     }()
     

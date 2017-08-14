@@ -64,7 +64,7 @@ class CameraControlsFooter: UIView, UICollectionViewDataSource, UICollectionView
             cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.toggleFlash)))
             
         } else if indexPath.item == 3 {
-            // Enable color blind mode
+            // Generate collective pallette
             
         }
         

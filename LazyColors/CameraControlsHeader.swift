@@ -31,7 +31,7 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
     }
     
     let cellId = "cellId"
-    let imageNames = ["colors_white", "", "settings_white"]
+    let imageNames = ["settings_white", "", "colors_white"]
     var isSettingsMenuVisible = false
     
     lazy var headerCollectionView: UICollectionView = {
@@ -70,7 +70,7 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
             cell.button.frame.origin.x = 15
             cell.button.frame.origin.y = 5
             
-            cell.button.addTarget(self, action: #selector(self.openColorList), for: .touchDown)
+            cell.button.addTarget(self, action: #selector(self.openSettings), for: .touchDown)
             
         } else if indexPath.item == 1 {
             // Capture the color
@@ -99,7 +99,8 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
             cell.button.frame.origin.x = 15
             cell.button.frame.origin.y = 5
             
-            cell.button.addTarget(self, action: #selector(self.openSettings), for: .touchDown)
+            cell.button.addTarget(self, action: #selector(self.openColorList), for: .touchDown)
+            
         }
         
         return cell
@@ -122,6 +123,15 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
         
         let selectedColor = sender.backgroundColor
         
+        let c = selectedColor?.getCmyk()[0]
+        let m = selectedColor?.getCmyk()[1]
+        let y = selectedColor?.getCmyk()[2]
+        let k = selectedColor?.getCmyk()[3]
+        
+        let h = selectedColor?.getHsl()[0]
+        let s = selectedColor?.getHsl()[1]
+        let l = selectedColor?.getHsl()[2]
+        
         print(selectedColor?.getName() ?? "error")
         
         color.name = selectedColor?.getName()[1] as? String
@@ -131,9 +141,8 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
         color.hex = selectedColor?.getHex()
         color.date = NSDate()
         color.rgb = selectedColor?.getRgb()
-        color.cmyk = "\(String(describing: selectedColor?.getCmyk()[0])), \(String(describing: selectedColor?.getCmyk()[1])), \(String(describing: selectedColor?.getCmyk()[2])), \(String(describing: selectedColor?.getCmyk()[3]))"
-        color.hsl = "\(String(describing: selectedColor?.getHsl()[0])), \(String(describing: selectedColor?.getHsl()[1])), \(String(describing: selectedColor?.getHsl()[2]))"
-//        color.shades = selectedColor?.getShades()
+        color.cmyk = "\(c!), \(m!), \(y!), \(k!)"
+        color.hsl = "\(h!), \(s!), \(l!)"
         
         
         do {
