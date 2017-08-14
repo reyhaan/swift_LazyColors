@@ -53,14 +53,17 @@ class CameraControlsFooter: UIView, UICollectionViewDataSource, UICollectionView
         
         if indexPath.item == 0 {
             // Freeze frame
+            cell.button.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.toggleFreezeFrame)))
             cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.toggleFreezeFrame))) // .addTarget(self, action: #selector(self.toggleFreezeFrame), for: .touchDown)
             
         } else if indexPath.item == 1 {
             // Show hue slider
+            cell.button.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.openImagePicker)))
             cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.openImagePicker)))
             
         } else if indexPath.item == 2 {
             // Activate flash
+            cell.button.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.toggleFlash)))
             cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.toggleFlash)))
             
         } else if indexPath.item == 3 {
