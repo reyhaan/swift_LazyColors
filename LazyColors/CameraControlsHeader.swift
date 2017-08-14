@@ -14,6 +14,8 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
     
     weak var delegate: ViewControllerDelegate?
     
+    var colorCollection: ColorCollectionView?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -21,6 +23,7 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
         headerCollectionView.contentInset = UIEdgeInsetsMake(-20, 0, 0, 0)
         headerCollectionView.scrollIndicatorInsets = UIEdgeInsetsMake(-20, 0, 0, 0)
         setupViews()
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -45,10 +48,7 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
         return pi
     }()
     
-    let colorCollectionView: UIView = {
-        let ccv = UIView()
-        return ccv
-    }()
+    let colorCollectionView = ColorCollectionView()
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
@@ -125,9 +125,9 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
         print(selectedColor?.getName() ?? "error")
         
         color.name = selectedColor?.getName()[1] as? String
-        color.r = Int16((selectedColor?.redValue)!)
-        color.g = Int16((selectedColor?.greenValue)!)
-        color.b = Int16((selectedColor?.blueValue)!)
+        color.r = Float((selectedColor?.redValue)!)
+        color.g = Float((selectedColor?.greenValue)!)
+        color.b = Float((selectedColor?.blueValue)!)
         color.hex = selectedColor?.getHex()
         color.date = NSDate()
         color.rgb = selectedColor?.getRgb()
@@ -149,8 +149,9 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
         
         if let window = UIApplication.shared.keyWindow {
             
+            delegate?.freezeFrame()
+
             colorCollectionView.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: (window.frame.height))
-            colorCollectionView.backgroundColor = UIColor.white
             window.addSubview(colorCollectionView)
             
             UIView.animate(
@@ -164,6 +165,9 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
             },
                 completion: nil
             )
+            
+            colorCollectionView.loadData()
+            colorCollectionView.colorCollectionView.reloadData()
         }
 
     }

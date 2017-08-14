@@ -45,9 +45,9 @@ extension UIColor {
     }
     
     func getHex() -> String {
-        let r = String(format:"%02X", self.redValue)
-        let g = String(format:"%02X", self.greenValue)
-        let b = String(format:"%02X", self.blueValue)
+        let r = String(format:"%2X", self.redValue)
+        let g = String(format:"%2X", self.greenValue)
+        let b = String(format:"%2X", self.blueValue)
         
         return "\(r)\(g)\(b)"
     }

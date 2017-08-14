@@ -18,9 +18,9 @@ extension Color {
 
     @NSManaged public var date: NSDate?
     @NSManaged public var name: String?
-    @NSManaged public var r: Int16
-    @NSManaged public var g: Int16
-    @NSManaged public var b: Int16
+    @NSManaged public var r: Float
+    @NSManaged public var g: Float
+    @NSManaged public var b: Float
     @NSManaged public var hex: String?
     @NSManaged public var rgb: String?
     @NSManaged public var cmyk: String?

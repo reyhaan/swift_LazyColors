@@ -14,6 +14,11 @@
 		9752F0371F36E4D500D9272C /* LazyColorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9752F0361F36E4D500D9272C /* LazyColorsTests.swift */; };
 		9752F0421F36E4D500D9272C /* LazyColorsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9752F0411F36E4D500D9272C /* LazyColorsUITests.swift */; };
 		9766F17D1F3F843B005A9637 /* ntc.js in Resources */ = {isa = PBXBuildFile; fileRef = 9766F17C1F3F843B005A9637 /* ntc.js */; };
+		977AF40C1F40A5D2007E591D /* ColorCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AF40B1F40A5D2007E591D /* ColorCollectionView.swift */; };
+		977AF40E1F40A74F007E591D /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AF40D1F40A74F007E591D /* ViewControllerExtension.swift */; };
+		977AF4101F40A88F007E591D /* SingleColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AF40F1F40A88F007E591D /* SingleColorCell.swift */; };
+		977AF4131F40EC4F007E591D /* ColorCollectionViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AF4121F40EC4F007E591D /* ColorCollectionViewHelper.swift */; };
+		977AF4551F410513007E591D /* Proxima Nova Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 977AF4541F410513007E591D /* Proxima Nova Bold.otf */; };
 		977F30031F3BEA7100AE1901 /* ColorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977F30021F3BEA7100AE1901 /* ColorController.swift */; };
 		977F30171F3BF52000AE1901 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 977F30161F3BF52000AE1901 /* Main.storyboard */; };
 		977F30181F3BF55900AE1901 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 977F30101F3BF32D00AE1901 /* CoreData.framework */; };
@@ -72,6 +77,11 @@
 		9752F0411F36E4D500D9272C /* LazyColorsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyColorsUITests.swift; sourceTree = "<group>"; };
 		9752F0431F36E4D500D9272C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9766F17C1F3F843B005A9637 /* ntc.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ntc.js; sourceTree = "<group>"; };
+		977AF40B1F40A5D2007E591D /* ColorCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCollectionView.swift; sourceTree = "<group>"; };
+		977AF40D1F40A74F007E591D /* ViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
+		977AF40F1F40A88F007E591D /* SingleColorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleColorCell.swift; sourceTree = "<group>"; };
+		977AF4121F40EC4F007E591D /* ColorCollectionViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCollectionViewHelper.swift; sourceTree = "<group>"; };
+		977AF4541F410513007E591D /* Proxima Nova Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Proxima Nova Bold.otf"; path = "../../../../../Desktop/ProximaNova/Proxima Nova Bold.otf"; sourceTree = "<group>"; };
 		977F30021F3BEA7100AE1901 /* ColorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorController.swift; sourceTree = "<group>"; };
 		977F30101F3BF32D00AE1901 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		977F30161F3BF52000AE1901 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -185,6 +195,16 @@
 			path = LazyColorsUITests;
 			sourceTree = "<group>";
 		};
+		977AF4111F40B513007E591D /* ColorsList */ = {
+			isa = PBXGroup;
+			children = (
+				977AF40B1F40A5D2007E591D /* ColorCollectionView.swift */,
+				977AF40F1F40A88F007E591D /* SingleColorCell.swift */,
+				977AF4121F40EC4F007E591D /* ColorCollectionViewHelper.swift */,
+			);
+			name = ColorsList;
+			sourceTree = "<group>";
+		};
 		977F300F1F3BF32D00AE1901 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +233,7 @@
 				97B1075A1F38233100E36CF8 /* CameraControlsFooterCell.swift */,
 				97B1075C1F38281700E36CF8 /* CameraControlsHeaderCell.swift */,
 				97EC46E81F4026C3001EA9CC /* ColorNameContainer.swift */,
+				977AF4111F40B513007E591D /* ColorsList */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -223,6 +244,7 @@
 				9752F0231F36E4D500D9272C /* ViewController.swift */,
 				97B1073B1F37AA3500E36CF8 /* PreviewController.swift */,
 				977F30021F3BEA7100AE1901 /* ColorController.swift */,
+				977AF40D1F40A74F007E591D /* ViewControllerExtension.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -261,6 +283,7 @@
 			isa = PBXGroup;
 			children = (
 				97889C941F403D9B0028B8D6 /* Proxima Nova Regular.otf */,
+				977AF4541F410513007E591D /* Proxima Nova Bold.otf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -380,6 +403,7 @@
 				97889C951F403D9B0028B8D6 /* Proxima Nova Regular.otf in Resources */,
 				977F30171F3BF52000AE1901 /* Main.storyboard in Resources */,
 				9766F17D1F3F843B005A9637 /* ntc.js in Resources */,
+				977AF4551F410513007E591D /* Proxima Nova Bold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +428,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				977AF40C1F40A5D2007E591D /* ColorCollectionView.swift in Sources */,
 				97EC46E91F4026C3001EA9CC /* ColorNameContainer.swift in Sources */,
 				97C66F7A1F3D2D2300FB8C56 /* Memoization.swift in Sources */,
 				97B107531F3808F500E36CF8 /* Extensions.swift in Sources */,
@@ -416,6 +441,7 @@
 				97B1073C1F37AA3500E36CF8 /* PreviewController.swift in Sources */,
 				97B1075B1F38233100E36CF8 /* CameraControlsFooterCell.swift in Sources */,
 				977F30231F3BF75600AE1901 /* Color+CoreDataProperties.swift in Sources */,
+				977AF4101F40A88F007E591D /* SingleColorCell.swift in Sources */,
 				97C66F7B1F3D2D2300FB8C56 /* PlatformExtensions.swift in Sources */,
 				97C66F751F3D2D2300FB8C56 /* ColorSpaceConversion.m in Sources */,
 				97B107571F38154C00E36CF8 /* CameraControlsHeader.swift in Sources */,
@@ -423,6 +449,8 @@
 				97B1073E1F37B47A00E36CF8 /* CameraControlsOverlay.swift in Sources */,
 				97C66F791F3D2D2300FB8C56 /* KMeans.swift in Sources */,
 				97C66F781F3D2D2300FB8C56 /* INVector3SwiftExtensions.swift in Sources */,
+				977AF4131F40EC4F007E591D /* ColorCollectionViewHelper.swift in Sources */,
+				977AF40E1F40A74F007E591D /* ViewControllerExtension.swift in Sources */,
 				97B1075D1F38281700E36CF8 /* CameraControlsHeaderCell.swift in Sources */,
 				97C66F691F3D2D0700FB8C56 /* ColorDifference.swift in Sources */,
 				9752F0241F36E4D500D9272C /* ViewController.swift in Sources */,
