@@ -10,7 +10,7 @@ import UIKit
 
 class ColorCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    weak var delegate: ViewControllerDelegate?
+    weak var delegate: PreviewControllerDelegate?
     
     var colorsArray: [Color]?
     
@@ -19,6 +19,7 @@ class ColorCollectionView: UIView, UICollectionViewDataSource, UICollectionViewD
         colorCollectionView.register(SingleColorCell.self, forCellWithReuseIdentifier: cellId)
         setupHeader()
         setupViews()
+        loadData()
 //        clearData()
     }
     
@@ -48,22 +49,25 @@ class ColorCollectionView: UIView, UICollectionViewDataSource, UICollectionViewD
     }
     
     func closeColorCollectionView () {
-        if let window = UIApplication.shared.keyWindow {
-            UIView.animate(
-                withDuration: 0.5,
-                delay: 0,
-                usingSpringWithDamping: 1,
-                initialSpringVelocity: 1,
-                options: .curveEaseOut,
-                animations: {
-                    window.subviews[1].frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: window.frame.height)
-            },
-                completion: nil
-            )
-            
-            self.delegate?.unfreezeFrame()
-
-        }
+        
+        self.delegate?.goBackToCamera()
+        
+//        if let window = UIApplication.shared.keyWindow {
+//            UIView.animate(
+//                withDuration: 0.5,
+//                delay: 0,
+//                usingSpringWithDamping: 1,
+//                initialSpringVelocity: 1,
+//                options: .curveEaseOut,
+//                animations: {
+//                    window.subviews[1].frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: window.frame.height)
+//            },
+//                completion: nil
+//            )
+//            
+//            self.delegate?.unfreezeFrame()
+//
+//        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

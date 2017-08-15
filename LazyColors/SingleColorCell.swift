@@ -29,7 +29,7 @@ class SingleColorCell: BaseCell {
         let nm = UILabel()
         nm.frame.size.width = 120
         nm.textColor = UIColor.darkGray
-        nm.padding = UIEdgeInsets(top: 5, left: 10, bottom: 0, right: 0)
+        nm.padding = UIEdgeInsets(top: 8, left: 10, bottom: 0, right: 0)
         nm.font = UIFont(name: "ProximaNova-Bold", size: 12)
         return nm
     }()
@@ -37,8 +37,8 @@ class SingleColorCell: BaseCell {
     let code: UILabel = {
         let cd = UILabel()
         cd.frame.size.width = 120
-        cd.textColor = UIColor.gray
-        cd.padding = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+        cd.textColor = UIColor.lightGray
+        cd.padding = UIEdgeInsets(top: 0, left: 10, bottom: 5, right: 0)
         cd.font = UIFont(name: "ProximaNova-Regular", size: 10)
         return cd
     }()

@@ -72,8 +72,8 @@ extension ViewController {
         let colorNameView = self.cameraButtons.colorNameContainer
         
         DispatchQueue.main.async() {
-            //            colorNameView.name.text = self.color?.getName()[1] as? String
-            //            colorNameView.code.font = UIFont(name: "ProximaNovaRegular", size: 5)
+//            colorNameView.name.text = self.color?.getName()[1] as? String
+            colorNameView.code.font = UIFont(name: "ProximaNova-Regular", size: 14)
             colorNameView.code.text = "#" + (self.color?.getHex())!
         }
 

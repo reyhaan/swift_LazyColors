@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import CoreImage
+import JavaScriptCore
 
 protocol ViewControllerDelegate: class {
     func toggleFrameFreeze()
@@ -21,7 +22,7 @@ protocol ViewControllerDelegate: class {
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, ViewControllerDelegate {
     
-    var captureSession = AVCaptureSession()
+    let captureSession = AVCaptureSession()
     var backCamera: AVCaptureDevice?
     var frontCamera: AVCaptureDevice?
     var currentCamera: AVCaptureDevice?
@@ -34,7 +35,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     let ciContext = CIContext(options: nil)
     var footerCell: CameraControlsFooter?
     var headerCells: CameraControlsHeader?
-    var colorsList: ColorCollectionView?
     var ciImage: CIImage?
     var isFlashOn = false
     var isFrameFrozen = false
@@ -60,8 +60,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         footerCell = cameraButtons.footerContainer
         headerCells = cameraButtons.headerContainer
-        colorsList = cameraButtons.headerContainer.colorCollectionView
-        colorsList?.delegate = self
         headerCells?.delegate = self
         footerCell?.delegate = self
         
@@ -101,7 +99,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         target.frame.origin.x = touchX! - 9
         target.frame.origin.y = touchY! - 9
         
-        if !captureSession.isRunning {
+        if isFrameFrozen {
             generateLivePreview()
         }
         
@@ -116,7 +114,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         target.frame.origin.x = touchX! - 9
         target.frame.origin.y = touchY! - 9
         
-        if !captureSession.isRunning {
+        if isFrameFrozen {
             generateLivePreview()
         }
         
@@ -187,7 +185,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func openColorsList() {
         captureSession.stopRunning()
-        navigationController?.pushViewController(pc, animated: true)
+        
+        let transition:CATransition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromTop
+        navigationController!.view.layer.add(transition, forKey: kCATransition)
+        navigationController?.pushViewController(pc, animated: false)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {

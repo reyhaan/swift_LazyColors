@@ -26,6 +26,7 @@ extension UIColor {
         
         // Specify the path to the jssource.js file.
         if let jsSourcePath = Bundle.main.path(forResource: "ntc", ofType: "js") {
+            
             do {
                 // Load its contents to a String variable.
                 let ntc_lib = try String(contentsOfFile: jsSourcePath)
@@ -34,7 +35,7 @@ extension UIColor {
                 _ = jsContext?.evaluateScript(ntc_lib)
                 let fn = jsContext?.objectForKeyedSubscript("ntc")
                 name = fn?.invokeMethod("name", withArguments: [color])
-
+                
             }
             catch {
                 print(error.localizedDescription)

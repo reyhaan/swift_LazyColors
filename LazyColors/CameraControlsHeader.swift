@@ -99,11 +99,17 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
             cell.button.frame.origin.x = 15
             cell.button.frame.origin.y = 5
             
-            cell.button.addTarget(self, action: #selector(self.openColorList), for: .touchDown)
+//            cell.button.addTarget(self, action: #selector(self.openColorList), for: .touchDown)
+            
+            cell.button.addTarget(self, action: #selector(self.openColorListViewController), for: .touchDown)
             
         }
         
         return cell
+    }
+    
+    func openColorListViewController() {
+        delegate?.openColorsList()
     }
     
     func animateCameraOverlay(view: UIView!, values: Array<Any>, positionY: NSInteger) {
