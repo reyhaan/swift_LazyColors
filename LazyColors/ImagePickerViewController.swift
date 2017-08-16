@@ -19,6 +19,9 @@ class ImagePickerViewController: UIViewController, UINavigationControllerDelegat
     var imagePicker: ImagePickerControls?
     var touchX: CGFloat?
     var touchY: CGFloat?
+    var color: UIColor?
+    let ciContext = CIContext(options: nil)
+    var ciImage: CIImage?
     
     
     override func viewDidLoad() {
@@ -77,6 +80,10 @@ class ImagePickerViewController: UIViewController, UINavigationControllerDelegat
         touchY = (location.y)
         target.frame.origin.x = touchX! - 9
         target.frame.origin.y = touchY! - 9
+        
+        ciImage =  CIImage(cgImage: (pickedImage?.cgImage)!)
+        
+        generateLivePreview()
 
     }
     

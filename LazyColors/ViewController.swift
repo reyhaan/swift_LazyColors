@@ -69,6 +69,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        freezeFrame()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        unfreezeFrame()
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -197,7 +205,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         transition.duration = 0.5
         transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         transition.type = kCATransitionPush
-        transition.subtype = kCATransitionFromTop
+        transition.subtype = kCATransitionFromRight
         navigationController!.view.layer.add(transition, forKey: kCATransition)
         navigationController?.pushViewController(pc, animated: false)
     }
