@@ -19,14 +19,12 @@ class PreviewController: UIViewController, UINavigationControllerDelegate, Previ
         self.navigationController?.isNavigationBarHidden = true
         
         setupViews()
-        
         colorsList.delegate = self
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         colorsList.loadData()
+        colorsList.colorCollectionView.reloadData()
     }
     
     let colorsList = ColorCollectionView()

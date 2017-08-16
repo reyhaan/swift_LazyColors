@@ -118,7 +118,7 @@ class ImagePickerViewController: UIViewController, UINavigationControllerDelegat
         view.addSubview(target)
         
         scrollView?.translatesAutoresizingMaskIntoConstraints = false
-        view.addConstraintsWithFormat(format: "V:|[v0]-0-[v1(90)]-(-20)-|", views: scrollView!, headerContainer)
+        view.addConstraintsWithFormat(format: "V:|[v0]-0-[v1(110)]-(-20)-|", views: scrollView!, headerContainer)
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: scrollView!)
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: headerContainer)
 

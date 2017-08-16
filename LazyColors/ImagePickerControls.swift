@@ -67,8 +67,8 @@ class ImagePickerControls: UIView, UICollectionViewDataSource, UICollectionViewD
             
             cell.button.frame.size.height = 80
             cell.button.frame.size.width = 80
-            cell.button.frame.origin.x = 15
-            cell.button.frame.origin.y = 15
+            cell.button.frame.origin.x = 12
+            cell.button.frame.origin.y = 22
             
             cell.button.addTarget(self, action: #selector(self.openSettings), for: .touchDown)
             
@@ -78,8 +78,8 @@ class ImagePickerControls: UIView, UICollectionViewDataSource, UICollectionViewD
             
             cell.button.frame.size.height = 80
             cell.button.frame.size.width = 80
-            cell.button.frame.origin.x = 15
-            cell.button.frame.origin.y = 15
+            cell.button.frame.origin.x = 12
+            cell.button.frame.origin.y = 25
             cell.button.layer.cornerRadius = 40
             cell.button.clipsToBounds = true
             
@@ -96,8 +96,8 @@ class ImagePickerControls: UIView, UICollectionViewDataSource, UICollectionViewD
             
             cell.button.frame.size.height = 80
             cell.button.frame.size.width = 80
-            cell.button.frame.origin.x = 15
-            cell.button.frame.origin.y = 15
+            cell.button.frame.origin.x = 12
+            cell.button.frame.origin.y = 22
             
             //            cell.button.addTarget(self, action: #selector(self.openColorList), for: .touchDown)
             
@@ -258,7 +258,7 @@ class ImagePickerControls: UIView, UICollectionViewDataSource, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: frame.width / 3, height: 90)
+        return CGSize(width: frame.width / 3, height: frame.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
