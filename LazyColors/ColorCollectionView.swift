@@ -11,6 +11,7 @@ import UIKit
 class ColorCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     weak var delegate: PreviewControllerDelegate?
+    weak var delegate2: ViewControllerDelegate?
     
     var colorsArray: [Color]?
     
@@ -51,23 +52,7 @@ class ColorCollectionView: UIView, UICollectionViewDataSource, UICollectionViewD
     func closeColorCollectionView () {
         
         self.delegate?.goBackToCamera()
-        
-//        if let window = UIApplication.shared.keyWindow {
-//            UIView.animate(
-//                withDuration: 0.5,
-//                delay: 0,
-//                usingSpringWithDamping: 1,
-//                initialSpringVelocity: 1,
-//                options: .curveEaseOut,
-//                animations: {
-//                    window.subviews[1].frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: window.frame.height)
-//            },
-//                completion: nil
-//            )
-//            
-//            self.delegate?.unfreezeFrame()
-//
-//        }
+
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

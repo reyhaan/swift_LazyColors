@@ -22,6 +22,11 @@ class PreviewController: UIViewController, UINavigationControllerDelegate, Previ
         
         colorsList.delegate = self
         
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        colorsList.loadData()
     }
     
     let colorsList = ColorCollectionView()
@@ -31,7 +36,7 @@ class PreviewController: UIViewController, UINavigationControllerDelegate, Previ
         transition.duration = 0.5
         transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         transition.type = kCATransitionPush
-        transition.subtype = kCATransitionFromBottom
+        transition.subtype = kCATransitionFromLeft
         navigationController!.view.layer.add(transition, forKey: kCATransition)
         navigationController?.popViewController(animated: false)
     }

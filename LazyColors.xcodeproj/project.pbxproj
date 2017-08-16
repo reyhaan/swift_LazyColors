@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		97282EE01F4328080058B1DE /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97282EDF1F4328080058B1DE /* ImageScrollView.swift */; };
+		97282EE21F4328450058B1DE /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97282EE11F4328450058B1DE /* ImagePickerViewController.swift */; };
+		973E7C041F442916001237D3 /* ImagePickerControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973E7C031F442916001237D3 /* ImagePickerControls.swift */; };
+		973E7C061F4429D8001237D3 /* ImagePickerOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973E7C051F4429D8001237D3 /* ImagePickerOptions.swift */; };
 		974209B61F3AA45B004BFA95 /* UIImageColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974209B51F3AA45B004BFA95 /* UIImageColors.swift */; };
 		9752F0221F36E4D500D9272C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9752F0211F36E4D500D9272C /* AppDelegate.swift */; };
 		9752F0241F36E4D500D9272C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9752F0231F36E4D500D9272C /* ViewController.swift */; };
@@ -63,6 +67,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		97282EDF1F4328080058B1DE /* ImageScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
+		97282EE11F4328450058B1DE /* ImagePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
+		973E7C031F442916001237D3 /* ImagePickerControls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerControls.swift; sourceTree = "<group>"; };
+		973E7C051F4429D8001237D3 /* ImagePickerOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerOptions.swift; sourceTree = "<group>"; };
 		974209B51F3AA45B004BFA95 /* UIImageColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageColors.swift; sourceTree = "<group>"; };
 		9752F01E1F36E4D500D9272C /* LazyColors.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LazyColors.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9752F0211F36E4D500D9272C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -137,6 +145,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		973E7C021F442847001237D3 /* ImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				97282EDF1F4328080058B1DE /* ImageScrollView.swift */,
+				973E7C031F442916001237D3 /* ImagePickerControls.swift */,
+				973E7C051F4429D8001237D3 /* ImagePickerOptions.swift */,
+			);
+			name = ImagePicker;
+			sourceTree = "<group>";
+		};
 		9752F0151F36E4D500D9272C = {
 			isa = PBXGroup;
 			children = (
@@ -232,6 +250,7 @@
 				97B1075C1F38281700E36CF8 /* CameraControlsHeaderCell.swift */,
 				97EC46E81F4026C3001EA9CC /* ColorNameContainer.swift */,
 				977AF4111F40B513007E591D /* ColorsList */,
+				973E7C021F442847001237D3 /* ImagePicker */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -242,6 +261,7 @@
 				9752F0231F36E4D500D9272C /* ViewController.swift */,
 				97B1073B1F37AA3500E36CF8 /* PreviewController.swift */,
 				977AF40D1F40A74F007E591D /* ViewControllerExtension.swift */,
+				97282EE11F4328450058B1DE /* ImagePickerViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -429,6 +449,7 @@
 				97EC46E91F4026C3001EA9CC /* ColorNameContainer.swift in Sources */,
 				97C66F7A1F3D2D2300FB8C56 /* Memoization.swift in Sources */,
 				97B107531F3808F500E36CF8 /* Extensions.swift in Sources */,
+				97282EE01F4328080058B1DE /* ImageScrollView.swift in Sources */,
 				977F30221F3BF75600AE1901 /* Color+CoreDataClass.swift in Sources */,
 				97C66F761F3D2D2300FB8C56 /* DominantColors.swift in Sources */,
 				977F301B1F3BF59B00AE1901 /* AppModel.xcdatamodeld in Sources */,
@@ -437,17 +458,20 @@
 				97B1073C1F37AA3500E36CF8 /* PreviewController.swift in Sources */,
 				97B1075B1F38233100E36CF8 /* CameraControlsFooterCell.swift in Sources */,
 				977F30231F3BF75600AE1901 /* Color+CoreDataProperties.swift in Sources */,
+				973E7C041F442916001237D3 /* ImagePickerControls.swift in Sources */,
 				977AF4101F40A88F007E591D /* SingleColorCell.swift in Sources */,
 				97C66F7B1F3D2D2300FB8C56 /* PlatformExtensions.swift in Sources */,
 				97C66F751F3D2D2300FB8C56 /* ColorSpaceConversion.m in Sources */,
 				97B107571F38154C00E36CF8 /* CameraControlsHeader.swift in Sources */,
 				97B107591F38226600E36CF8 /* BaseCell.swift in Sources */,
 				97B1073E1F37B47A00E36CF8 /* CameraControlsOverlay.swift in Sources */,
+				973E7C061F4429D8001237D3 /* ImagePickerOptions.swift in Sources */,
 				97C66F791F3D2D2300FB8C56 /* KMeans.swift in Sources */,
 				97C66F781F3D2D2300FB8C56 /* INVector3SwiftExtensions.swift in Sources */,
 				977AF4131F40EC4F007E591D /* ColorCollectionViewHelper.swift in Sources */,
 				977AF40E1F40A74F007E591D /* ViewControllerExtension.swift in Sources */,
 				97B1075D1F38281700E36CF8 /* CameraControlsHeaderCell.swift in Sources */,
+				97282EE21F4328450058B1DE /* ImagePickerViewController.swift in Sources */,
 				97C66F691F3D2D0700FB8C56 /* ColorDifference.swift in Sources */,
 				9752F0241F36E4D500D9272C /* ViewController.swift in Sources */,
 				97C66F771F3D2D2300FB8C56 /* INVector3.m in Sources */,

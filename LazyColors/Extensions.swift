@@ -145,3 +145,20 @@ extension UILabel
 // Useful codes
 
 // cell.button.contentEdgeInsets = UIEdgeInsetsMake(28, 28, 28, 28)
+
+//        if let window = UIApplication.shared.keyWindow {
+//            UIView.animate(
+//                withDuration: 0.5,
+//                delay: 0,
+//                usingSpringWithDamping: 1,
+//                initialSpringVelocity: 1,
+//                options: .curveEaseOut,
+//                animations: {
+//                    window.subviews[1].frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: window.frame.height)
+//            },
+//                completion: nil
+//            )
+//
+//            self.delegate?.unfreezeFrame()
+//
+//        }

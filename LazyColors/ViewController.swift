@@ -33,8 +33,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var touchY: CGFloat?
     var color: UIColor?
     let ciContext = CIContext(options: nil)
+    
+    // for delegates
     var footerCell: CameraControlsFooter?
     var headerCells: CameraControlsHeader?
+    
     var ciImage: CIImage?
     var isFlashOn = false
     var isFrameFrozen = false
@@ -58,11 +61,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         printDetails()
         startRunningCaptureSession()
         
+        // for delegates
         footerCell = cameraButtons.footerContainer
         headerCells = cameraButtons.headerContainer
         headerCells?.delegate = self
         footerCell?.delegate = self
         
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
   
     let cameraButtons: CameraControlsOverlay = {
@@ -184,7 +192,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     let pc = PreviewController()
     
     func openColorsList() {
-        captureSession.stopRunning()
         
         let transition:CATransition = CATransition()
         transition.duration = 0.5
@@ -197,8 +204,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-//            cameraPreviewLayer.contentMode = .ScaleAspectFit
-//            cameraPreviewLayer.image = pickedImage
+            
+            let ipvc = ImagePickerViewController()
+            
+            ipvc.pickedImage = pickedImage
+            
+            let transition:CATransition = CATransition()
+            transition.duration = 0.5
+            transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            transition.type = kCATransitionPush
+            transition.subtype = kCATransitionFromBottom
+            navigationController!.view.layer.add(transition, forKey: kCATransition)
+            
+            navigationController?.pushViewController(ipvc, animated: false)
+
         }
         
         dismiss(animated: true, completion: nil)
