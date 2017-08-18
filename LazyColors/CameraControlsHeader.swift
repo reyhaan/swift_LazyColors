@@ -31,7 +31,7 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
     }
     
     let cellId = "cellId"
-    let imageNames = ["settings_white", "", "colors_white"]
+    let imageNames = ["colors_white", "", "settings_white"]
     var isSettingsMenuVisible = false
     
     lazy var headerCollectionView: UICollectionView = {
@@ -64,14 +64,13 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
         
         if indexPath.item == 0 {
             // Go to color's list
-            
             cell.button.frame.size.height = 80
             cell.button.frame.size.width = 80
             cell.button.frame.origin.x = 15
             cell.button.frame.origin.y = 5
             
-            cell.button.addTarget(self, action: #selector(self.openSettings), for: .touchDown)
-            
+            cell.button.addTarget(self, action: #selector(self.openColorListViewController), for: .touchDown)
+     
         } else if indexPath.item == 1 {
             // Capture the color
             cell.backgroundColor = UIColor.clear
@@ -93,15 +92,12 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
             
         } else if indexPath.item == 2 {
             // Open settings
-            
             cell.button.frame.size.height = 80
             cell.button.frame.size.width = 80
             cell.button.frame.origin.x = 15
             cell.button.frame.origin.y = 5
             
-//            cell.button.addTarget(self, action: #selector(self.openColorList), for: .touchDown)
-            
-            cell.button.addTarget(self, action: #selector(self.openColorListViewController), for: .touchDown)
+            cell.button.addTarget(self, action: #selector(self.openSettings), for: .touchDown)
             
         }
         
@@ -119,6 +115,20 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
         animation.calculationMode = kCAAnimationCubic
         view.layer.add(animation, forKey: nil)
         view.layer.position.y = CGFloat(positionY)
+    }
+    
+    func animate(view: UIView!, x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat) {
+        UIView.animate(
+            withDuration: 0.4,
+            delay: 0,
+            usingSpringWithDamping: 1,
+            initialSpringVelocity: 1,
+            options: .curveEaseOut,
+            animations: {
+                view.frame = CGRect(x: x, y: y, width: width, height: height)
+        },
+            completion: nil
+        )
     }
     
     func saveColor(sender: UIButton!) {
@@ -197,41 +207,11 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
             
             isSettingsMenuVisible = true
             
-            UIView.animate(
-                withDuration: 0.4,
-                delay: 0,
-                usingSpringWithDamping: 1,
-                initialSpringVelocity: 1,
-                options: .curveEaseOut,
-                animations: {
-                    self.frame = CGRect(x: 0, y: 10, width: self.frame.width, height: 90)
-                },
-                completion: nil
-            )
+            animate(view: self, x: 0, y: 10, width: self.frame.width, height: 90)
             
-            UIView.animate(
-                withDuration: 0.4,
-                delay: 0,
-                usingSpringWithDamping: 1,
-                initialSpringVelocity: 1,
-                options: .curveEaseOut,
-                animations: {
-                    footerView.frame = CGRect(x: 0, y: self.frame.height + 10, width: self.frame.width, height: 40)
-                },
-                completion: nil
-            )
+            animate(view: footerView, x: 0, y: self.frame.height + 10, width: self.frame.width, height: 40)
             
-            UIView.animate(
-                withDuration: 0.4,
-                delay: 0,
-                usingSpringWithDamping: 1,
-                initialSpringVelocity: 1,
-                options: .curveEaseOut,
-                animations: {
-                    labelView.frame = CGRect(x: 0, y: -40, width: self.frame.width, height: 40)
-            },
-                completion: nil
-            )
+            animate(view: labelView, x: 0, y: -40, width: self.frame.width, height: 40)
             
             sender.setImage(UIImage(named: "close_white"), for: UIControlState.normal)
             
@@ -239,41 +219,11 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
             
             isSettingsMenuVisible = false
             
-            UIView.animate(
-                withDuration: 0.4,
-                delay: 0,
-                usingSpringWithDamping: 1,
-                initialSpringVelocity: 1,
-                options: .curveEaseOut,
-                animations: {
-                    self.frame = CGRect(x: 0, y: 50, width: self.frame.width, height: 90)
-            },
-                completion: nil
-            )
+            animate(view: self, x: 0, y: 50, width: self.frame.width, height: 90)
             
-            UIView.animate(
-                withDuration: 0.4,
-                delay: 0,
-                usingSpringWithDamping: 1,
-                initialSpringVelocity: 1,
-                options: .curveEaseOut,
-                animations: {
-                    footerView.frame = CGRect(x: 0, y: self.frame.height + 50, width: self.frame.width, height: 40)
-            },
-                completion: nil
-            )
+            animate(view: footerView, x: 0, y: self.frame.height + 50, width: self.frame.width, height: 40)
             
-            UIView.animate(
-                withDuration: 0.4,
-                delay: 0,
-                usingSpringWithDamping: 1,
-                initialSpringVelocity: 1,
-                options: .curveEaseOut,
-                animations: {
-                    labelView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: 40)
-            },
-                completion: nil
-            )
+            animate(view: labelView, x: 0, y: 0, width: self.frame.width, height: 40)
             
             sender.setImage(UIImage(named: "settings_white"), for: UIControlState.normal)
         }

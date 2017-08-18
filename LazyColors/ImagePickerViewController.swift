@@ -30,7 +30,7 @@ class ImagePickerViewController: UIViewController, UINavigationControllerDelegat
         
         scrollView = ImageScrollView(image: pickedImage!)
         
-        view?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.updateTargetIcon)))
+        scrollView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.updateTargetIcon)))
         
         // calculate center position for target
         touchX = (self.view.frame.width / 2)

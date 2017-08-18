@@ -68,7 +68,8 @@ class CameraControlsFooter: UIView, UICollectionViewDataSource, UICollectionView
             
         } else if indexPath.item == 3 {
             // Generate collective pallette
-            
+            cell.button.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.generatePalette)))
+            cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.generatePalette)))
         }
         
         return cell
@@ -80,6 +81,10 @@ class CameraControlsFooter: UIView, UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    
+    func generatePalette() {
+        delegate?.generateColorPalette()
     }
     
     func toggleFreezeFrame(sender: CameraControlsFooterCell!) {

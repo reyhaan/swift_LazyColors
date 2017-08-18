@@ -18,6 +18,7 @@ protocol ViewControllerDelegate: class {
     func openColorsList()
     func freezeFrame()
     func unfreezeFrame()
+    func generateColorPalette()
 }
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, ViewControllerDelegate {
@@ -195,6 +196,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         present(imagePicker, animated: true, completion: nil)
         
+    }
+    
+    func generateColorPalette() {
+        let palette = ColorPaletteView()
+        freezeFrame()
+        let capturedImageInstance = getUIImage(image: ciImage!)
+        print(capturedImageInstance.dominantColors())
+        view.addSubview(palette)
+        view.addConstraintsWithFormat(format: "V:|[v0(140)]", views: palette)
+        view.addConstraintsWithFormat(format: "H:|[v0]|", views: palette)
     }
     
     let pc = PreviewController()
