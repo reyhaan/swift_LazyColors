@@ -31,8 +31,10 @@ class ImagePickerControls: UIView, UICollectionViewDataSource, UICollectionViewD
     }
     
     let cellId = "cellId"
-    let imageNames = ["settings_white", "", "colors_white"]
+    let imageNames = ["colors_white", "", ""]
     var isSettingsMenuVisible = false
+    
+    let cname = ColorNameContainer()
     
     lazy var headerCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -70,7 +72,7 @@ class ImagePickerControls: UIView, UICollectionViewDataSource, UICollectionViewD
             cell.button.frame.origin.x = 12
             cell.button.frame.origin.y = 22
             
-            cell.button.addTarget(self, action: #selector(self.openSettings), for: .touchDown)
+            cell.button.addTarget(self, action: #selector(self.openColorListViewController), for: .touchDown)
             
         } else if indexPath.item == 1 {
             // Capture the color
@@ -98,10 +100,6 @@ class ImagePickerControls: UIView, UICollectionViewDataSource, UICollectionViewD
             cell.button.frame.size.width = 80
             cell.button.frame.origin.x = 12
             cell.button.frame.origin.y = 22
-            
-            //            cell.button.addTarget(self, action: #selector(self.openColorList), for: .touchDown)
-            
-            cell.button.addTarget(self, action: #selector(self.openColorListViewController), for: .touchDown)
             
         }
         
@@ -159,104 +157,6 @@ class ImagePickerControls: UIView, UICollectionViewDataSource, UICollectionViewD
         }
     }
     
-    func openColorList(sender: UIButton!) {
-        // open the list of collected colors
-        
-        
-    }
-    
-    func openSettings(sender: UIButton!) {
-        // Slide up the settings menu somehow (-_-)
-        
-        let footerView: UIView = (superview?.subviews[1])!
-        let labelView: UIView = (superview?.subviews[2])!
-        
-        if !isSettingsMenuVisible {
-            
-            isSettingsMenuVisible = true
-            
-            UIView.animate(
-                withDuration: 0.4,
-                delay: 0,
-                usingSpringWithDamping: 1,
-                initialSpringVelocity: 1,
-                options: .curveEaseOut,
-                animations: {
-                    self.frame = CGRect(x: 0, y: 10, width: self.frame.width, height: 90)
-            },
-                completion: nil
-            )
-            
-            UIView.animate(
-                withDuration: 0.4,
-                delay: 0,
-                usingSpringWithDamping: 1,
-                initialSpringVelocity: 1,
-                options: .curveEaseOut,
-                animations: {
-                    footerView.frame = CGRect(x: 0, y: self.frame.height + 10, width: self.frame.width, height: 40)
-            },
-                completion: nil
-            )
-            
-            UIView.animate(
-                withDuration: 0.4,
-                delay: 0,
-                usingSpringWithDamping: 1,
-                initialSpringVelocity: 1,
-                options: .curveEaseOut,
-                animations: {
-                    labelView.frame = CGRect(x: 0, y: -40, width: self.frame.width, height: 40)
-            },
-                completion: nil
-            )
-            
-            sender.setImage(UIImage(named: "close_white"), for: UIControlState.normal)
-            
-        } else {
-            
-            isSettingsMenuVisible = false
-            
-            UIView.animate(
-                withDuration: 0.4,
-                delay: 0,
-                usingSpringWithDamping: 1,
-                initialSpringVelocity: 1,
-                options: .curveEaseOut,
-                animations: {
-                    self.frame = CGRect(x: 0, y: 50, width: self.frame.width, height: 90)
-            },
-                completion: nil
-            )
-            
-            UIView.animate(
-                withDuration: 0.4,
-                delay: 0,
-                usingSpringWithDamping: 1,
-                initialSpringVelocity: 1,
-                options: .curveEaseOut,
-                animations: {
-                    footerView.frame = CGRect(x: 0, y: self.frame.height + 50, width: self.frame.width, height: 40)
-            },
-                completion: nil
-            )
-            
-            UIView.animate(
-                withDuration: 0.4,
-                delay: 0,
-                usingSpringWithDamping: 1,
-                initialSpringVelocity: 1,
-                options: .curveEaseOut,
-                animations: {
-                    labelView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: 40)
-            },
-                completion: nil
-            )
-            
-            sender.setImage(UIImage(named: "settings_white"), for: UIControlState.normal)
-        }
-    }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: frame.width / 3, height: frame.height)
     }
@@ -267,8 +167,10 @@ class ImagePickerControls: UIView, UICollectionViewDataSource, UICollectionViewD
     
     func setupViews() {
         addSubview(headerCollectionView)
+        addSubview(cname)
         
-        addConstraintsWithFormat(format: "V:|[v0]|", views: headerCollectionView)
+        addConstraintsWithFormat(format: "V:|[v0(90)]-0-[v1(40)]|", views: headerCollectionView, cname)
         addConstraintsWithFormat(format: "H:|[v0]|", views: headerCollectionView)
+        addConstraintsWithFormat(format: "H:|[v0]|", views: cname)
     }
 }

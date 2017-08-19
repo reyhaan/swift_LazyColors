@@ -626,10 +626,10 @@ open class Floaty: UIView {
         buttonImageView = UIImageView(image: buttonImage)
 		buttonImageView.tintColor = plusColor
         buttonImageView.frame = CGRect(
-            x: circleLayer.frame.origin.x + (size / 2 - buttonImageView.frame.size.width / 2),
-            y: circleLayer.frame.origin.y + (size / 2 - buttonImageView.frame.size.height / 2),
-            width: buttonImageView.frame.size.width,
-            height: buttonImageView.frame.size.height
+            x: circleLayer.frame.origin.x + (size / 2 - (buttonImageView.frame.size.width - 5) / 2),
+            y: circleLayer.frame.origin.y + (size / 2 - (buttonImageView.frame.size.height - 5) / 2),
+            width: buttonImageView.frame.size.width - 5,
+            height: buttonImageView.frame.size.height - 5
         )
 
         addSubview(buttonImageView)

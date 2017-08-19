@@ -84,7 +84,7 @@ class CameraControlsFooter: UIView, UICollectionViewDataSource, UICollectionView
     }
     
     func generatePalette() {
-        delegate?.generateColorPalette()
+//        delegate?.generateColorPalette(image: <#CIImage#>)
     }
     
     func toggleFreezeFrame(sender: CameraControlsFooterCell!) {

@@ -14,11 +14,14 @@ protocol PreviewControllerDelegate: class {
 
 class PreviewController: UIViewController, UINavigationControllerDelegate, PreviewControllerDelegate {
     
+    weak var delegate: ViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         
         setupViews()
+        
         colorsList.delegate = self
     }
     
@@ -34,7 +37,7 @@ class PreviewController: UIViewController, UINavigationControllerDelegate, Previ
         transition.duration = 0.5
         transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         transition.type = kCATransitionPush
-        transition.subtype = kCATransitionFromLeft
+        transition.subtype = kCATransitionFromBottom
         navigationController!.view.layer.add(transition, forKey: kCATransition)
         navigationController?.popViewController(animated: false)
     }

@@ -39,9 +39,8 @@ extension ImagePickerViewController {
         let cell = collectionView.cellForItem(at: IndexPath(item: 1, section: 0))
         
         DispatchQueue.main.async() {
-            //            colorNameView.name.text = self.color?.getName()[1] as? String
-//            colorNameView.code.font = UIFont(name: "ProximaNova-Regular", size: 14)
-//            colorNameView.code.text = "#" + (self.color?.getHex())!
+            self.headerContainer.cname.name.text = self.color?.getName()[1] as? String
+            self.headerContainer.cname.code.text = "#" + (self.color?.getHex())!
         }
         
         cell?.subviews[1].backgroundColor = self.color

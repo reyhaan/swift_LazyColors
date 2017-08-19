@@ -135,7 +135,7 @@ open class FloatyItem: UIView {
     open var iconImageView: UIImageView {
         get {
             if _iconImageView == nil {
-                _iconImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height))
+                _iconImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: imageSize.width - 10, height: imageSize.height - 10))
                 _iconImageView?.center = CGPoint(x: size/2, y: size/2) + imageOffset
                 _iconImageView?.contentMode = UIViewContentMode.scaleAspectFill
                 addSubview(_iconImageView!)

@@ -12,6 +12,7 @@ import UIKit
 class ColorPaletteView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     weak var delegate: ViewControllerDelegate?
+    weak var delegate2: ImagePickerViewControllerDelegate?
     
     public var palette: Array<UIColor>?
     
@@ -66,6 +67,7 @@ class ColorPaletteView: UIView, UICollectionViewDataSource, UICollectionViewDele
     
     func closePalette() {
         delegate?.closePalette()
+        delegate2?.closePalette()
     }
     
     required init?(coder aDecoder: NSCoder) {

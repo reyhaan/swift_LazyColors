@@ -18,12 +18,12 @@ protocol ViewControllerDelegate: class {
     func openColorsList()
     func freezeFrame()
     func unfreezeFrame()
-    func generateColorPalette()
+    func generateColorPalette(image: CIImage)
     func closePalette()
 }
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, ViewControllerDelegate {
-    
+
     let captureSession = AVCaptureSession()
     var backCamera: AVCaptureDevice?
     var frontCamera: AVCaptureDevice?
@@ -39,6 +39,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // for delegates
     var footerCell: CameraControlsFooter?
     var headerCells: CameraControlsHeader?
+    var previewController: PreviewController?
+    var imagePickerController: ImagePickerViewController?
     
     var ciImage: CIImage?
     var backupCiImage: CIImage?
@@ -74,6 +76,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         headerCells?.delegate = self
         footerCell?.delegate = self
         palette.delegate = self
+        previewController = PreviewController()
+        previewController?.delegate = self
+        
+        imagePickerController = ImagePickerViewController()
+        imagePickerController?.delegate = self
         
     }
     
@@ -129,11 +136,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         floaty.addItem("Flash", icon: UIImage(named: "flash"), handler: { item in
             self.toggleFlash()
         })
-        floaty.addItem("Palette", icon: UIImage(named: "hue"), handler: { item in
-            self.generateColorPalette()
+        floaty.addItem("Color Palette", icon: UIImage(named: "hue"), handler: { item in
+            self.generateColorPalette(image: self.backupCiImage!)
             floaty.close()
         })
-        floaty.addItem("Select Photo", icon: UIImage(named: "color_blind")!)
+        floaty.addItem("Select Image", icon: UIImage(named: "select_image"), handler: { item in
+            self.openImagePicker()
+            floaty.close()
+        })
         self.view.addSubview(floaty)
     }
     
@@ -246,23 +256,28 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         )
     }
     
-    func generateColorPalette() {
+    func generateColorPalette(image: CIImage) {
         
-        freezeFrame()
-        let capturedImageInstance = getUIImage(image: backupCiImage!)
+        if let window = UIApplication.shared.keyWindow {
+            
+            freezeFrame()
+            let capturedImageInstance = getUIImage(image: image)
+            
+            palette.palette = capturedImageInstance.dominantColors(DefaultParameterValues.maxSampledPixels, accuracy: DefaultParameterValues.accuracy, seed: DefaultParameterValues.seed, memoizeConversions: DefaultParameterValues.memoizeConversions)
+            
+            palette.reloadData()
+            palette.frame.origin.y = -150
+            
+            window.addSubview(palette)
+            palette.frame.size.height = 120
+            palette.frame.size.width = view.frame.width - 20
+            palette.frame.origin.x = 10
+            
+            animate(view: palette, x: 10, y: 30, width: palette.frame.width, height: palette.frame.height)
+            unfreezeFrame()
+        }
         
-        palette.palette = capturedImageInstance.dominantColors(DefaultParameterValues.maxSampledPixels, accuracy: DefaultParameterValues.accuracy, seed: DefaultParameterValues.seed, memoizeConversions: DefaultParameterValues.memoizeConversions)
         
-        palette.reloadData()
-        palette.frame.origin.y = -150
-        
-        view.addSubview(palette)
-        palette.frame.size.height = 120
-        palette.frame.size.width = view.frame.width - 20
-        palette.frame.origin.x = 10
-        
-        animate(view: palette, x: 10, y: 30, width: palette.frame.width, height: palette.frame.height)
-        unfreezeFrame()
     }
     
     let pc = PreviewController()
@@ -273,7 +288,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         transition.duration = 0.5
         transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         transition.type = kCATransitionPush
-        transition.subtype = kCATransitionFromRight
+        transition.subtype = kCATransitionFromTop
         navigationController!.view.layer.add(transition, forKey: kCATransition)
         navigationController?.pushViewController(pc, animated: false)
     }

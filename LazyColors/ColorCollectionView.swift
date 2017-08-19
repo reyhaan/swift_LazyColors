@@ -89,6 +89,7 @@ class ColorCollectionView: UIView, UICollectionViewDataSource, UICollectionViewD
     }
     
     func setupViews() {
+        
         addSubview(header)
         addSubview(colorCollectionView)
         addConstraintsWithFormat(format: "V:|[v1(70)]-0-[v0]|", views: colorCollectionView, header)
