@@ -69,7 +69,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         setupFloaty()
         
         // for delegates
-        footerCell = cameraButtons.footerContainer
+//        footerCell = cameraButtons.footerContainer
         headerCells = cameraButtons.headerContainer
         headerCells?.delegate = self
         footerCell?.delegate = self
@@ -117,23 +117,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func setupFloaty() {
         let floaty = Floaty()
         floaty.buttonImage = UIImage(named: "settings")
-        floaty.paddingX = 20
-        floaty.paddingY = 15
-        floaty.size = 50
+        floaty.paddingX = 30
+        floaty.paddingY = 60
+        floaty.size = 45
         floaty.autoCloseOnTap = false
         floaty.itemImageColor = UIColor.blue
-        floaty.addItem(icon: UIImage(named: "freeze"), handler: { item in
+        floaty.addItem("Freeze", icon: UIImage(named: "freeze"), handler: { item in
             self.toggleFrameFreeze()
         })
         
-        floaty.addItem(icon: UIImage(named: "flash"), handler: { item in
+        floaty.addItem("Flash", icon: UIImage(named: "flash"), handler: { item in
             self.toggleFlash()
         })
-        floaty.addItem(icon: UIImage(named: "hue"), handler: { item in
+        floaty.addItem("Palette", icon: UIImage(named: "hue"), handler: { item in
             self.generateColorPalette()
             floaty.close()
         })
-        floaty.addItem(icon: UIImage(named: "color_blind")!)
+        floaty.addItem("Select Photo", icon: UIImage(named: "color_blind")!)
         self.view.addSubview(floaty)
     }
     
@@ -192,7 +192,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         capturedImage.frame.size.width = view.frame.width
         
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: cameraButtons)
-        view.addConstraintsWithFormat(format: "V:[v0(140)]|", views: cameraButtons)
+        view.addConstraintsWithFormat(format: "V:[v0(130)]|", views: cameraButtons)
     }
     
     func setupCaptureSession () {
@@ -234,7 +234,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func animate(view: UIView!, x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat) {
         UIView.animate(
-            withDuration: 0.4,
+            withDuration: 0.3,
             delay: 0,
             usingSpringWithDamping: 1,
             initialSpringVelocity: 1,

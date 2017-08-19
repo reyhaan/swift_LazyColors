@@ -103,6 +103,7 @@ open class FloatyItem: UIView {
         get {
             if _titleLabel == nil {
                 _titleLabel = UILabel()
+                _titleLabel?.font = UIFont(name: "ProximaNova-Regular", size: 12)
                 _titleLabel?.textColor = titleColor
                 addSubview(_titleLabel!)
             }
