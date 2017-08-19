@@ -11,6 +11,13 @@
 		97282EE21F4328450058B1DE /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97282EE11F4328450058B1DE /* ImagePickerViewController.swift */; };
 		972D35811F452BDA002ADD35 /* FabButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972D35801F452BDA002ADD35 /* FabButtonsView.swift */; };
 		972D35AD1F454508002ADD35 /* ColorPaletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972D35AC1F454508002ADD35 /* ColorPaletteView.swift */; };
+		9739C3101F466AD7009B9B3C /* ColorPaletteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9739C30F1F466AD7009B9B3C /* ColorPaletteCell.swift */; };
+		9739C31B1F47B19D009B9B3C /* Floaty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9739C3151F47B19D009B9B3C /* Floaty.swift */; };
+		9739C31C1F47B19D009B9B3C /* FloatyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9739C3161F47B19D009B9B3C /* FloatyDelegate.swift */; };
+		9739C31D1F47B19D009B9B3C /* FloatyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9739C3171F47B19D009B9B3C /* FloatyItem.swift */; };
+		9739C31E1F47B19D009B9B3C /* FloatyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9739C3181F47B19D009B9B3C /* FloatyManager.swift */; };
+		9739C31F1F47B19D009B9B3C /* FloatyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9739C3191F47B19D009B9B3C /* FloatyViewController.swift */; };
+		9739C3201F47B19D009B9B3C /* FloatyWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9739C31A1F47B19D009B9B3C /* FloatyWindow.swift */; };
 		973E7C041F442916001237D3 /* ImagePickerControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973E7C031F442916001237D3 /* ImagePickerControls.swift */; };
 		973E7C061F4429D8001237D3 /* ImagePickerOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973E7C051F4429D8001237D3 /* ImagePickerOptions.swift */; };
 		973E7C081F4442E5001237D3 /* ImagePickerViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973E7C071F4442E5001237D3 /* ImagePickerViewControllerExtension.swift */; };
@@ -74,6 +81,14 @@
 		97282EE11F4328450058B1DE /* ImagePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
 		972D35801F452BDA002ADD35 /* FabButtonsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FabButtonsView.swift; sourceTree = "<group>"; };
 		972D35AC1F454508002ADD35 /* ColorPaletteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPaletteView.swift; sourceTree = "<group>"; };
+		9739C30F1F466AD7009B9B3C /* ColorPaletteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPaletteCell.swift; sourceTree = "<group>"; };
+		9739C3141F47B19D009B9B3C /* Floaty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Floaty.h; sourceTree = "<group>"; };
+		9739C3151F47B19D009B9B3C /* Floaty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Floaty.swift; sourceTree = "<group>"; };
+		9739C3161F47B19D009B9B3C /* FloatyDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatyDelegate.swift; sourceTree = "<group>"; };
+		9739C3171F47B19D009B9B3C /* FloatyItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatyItem.swift; sourceTree = "<group>"; };
+		9739C3181F47B19D009B9B3C /* FloatyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatyManager.swift; sourceTree = "<group>"; };
+		9739C3191F47B19D009B9B3C /* FloatyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatyViewController.swift; sourceTree = "<group>"; };
+		9739C31A1F47B19D009B9B3C /* FloatyWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatyWindow.swift; sourceTree = "<group>"; };
 		973E7C031F442916001237D3 /* ImagePickerControls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerControls.swift; sourceTree = "<group>"; };
 		973E7C051F4429D8001237D3 /* ImagePickerOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerOptions.swift; sourceTree = "<group>"; };
 		973E7C071F4442E5001237D3 /* ImagePickerViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -163,8 +178,23 @@
 			isa = PBXGroup;
 			children = (
 				972D35AC1F454508002ADD35 /* ColorPaletteView.swift */,
+				9739C30F1F466AD7009B9B3C /* ColorPaletteCell.swift */,
 			);
 			name = ColorPalette;
+			sourceTree = "<group>";
+		};
+		9739C3131F47B189009B9B3C /* Floaty */ = {
+			isa = PBXGroup;
+			children = (
+				9739C3141F47B19D009B9B3C /* Floaty.h */,
+				9739C3151F47B19D009B9B3C /* Floaty.swift */,
+				9739C3161F47B19D009B9B3C /* FloatyDelegate.swift */,
+				9739C3171F47B19D009B9B3C /* FloatyItem.swift */,
+				9739C3181F47B19D009B9B3C /* FloatyManager.swift */,
+				9739C3191F47B19D009B9B3C /* FloatyViewController.swift */,
+				9739C31A1F47B19D009B9B3C /* FloatyWindow.swift */,
+			);
+			name = Floaty;
 			sourceTree = "<group>";
 		};
 		973E7C021F442847001237D3 /* ImagePicker */ = {
@@ -201,6 +231,7 @@
 		9752F0201F36E4D500D9272C /* LazyColors */ = {
 			isa = PBXGroup;
 			children = (
+				9739C3131F47B189009B9B3C /* Floaty */,
 				97EC46EA1F403666001EA9CC /* Resources */,
 				97C66F671F3D2CDD00FB8C56 /* DominantColor */,
 				97B107381F379F4600E36CF8 /* Model */,
@@ -477,14 +508,18 @@
 				97282EE01F4328080058B1DE /* ImageScrollView.swift in Sources */,
 				977F30221F3BF75600AE1901 /* Color+CoreDataClass.swift in Sources */,
 				97C66F761F3D2D2300FB8C56 /* DominantColors.swift in Sources */,
+				9739C3101F466AD7009B9B3C /* ColorPaletteCell.swift in Sources */,
+				9739C3201F47B19D009B9B3C /* FloatyWindow.swift in Sources */,
 				977F301B1F3BF59B00AE1901 /* AppModel.xcdatamodeld in Sources */,
 				974209B61F3AA45B004BFA95 /* UIImageColors.swift in Sources */,
 				97B107551F38153D00E36CF8 /* CameraControlsFooter.swift in Sources */,
 				97B1073C1F37AA3500E36CF8 /* PreviewController.swift in Sources */,
+				9739C31B1F47B19D009B9B3C /* Floaty.swift in Sources */,
 				97B1075B1F38233100E36CF8 /* CameraControlsFooterCell.swift in Sources */,
 				977F30231F3BF75600AE1901 /* Color+CoreDataProperties.swift in Sources */,
 				973E7C041F442916001237D3 /* ImagePickerControls.swift in Sources */,
 				977AF4101F40A88F007E591D /* SingleColorCell.swift in Sources */,
+				9739C31C1F47B19D009B9B3C /* FloatyDelegate.swift in Sources */,
 				97C66F7B1F3D2D2300FB8C56 /* PlatformExtensions.swift in Sources */,
 				972D35AD1F454508002ADD35 /* ColorPaletteView.swift in Sources */,
 				97C66F751F3D2D2300FB8C56 /* ColorSpaceConversion.m in Sources */,
@@ -499,12 +534,15 @@
 				97B1075D1F38281700E36CF8 /* CameraControlsHeaderCell.swift in Sources */,
 				97282EE21F4328450058B1DE /* ImagePickerViewController.swift in Sources */,
 				97C66F691F3D2D0700FB8C56 /* ColorDifference.swift in Sources */,
+				9739C31D1F47B19D009B9B3C /* FloatyItem.swift in Sources */,
 				972D35811F452BDA002ADD35 /* FabButtonsView.swift in Sources */,
+				9739C31E1F47B19D009B9B3C /* FloatyManager.swift in Sources */,
 				9752F0241F36E4D500D9272C /* ViewController.swift in Sources */,
 				973E7C081F4442E5001237D3 /* ImagePickerViewControllerExtension.swift in Sources */,
 				97C66F771F3D2D2300FB8C56 /* INVector3.m in Sources */,
 				97FCF7541F3C1DA40003DADD /* ColorProcessor.swift in Sources */,
 				9752F0221F36E4D500D9272C /* AppDelegate.swift in Sources */,
+				9739C31F1F47B19D009B9B3C /* FloatyViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

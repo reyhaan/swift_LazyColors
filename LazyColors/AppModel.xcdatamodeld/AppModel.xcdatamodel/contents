@@ -12,7 +12,11 @@
         <attribute name="rgb" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="shades" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="Palette" representedClassName="Palette" syncable="YES" codeGenerationType="class">
+        <attribute name="colors" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Color" positionX="-9" positionY="36" width="128" height="195"/>
+        <element name="Palette" positionX="-243" positionY="36" width="126" height="58"/>
     </elements>
 </model>

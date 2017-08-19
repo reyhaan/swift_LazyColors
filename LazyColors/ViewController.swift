@@ -19,6 +19,7 @@ protocol ViewControllerDelegate: class {
     func freezeFrame()
     func unfreezeFrame()
     func generateColorPalette()
+    func closePalette()
 }
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, ViewControllerDelegate {
@@ -40,9 +41,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var headerCells: CameraControlsHeader?
     
     var ciImage: CIImage?
+    var backupCiImage: CIImage?
     var isFlashOn = false
     var isFrameFrozen = false
     let imagePicker = UIImagePickerController()
+    
+    let palette = ColorPaletteView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,11 +66,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         printDetails()
         startRunningCaptureSession()
         
+        setupFloaty()
+        
         // for delegates
         footerCell = cameraButtons.footerContainer
         headerCells = cameraButtons.headerContainer
         headerCells?.delegate = self
         footerCell?.delegate = self
+        palette.delegate = self
         
     }
     
@@ -107,6 +114,29 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return img
     }()
     
+    func setupFloaty() {
+        let floaty = Floaty()
+        floaty.buttonImage = UIImage(named: "settings")
+        floaty.paddingX = 20
+        floaty.paddingY = 15
+        floaty.size = 50
+        floaty.autoCloseOnTap = false
+        floaty.itemImageColor = UIColor.blue
+        floaty.addItem(icon: UIImage(named: "freeze"), handler: { item in
+            self.toggleFrameFreeze()
+        })
+        
+        floaty.addItem(icon: UIImage(named: "flash"), handler: { item in
+            self.toggleFlash()
+        })
+        floaty.addItem(icon: UIImage(named: "hue"), handler: { item in
+            self.generateColorPalette()
+            floaty.close()
+        })
+        floaty.addItem(icon: UIImage(named: "color_blind")!)
+        self.view.addSubview(floaty)
+    }
+    
     // capture touch event on the camera view
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
@@ -128,8 +158,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let location = touch?.location(in: self.view)
         touchX = (location?.x)!
         touchY = (location?.y)!
-        target.frame.origin.x = touchX! - 9
-        target.frame.origin.y = touchY! - 9
+        
+        animate(view: target, x: touchX! - 9, y: touchY! - 9, width: target.frame.width, height: target.frame.height)
         
         if isFrameFrozen {
             generateLivePreview()
@@ -198,14 +228,41 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
     }
     
+    func closePalette() {
+        animate(view: palette, x: 10, y: -150, width: palette.frame.width, height: palette.frame.height)
+    }
+    
+    func animate(view: UIView!, x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat) {
+        UIView.animate(
+            withDuration: 0.4,
+            delay: 0,
+            usingSpringWithDamping: 1,
+            initialSpringVelocity: 1,
+            options: .curveEaseOut,
+            animations: {
+                view.frame = CGRect(x: x, y: y, width: width, height: height)
+        },
+            completion: nil
+        )
+    }
+    
     func generateColorPalette() {
-        let palette = ColorPaletteView()
+        
         freezeFrame()
-        let capturedImageInstance = getUIImage(image: ciImage!)
-        print(capturedImageInstance.dominantColors())
+        let capturedImageInstance = getUIImage(image: backupCiImage!)
+        
+        palette.palette = capturedImageInstance.dominantColors(DefaultParameterValues.maxSampledPixels, accuracy: DefaultParameterValues.accuracy, seed: DefaultParameterValues.seed, memoizeConversions: DefaultParameterValues.memoizeConversions)
+        
+        palette.reloadData()
+        palette.frame.origin.y = -150
+        
         view.addSubview(palette)
-        view.addConstraintsWithFormat(format: "V:|[v0(140)]", views: palette)
-        view.addConstraintsWithFormat(format: "H:|[v0]|", views: palette)
+        palette.frame.size.height = 120
+        palette.frame.size.width = view.frame.width - 20
+        palette.frame.origin.x = 10
+        
+        animate(view: palette, x: 10, y: 30, width: palette.frame.width, height: palette.frame.height)
+        unfreezeFrame()
     }
     
     let pc = PreviewController()
@@ -327,6 +384,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @objc func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
         let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
         ciImage = CIImage(cvPixelBuffer: pixelBuffer!)
+        backupCiImage = ciImage
         generateLivePreview()
     }
     

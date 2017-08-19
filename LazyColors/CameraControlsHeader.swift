@@ -48,6 +48,8 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
         return pi
     }()
     
+    let fabButton = FabButtonView()
+    
     let colorCollectionView = ColorCollectionView()
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -92,12 +94,23 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
             
         } else if indexPath.item == 2 {
             // Open settings
-            cell.button.frame.size.height = 80
-            cell.button.frame.size.width = 80
-            cell.button.frame.origin.x = 15
-            cell.button.frame.origin.y = 5
             
-            cell.button.addTarget(self, action: #selector(self.openSettings), for: .touchDown)
+            cell.addSubview(fabButton)
+            
+            fabButton.frame.size.height = 50
+            fabButton.frame.size.width = 50
+            fabButton.frame.origin.x = (cell.frame.size.width / 2) - (fabButton.frame.size.width / 2)
+            fabButton.frame.origin.y = (cell.frame.size.height / 2) - (fabButton.frame.size.height / 2)
+            
+//            cell.addConstraintsWithFormat(format: "V:[v0(60)]", views: fabButton)
+//            cell.addConstraintsWithFormat(format: "H:[v0(60)]", views: fabButton)
+            
+//            cell.button.frame.size.height = 80
+//            cell.button.frame.size.width = 80
+//            cell.button.frame.origin.x = 15
+//            cell.button.frame.origin.y = 5
+//            
+//            cell.button.addTarget(self, action: #selector(self.openSettings), for: .touchDown)
             
         }
         
