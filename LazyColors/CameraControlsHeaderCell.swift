@@ -16,6 +16,11 @@ class CameraControlsHeaderCell: BaseCell {
         return iv
     }()
     
+    let container: UIView = {
+        let cn = UIView()
+        return cn
+    }()
+    
     let button: UIButton = {
         let bt = UIButton()
         return bt
@@ -38,8 +43,8 @@ class CameraControlsHeaderCell: BaseCell {
     
     override func setupViews() {
         super.setupViews()
-        
-        addSubview(button)
+        container.addSubview(button)
+        addSubview(container)
 //        addConstraintsWithFormat(format: "H:[v0(20)]", views: button)
 //        addConstraintsWithFormat(format: "V:[v0(20)]", views: button)
         

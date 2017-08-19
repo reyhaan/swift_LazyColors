@@ -123,24 +123,39 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func setupFloaty() {
         let floaty = Floaty()
-        floaty.buttonImage = UIImage(named: "settings")
+        floaty.buttonImage = UIImage(named: "settings_white")
         floaty.paddingX = 30
         floaty.paddingY = 60
         floaty.size = 45
         floaty.autoCloseOnTap = false
         floaty.itemImageColor = UIColor.blue
-        floaty.addItem("Freeze", icon: UIImage(named: "freeze"), handler: { item in
+        floaty.buttonColor = UIColor(red: 41/255.0, green: 98/255.0, blue: 255/255.0, alpha: 1)  // 85,140,255
+        floaty.itemButtonColor = UIColor(red: 41/255.0, green: 98/255.0, blue: 255/255.0, alpha: 1)
+        floaty.addItem("Freeze", icon: UIImage(named: "freeze_white"), handler: { item in
             self.toggleFrameFreeze()
+            
+            if self.isFrameFrozen {
+                item.itemBackgroundColor = UIColor(red: 245/255.0, green: 124/255.0, blue: 0/255.0, alpha: 1)
+            } else {
+                item.itemBackgroundColor = UIColor(red: 41/255.0, green: 98/255.0, blue: 255/255.0, alpha: 1)
+            }
         })
         
-        floaty.addItem("Flash", icon: UIImage(named: "flash"), handler: { item in
+        floaty.addItem("Flash", icon: UIImage(named: "flash_white"), handler: { item in
             self.toggleFlash()
+            
+            if self.isFlashOn {
+                item.itemBackgroundColor = UIColor(red: 245/255.0, green: 124/255.0, blue: 0/255.0, alpha: 1)
+            } else {
+                item.itemBackgroundColor = UIColor(red: 41/255.0, green: 98/255.0, blue: 255/255.0, alpha: 1)
+            }
+            
         })
-        floaty.addItem("Color Palette", icon: UIImage(named: "hue"), handler: { item in
+        floaty.addItem("Color Palette", icon: UIImage(named: "hue_white"), handler: { item in
             self.generateColorPalette(image: self.backupCiImage!)
             floaty.close()
         })
-        floaty.addItem("Select Image", icon: UIImage(named: "select_image"), handler: { item in
+        floaty.addItem("Select Image", icon: UIImage(named: "select_image_white"), handler: { item in
             self.openImagePicker()
             floaty.close()
         })

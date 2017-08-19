@@ -31,7 +31,7 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
     }
     
     let cellId = "cellId"
-    let imageNames = ["colors_white", "", "settings_white"]
+    let imageNames = ["list_white", "", "settings_white"]
     var isSettingsMenuVisible = false
     
     lazy var headerCollectionView: UICollectionView = {
@@ -64,24 +64,45 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
         cell.button.imageView?.clipsToBounds = true
         cell.button.backgroundColor = UIColor.clear
         
+        cell.button.imageView?.frame.size.height = 20
+        cell.button.imageView?.frame.size.width = 20
+        
         if indexPath.item == 0 {
             // Go to color's list
-            cell.button.frame.size.height = 80
-            cell.button.frame.size.width = 80
-            cell.button.frame.origin.x = 15
-            cell.button.frame.origin.y = 5
+            
+            cell.container.frame.size.width = 46
+            cell.container.frame.size.height = 46
+            cell.container.frame.origin.x = 30
+            cell.container.frame.origin.y = 24
+            
+            cell.button.frame.size.height = 46
+            cell.button.frame.size.width = 46
+            cell.button.frame.origin.x = 0  // 30
+            cell.button.frame.origin.y = 0  // 24
+            
+            cell.button.backgroundColor = UIColor(red: 41/255.0, green: 98/255.0, blue: 255/255.0, alpha: 1)
+            
+            cell.button.layer.cornerRadius = 23
+            cell.button.clipsToBounds = true
             
             cell.button.addTarget(self, action: #selector(self.openColorListViewController), for: .touchDown)
      
         } else if indexPath.item == 1 {
             // Capture the color
-            cell.backgroundColor = UIColor.clear
+            cell.container.backgroundColor = UIColor(red: 120/255.0, green: 120/255.0, blue: 120/255.0, alpha: 0.2)
+            cell.container.frame.size.width = 90
+            cell.container.frame.size.height = 90
+            cell.container.layer.cornerRadius = 45
+            cell.container.clipsToBounds = true
             
-            cell.button.frame.size.height = 80
-            cell.button.frame.size.width = 80
-            cell.button.frame.origin.x = 15
-            cell.button.frame.origin.y = 5
-            cell.button.layer.cornerRadius = 40
+            cell.container.frame = CGRect(x: (cell.frame.size.width / 2) - (cell.container.frame.width / 2), y: 0, width: 90, height: 90)
+            
+            cell.button.backgroundColor = UIColor.blue
+            
+            cell.button.frame.size.width = 76
+            cell.button.frame = CGRect(x: (cell.container.frame.size.width / 2) - (cell.button.frame.width / 2), y: 7, width: 76, height: 76)
+            
+            cell.button.layer.cornerRadius = 38
             cell.button.clipsToBounds = true
             
             cell.button.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
@@ -101,16 +122,6 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
             fabButton.frame.size.width = 50
             fabButton.frame.origin.x = (cell.frame.size.width / 2) - (fabButton.frame.size.width / 2)
             fabButton.frame.origin.y = (cell.frame.size.height / 2) - (fabButton.frame.size.height / 2)
-            
-//            cell.addConstraintsWithFormat(format: "V:[v0(60)]", views: fabButton)
-//            cell.addConstraintsWithFormat(format: "H:[v0(60)]", views: fabButton)
-            
-//            cell.button.frame.size.height = 80
-//            cell.button.frame.size.width = 80
-//            cell.button.frame.origin.x = 15
-//            cell.button.frame.origin.y = 5
-//            
-//            cell.button.addTarget(self, action: #selector(self.openSettings), for: .touchDown)
             
         }
         

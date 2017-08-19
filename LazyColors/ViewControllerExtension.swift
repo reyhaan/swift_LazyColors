@@ -76,9 +76,9 @@ extension ViewController {
             colorNameView.code.font = UIFont(name: "ProximaNova-Regular", size: 14)
             colorNameView.code.text = "#" + (self.color?.getHex())!
         }
-
-        cell?.subviews[1].backgroundColor = self.color
-        cell?.subviews[1].setNeedsLayout()
+        
+        cell?.subviews[1].subviews[0].backgroundColor = self.color
+        cell?.subviews[1].subviews[0].setNeedsLayout()
     }
     
     func generateLivePreview() {

@@ -80,7 +80,7 @@ class ImagePickerControls: UIView, UICollectionViewDataSource, UICollectionViewD
             
             cell.button.frame.size.height = 80
             cell.button.frame.size.width = 80
-            cell.button.frame.origin.x = 12
+            cell.button.frame.origin.x = (cell.frame.width / 2) - (cell.button.frame.width / 2)
             cell.button.frame.origin.y = 25
             cell.button.layer.cornerRadius = 40
             cell.button.clipsToBounds = true
