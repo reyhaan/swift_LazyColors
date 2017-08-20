@@ -150,18 +150,21 @@ class ImagePickerViewController: UIViewController, UINavigationControllerDelegat
     
     func setupFloaty() {
         let floaty = Floaty()
-        floaty.buttonImage = UIImage(named: "settings")
+        floaty.buttonImage = UIImage(named: "settings_border")
         floaty.paddingX = 30
-        floaty.paddingY = 60
+        floaty.paddingY = 70
         floaty.size = 45
         floaty.autoCloseOnTap = false
         floaty.itemImageColor = UIColor.blue
-        floaty.addItem("Color Palette", icon: UIImage(named: "hue"), handler: { item in
+        floaty.buttonColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.4)  // 85,140,255
+        floaty.itemButtonColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.4)
+        floaty.itemSpace = 18
+        floaty.addItem("Color Palette", icon: UIImage(named: "hue_white"), handler: { item in
             self.generateColorPalette(image: self.pickedImage!)
             floaty.close()
         })
         
-        floaty.addItem("Go Back", icon: UIImage(named: "back"), handler: { item in
+        floaty.addItem("Go Back", icon: UIImage(named: "back_white"), handler: { item in
             let transition:CATransition = CATransition()
             transition.duration = 0.5
             transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
@@ -171,6 +174,7 @@ class ImagePickerViewController: UIViewController, UINavigationControllerDelegat
             self.navigationController?.popViewController(animated: false)
         })
         self.view.addSubview(floaty)
+
     }
     
     func setupViews() {
@@ -192,7 +196,7 @@ class ImagePickerViewController: UIViewController, UINavigationControllerDelegat
         view.addSubview(target)
         
         scrollView?.translatesAutoresizingMaskIntoConstraints = false
-        view.addConstraintsWithFormat(format: "V:|[v0]-0-[v1(130)]-(0)-|", views: scrollView!, headerContainer)
+        view.addConstraintsWithFormat(format: "V:|[v0]-0-[v1(130)]|", views: scrollView!, headerContainer)
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: scrollView!)
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: headerContainer)
 

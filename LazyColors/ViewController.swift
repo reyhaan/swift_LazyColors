@@ -129,15 +129,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         floaty.size = 45
         floaty.autoCloseOnTap = false
         floaty.itemImageColor = UIColor.blue
-        floaty.buttonColor = UIColor(red: 41/255.0, green: 98/255.0, blue: 255/255.0, alpha: 1)  // 85,140,255
-        floaty.itemButtonColor = UIColor(red: 41/255.0, green: 98/255.0, blue: 255/255.0, alpha: 1)
+        floaty.buttonColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.4)  // 85,140,255
+        floaty.itemButtonColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.4)
         floaty.addItem("Freeze", icon: UIImage(named: "freeze_white"), handler: { item in
             self.toggleFrameFreeze()
             
             if self.isFrameFrozen {
-                item.itemBackgroundColor = UIColor(red: 245/255.0, green: 124/255.0, blue: 0/255.0, alpha: 1)
+                item.itemBackgroundColor = UIColor(red: 245/255.0, green: 124/255.0, blue: 0/255.0, alpha: 0.8)
             } else {
-                item.itemBackgroundColor = UIColor(red: 41/255.0, green: 98/255.0, blue: 255/255.0, alpha: 1)
+                item.itemBackgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.4)
             }
         })
         
@@ -145,9 +145,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             self.toggleFlash()
             
             if self.isFlashOn {
-                item.itemBackgroundColor = UIColor(red: 245/255.0, green: 124/255.0, blue: 0/255.0, alpha: 1)
+                item.itemBackgroundColor = UIColor(red: 245/255.0, green: 124/255.0, blue: 0/255.0, alpha: 0.8)
             } else {
-                item.itemBackgroundColor = UIColor(red: 41/255.0, green: 98/255.0, blue: 255/255.0, alpha: 1)
+                item.itemBackgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.4)
             }
             
         })

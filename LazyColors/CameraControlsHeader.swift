@@ -80,7 +80,7 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
             cell.button.frame.origin.x = 0  // 30
             cell.button.frame.origin.y = 0  // 24
             
-            cell.button.backgroundColor = UIColor(red: 41/255.0, green: 98/255.0, blue: 255/255.0, alpha: 1)
+            cell.button.backgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.4)
             
             cell.button.layer.cornerRadius = 23
             cell.button.clipsToBounds = true
@@ -89,7 +89,7 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
      
         } else if indexPath.item == 1 {
             // Capture the color
-            cell.container.backgroundColor = UIColor(red: 120/255.0, green: 120/255.0, blue: 120/255.0, alpha: 0.2)
+            cell.container.backgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.2)  // UIColor(red: 120/255.0, green: 120/255.0, blue: 120/255.0, alpha: 0.2)
             cell.container.frame.size.width = 90
             cell.container.frame.size.height = 90
             cell.container.layer.cornerRadius = 45

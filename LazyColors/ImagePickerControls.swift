@@ -31,7 +31,7 @@ class ImagePickerControls: UIView, UICollectionViewDataSource, UICollectionViewD
     }
     
     let cellId = "cellId"
-    let imageNames = ["colors_white", "", ""]
+    let imageNames = ["list_border", "", ""]
     var isSettingsMenuVisible = false
     
     let cname = ColorNameContainer()
@@ -67,22 +67,37 @@ class ImagePickerControls: UIView, UICollectionViewDataSource, UICollectionViewD
         if indexPath.item == 0 {
             // Go to color's list
             
-            cell.button.frame.size.height = 80
-            cell.button.frame.size.width = 80
-            cell.button.frame.origin.x = 12
-            cell.button.frame.origin.y = 22
+            cell.container.frame.size.width = 45
+            cell.container.frame.size.height = 45
+            cell.container.frame.origin.x = 30
+            cell.container.frame.origin.y = 36
+            
+            cell.button.frame.size.height = 44
+            cell.button.frame.size.width = 44
+            cell.button.frame.origin.x = 0  // 30
+            cell.button.frame.origin.y = 0  // 24
+            
+            cell.button.backgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.4)
+            
+            cell.button.layer.cornerRadius = 22
+            cell.button.clipsToBounds = true
             
             cell.button.addTarget(self, action: #selector(self.openColorListViewController), for: .touchDown)
             
         } else if indexPath.item == 1 {
             // Capture the color
-            cell.backgroundColor = UIColor.clear
+            cell.container.backgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.2)  // UIColor(red: 120/255.0, green: 120/255.0, blue: 120/255.0, alpha: 0.2)
+            cell.container.frame.size.width = 90
+            cell.container.frame.size.height = 90
+            cell.container.layer.cornerRadius = 45
+            cell.container.clipsToBounds = true
             
-            cell.button.frame.size.height = 80
-            cell.button.frame.size.width = 80
-            cell.button.frame.origin.x = (cell.frame.width / 2) - (cell.button.frame.width / 2)
-            cell.button.frame.origin.y = 25
-            cell.button.layer.cornerRadius = 40
+            cell.container.frame = CGRect(x: (cell.frame.size.width / 2) - (cell.container.frame.width / 2), y: 20, width: 90, height: 90)
+            
+            cell.button.frame.size.width = 76
+            cell.button.frame = CGRect(x: (cell.container.frame.size.width / 2) - (cell.button.frame.width / 2), y: 7, width: 76, height: 76)
+            
+            cell.button.layer.cornerRadius = 38
             cell.button.clipsToBounds = true
             
             cell.button.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
@@ -158,7 +173,7 @@ class ImagePickerControls: UIView, UICollectionViewDataSource, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: frame.width / 3, height: frame.height)
+        return CGSize(width: frame.width / 3, height: headerCollectionView.frame.height + 20)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -169,7 +184,7 @@ class ImagePickerControls: UIView, UICollectionViewDataSource, UICollectionViewD
         addSubview(headerCollectionView)
         addSubview(cname)
         
-        addConstraintsWithFormat(format: "V:|[v0(90)]-0-[v1(40)]|", views: headerCollectionView, cname)
+        addConstraintsWithFormat(format: "V:|[v0(90)]-(0)-[v1(40)]|", views: headerCollectionView, cname)
         addConstraintsWithFormat(format: "H:|[v0]|", views: headerCollectionView)
         addConstraintsWithFormat(format: "H:|[v0]|", views: cname)
     }
