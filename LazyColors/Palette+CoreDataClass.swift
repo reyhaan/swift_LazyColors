@@ -1,5 +1,5 @@
 //
-//  Color+CoreDataClass.swift
+//  Palette+CoreDataClass.swift
 //  LazyColors
 //
 //  Created by Mohammad Rehaan on 8/20/17.
@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-@objc(Color)
-public class Color: NSManagedObject {
+@objc(Palette)
+public class Palette: NSManagedObject {
 
 }

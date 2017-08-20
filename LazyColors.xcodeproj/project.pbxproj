@@ -36,8 +36,6 @@
 		977F30171F3BF52000AE1901 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 977F30161F3BF52000AE1901 /* Main.storyboard */; };
 		977F30181F3BF55900AE1901 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 977F30101F3BF32D00AE1901 /* CoreData.framework */; };
 		977F301B1F3BF59B00AE1901 /* AppModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 977F30191F3BF59B00AE1901 /* AppModel.xcdatamodeld */; };
-		977F30221F3BF75600AE1901 /* Color+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977F30201F3BF75600AE1901 /* Color+CoreDataClass.swift */; };
-		977F30231F3BF75600AE1901 /* Color+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977F30211F3BF75600AE1901 /* Color+CoreDataProperties.swift */; };
 		97889C951F403D9B0028B8D6 /* Proxima Nova Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 97889C941F403D9B0028B8D6 /* Proxima Nova Regular.otf */; };
 		97B1073C1F37AA3500E36CF8 /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B1073B1F37AA3500E36CF8 /* PreviewController.swift */; };
 		97B1073E1F37B47A00E36CF8 /* CameraControlsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B1073D1F37B47A00E36CF8 /* CameraControlsOverlay.swift */; };
@@ -55,6 +53,10 @@
 		97C66F791F3D2D2300FB8C56 /* KMeans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C66F721F3D2D2300FB8C56 /* KMeans.swift */; };
 		97C66F7A1F3D2D2300FB8C56 /* Memoization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C66F731F3D2D2300FB8C56 /* Memoization.swift */; };
 		97C66F7B1F3D2D2300FB8C56 /* PlatformExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C66F741F3D2D2300FB8C56 /* PlatformExtensions.swift */; };
+		97D2E3701F49B7EF0086462B /* Palette+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D2E36C1F49B7EF0086462B /* Palette+CoreDataClass.swift */; };
+		97D2E3721F49B7EF0086462B /* Color+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D2E36E1F49B7EF0086462B /* Color+CoreDataClass.swift */; };
+		97D2E3731F49B7EF0086462B /* Color+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D2E36F1F49B7EF0086462B /* Color+CoreDataProperties.swift */; };
+		97D2E3791F49BF2B0086462B /* Palette+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D2E3781F49BF2B0086462B /* Palette+CoreDataProperties.swift */; };
 		97EC46E91F4026C3001EA9CC /* ColorNameContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EC46E81F4026C3001EA9CC /* ColorNameContainer.swift */; };
 		97FCF7541F3C1DA40003DADD /* ColorProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FCF7531F3C1DA40003DADD /* ColorProcessor.swift */; };
 /* End PBXBuildFile section */
@@ -113,8 +115,6 @@
 		977F30101F3BF32D00AE1901 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		977F30161F3BF52000AE1901 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		977F301A1F3BF59B00AE1901 /* AppModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AppModel.xcdatamodel; sourceTree = "<group>"; };
-		977F30201F3BF75600AE1901 /* Color+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+CoreDataClass.swift"; sourceTree = "<group>"; };
-		977F30211F3BF75600AE1901 /* Color+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		97889C941F403D9B0028B8D6 /* Proxima Nova Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima Nova Regular.otf"; sourceTree = "<group>"; };
 		97B1073B1F37AA3500E36CF8 /* PreviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
 		97B1073D1F37B47A00E36CF8 /* CameraControlsOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraControlsOverlay.swift; sourceTree = "<group>"; };
@@ -136,6 +136,10 @@
 		97C66F721F3D2D2300FB8C56 /* KMeans.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMeans.swift; sourceTree = "<group>"; };
 		97C66F731F3D2D2300FB8C56 /* Memoization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Memoization.swift; sourceTree = "<group>"; };
 		97C66F741F3D2D2300FB8C56 /* PlatformExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformExtensions.swift; sourceTree = "<group>"; };
+		97D2E36C1F49B7EF0086462B /* Palette+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Palette+CoreDataClass.swift"; sourceTree = "<group>"; };
+		97D2E36E1F49B7EF0086462B /* Color+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+CoreDataClass.swift"; sourceTree = "<group>"; };
+		97D2E36F1F49B7EF0086462B /* Color+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		97D2E3781F49BF2B0086462B /* Palette+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Palette+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		97EC46E81F4026C3001EA9CC /* ColorNameContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorNameContainer.swift; sourceTree = "<group>"; };
 		97FCF7531F3C1DA40003DADD /* ColorProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorProcessor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -286,8 +290,10 @@
 			isa = PBXGroup;
 			children = (
 				977F30191F3BF59B00AE1901 /* AppModel.xcdatamodeld */,
-				977F30201F3BF75600AE1901 /* Color+CoreDataClass.swift */,
-				977F30211F3BF75600AE1901 /* Color+CoreDataProperties.swift */,
+				97D2E36C1F49B7EF0086462B /* Palette+CoreDataClass.swift */,
+				97D2E36E1F49B7EF0086462B /* Color+CoreDataClass.swift */,
+				97D2E3781F49BF2B0086462B /* Palette+CoreDataProperties.swift */,
+				97D2E36F1F49B7EF0086462B /* Color+CoreDataProperties.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -506,7 +512,6 @@
 				97C66F7A1F3D2D2300FB8C56 /* Memoization.swift in Sources */,
 				97B107531F3808F500E36CF8 /* Extensions.swift in Sources */,
 				97282EE01F4328080058B1DE /* ImageScrollView.swift in Sources */,
-				977F30221F3BF75600AE1901 /* Color+CoreDataClass.swift in Sources */,
 				97C66F761F3D2D2300FB8C56 /* DominantColors.swift in Sources */,
 				9739C3101F466AD7009B9B3C /* ColorPaletteCell.swift in Sources */,
 				9739C3201F47B19D009B9B3C /* FloatyWindow.swift in Sources */,
@@ -516,11 +521,12 @@
 				97B1073C1F37AA3500E36CF8 /* PreviewController.swift in Sources */,
 				9739C31B1F47B19D009B9B3C /* Floaty.swift in Sources */,
 				97B1075B1F38233100E36CF8 /* CameraControlsFooterCell.swift in Sources */,
-				977F30231F3BF75600AE1901 /* Color+CoreDataProperties.swift in Sources */,
+				97D2E3731F49B7EF0086462B /* Color+CoreDataProperties.swift in Sources */,
 				973E7C041F442916001237D3 /* ImagePickerControls.swift in Sources */,
 				977AF4101F40A88F007E591D /* SingleColorCell.swift in Sources */,
 				9739C31C1F47B19D009B9B3C /* FloatyDelegate.swift in Sources */,
 				97C66F7B1F3D2D2300FB8C56 /* PlatformExtensions.swift in Sources */,
+				97D2E3721F49B7EF0086462B /* Color+CoreDataClass.swift in Sources */,
 				972D35AD1F454508002ADD35 /* ColorPaletteView.swift in Sources */,
 				97C66F751F3D2D2300FB8C56 /* ColorSpaceConversion.m in Sources */,
 				97B107571F38154C00E36CF8 /* CameraControlsHeader.swift in Sources */,
@@ -539,7 +545,9 @@
 				9739C31E1F47B19D009B9B3C /* FloatyManager.swift in Sources */,
 				9752F0241F36E4D500D9272C /* ViewController.swift in Sources */,
 				973E7C081F4442E5001237D3 /* ImagePickerViewControllerExtension.swift in Sources */,
+				97D2E3791F49BF2B0086462B /* Palette+CoreDataProperties.swift in Sources */,
 				97C66F771F3D2D2300FB8C56 /* INVector3.m in Sources */,
+				97D2E3701F49B7EF0086462B /* Palette+CoreDataClass.swift in Sources */,
 				97FCF7541F3C1DA40003DADD /* ColorProcessor.swift in Sources */,
 				9752F0221F36E4D500D9272C /* AppDelegate.swift in Sources */,
 				9739C31F1F47B19D009B9B3C /* FloatyViewController.swift in Sources */,

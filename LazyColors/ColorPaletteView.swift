@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class ColorPaletteView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
@@ -66,8 +67,121 @@ class ColorPaletteView: UIView, UICollectionViewDataSource, UICollectionViewDele
     }()
     
     func closePalette() {
-        delegate?.closePalette()
-        delegate2?.closePalette()
+        animate(view: self, x: 10, y: -150, width: self.frame.width, height: self.frame.height)
+    }
+    
+    func savePalette() {
+        
+        let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+        let colorPalette = NSEntityDescription.insertNewObject(forEntityName: "Palette", into: context!) as! Palette
+        
+        colorPalette.name = Date().toString()
+        colorPalette.date = NSDate()
+        
+        let color1 = NSEntityDescription.insertNewObject(forEntityName: "Color", into: context!) as! Color
+        let color2 = NSEntityDescription.insertNewObject(forEntityName: "Color", into: context!) as! Color
+        let color3 = NSEntityDescription.insertNewObject(forEntityName: "Color", into: context!) as! Color
+        let color4 = NSEntityDescription.insertNewObject(forEntityName: "Color", into: context!) as! Color
+        let color5 = NSEntityDescription.insertNewObject(forEntityName: "Color", into: context!) as! Color
+        let color6 = NSEntityDescription.insertNewObject(forEntityName: "Color", into: context!) as! Color
+        
+        for i in 0..<6 {
+            
+            let selectedColor = palette?[i]
+            
+            let c = selectedColor?.getCmyk()[0]
+            let m = selectedColor?.getCmyk()[1]
+            let y = selectedColor?.getCmyk()[2]
+            let k = selectedColor?.getCmyk()[3]
+            
+            let h = selectedColor?.getHsl()[0]
+            let s = selectedColor?.getHsl()[1]
+            let l = selectedColor?.getHsl()[2]
+      
+            if i == 0 {
+                
+                color1.name = selectedColor?.getName()[1] as? String
+                color1.r = Float((selectedColor?.redValue)!)
+                color1.g = Float((selectedColor?.greenValue)!)
+                color1.b = Float((selectedColor?.blueValue)!)
+                color1.hex = selectedColor?.getHex()
+                color1.date = NSDate()
+                color1.rgb = selectedColor?.getRgb()
+                color1.cmyk = "\(c!), \(m!), \(y!), \(k!)"
+                color1.hsl = "\(h!), \(s!), \(l!)"
+                color1.palette = colorPalette
+            } else if i == 1 {
+                
+                color2.name = selectedColor?.getName()[1] as? String
+                color2.r = Float((selectedColor?.redValue)!)
+                color2.g = Float((selectedColor?.greenValue)!)
+                color2.b = Float((selectedColor?.blueValue)!)
+                color2.hex = selectedColor?.getHex()
+                color2.date = NSDate()
+                color2.rgb = selectedColor?.getRgb()
+                color2.cmyk = "\(c!), \(m!), \(y!), \(k!)"
+                color2.hsl = "\(h!), \(s!), \(l!)"
+                color2.palette = colorPalette
+            } else if i == 2 {
+                
+                color3.name = selectedColor?.getName()[1] as? String
+                color3.r = Float((selectedColor?.redValue)!)
+                color3.g = Float((selectedColor?.greenValue)!)
+                color3.b = Float((selectedColor?.blueValue)!)
+                color3.hex = selectedColor?.getHex()
+                color3.date = NSDate()
+                color3.rgb = selectedColor?.getRgb()
+                color3.cmyk = "\(c!), \(m!), \(y!), \(k!)"
+                color3.hsl = "\(h!), \(s!), \(l!)"
+                color3.palette = colorPalette
+            } else if i == 3 {
+                
+                color4.name = selectedColor?.getName()[1] as? String
+                color4.r = Float((selectedColor?.redValue)!)
+                color4.g = Float((selectedColor?.greenValue)!)
+                color4.b = Float((selectedColor?.blueValue)!)
+                color4.hex = selectedColor?.getHex()
+                color4.date = NSDate()
+                color4.rgb = selectedColor?.getRgb()
+                color4.cmyk = "\(c!), \(m!), \(y!), \(k!)"
+                color4.hsl = "\(h!), \(s!), \(l!)"
+                color4.palette = colorPalette
+            } else if i == 4 {
+                
+                color5.name = selectedColor?.getName()[1] as? String
+                color5.r = Float((selectedColor?.redValue)!)
+                color5.g = Float((selectedColor?.greenValue)!)
+                color5.b = Float((selectedColor?.blueValue)!)
+                color5.hex = selectedColor?.getHex()
+                color5.date = NSDate()
+                color5.rgb = selectedColor?.getRgb()
+                color5.cmyk = "\(c!), \(m!), \(y!), \(k!)"
+                color5.hsl = "\(h!), \(s!), \(l!)"
+                color5.palette = colorPalette
+            } else if i == 5 {
+                
+                color6.name = selectedColor?.getName()[1] as? String
+                color6.r = Float((selectedColor?.redValue)!)
+                color6.g = Float((selectedColor?.greenValue)!)
+                color6.b = Float((selectedColor?.blueValue)!)
+                color6.hex = selectedColor?.getHex()
+                color6.date = NSDate()
+                color6.rgb = selectedColor?.getRgb()
+                color6.cmyk = "\(c!), \(m!), \(y!), \(k!)"
+                color6.hsl = "\(h!), \(s!), \(l!)"
+                color6.palette = colorPalette
+            }
+            
+        }
+        
+        do {
+            try context?.save()
+            closePalette()
+        }
+        catch{
+            print("There was an error in saving data")
+        }
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -115,6 +229,8 @@ class ColorPaletteView: UIView, UICollectionViewDataSource, UICollectionViewDele
     func setupViews() {
         
         discardButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.closePalette)))
+        
+        saveButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.savePalette)))
         
         buttonContainer.addSubview(discardButton)
         buttonContainer.addSubview(saveButton)
