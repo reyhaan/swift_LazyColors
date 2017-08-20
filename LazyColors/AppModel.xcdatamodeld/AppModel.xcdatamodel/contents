@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Color" representedClassName="Color" syncable="YES">
         <attribute name="b" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="belongsToPalette" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="cmyk" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="g" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -19,7 +20,7 @@
         <relationship name="color" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Color" inverseName="palette" inverseEntity="Color" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Color" positionX="-434" positionY="-306" width="128" height="208"/>
+        <element name="Color" positionX="-434" positionY="-306" width="128" height="225"/>
         <element name="Palette" positionX="-198" positionY="-252" width="126" height="88"/>
     </elements>
 </model>

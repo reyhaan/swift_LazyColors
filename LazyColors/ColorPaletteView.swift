@@ -110,6 +110,7 @@ class ColorPaletteView: UIView, UICollectionViewDataSource, UICollectionViewDele
                 color1.cmyk = "\(c!), \(m!), \(y!), \(k!)"
                 color1.hsl = "\(h!), \(s!), \(l!)"
                 color1.palette = colorPalette
+                color1.belongsToPalette = true
             } else if i == 1 {
                 
                 color2.name = selectedColor?.getName()[1] as? String
@@ -122,6 +123,7 @@ class ColorPaletteView: UIView, UICollectionViewDataSource, UICollectionViewDele
                 color2.cmyk = "\(c!), \(m!), \(y!), \(k!)"
                 color2.hsl = "\(h!), \(s!), \(l!)"
                 color2.palette = colorPalette
+                color2.belongsToPalette = true
             } else if i == 2 {
                 
                 color3.name = selectedColor?.getName()[1] as? String
@@ -134,6 +136,7 @@ class ColorPaletteView: UIView, UICollectionViewDataSource, UICollectionViewDele
                 color3.cmyk = "\(c!), \(m!), \(y!), \(k!)"
                 color3.hsl = "\(h!), \(s!), \(l!)"
                 color3.palette = colorPalette
+                color3.belongsToPalette = true
             } else if i == 3 {
                 
                 color4.name = selectedColor?.getName()[1] as? String
@@ -146,6 +149,7 @@ class ColorPaletteView: UIView, UICollectionViewDataSource, UICollectionViewDele
                 color4.cmyk = "\(c!), \(m!), \(y!), \(k!)"
                 color4.hsl = "\(h!), \(s!), \(l!)"
                 color4.palette = colorPalette
+                color4.belongsToPalette = true
             } else if i == 4 {
                 
                 color5.name = selectedColor?.getName()[1] as? String
@@ -158,6 +162,7 @@ class ColorPaletteView: UIView, UICollectionViewDataSource, UICollectionViewDele
                 color5.cmyk = "\(c!), \(m!), \(y!), \(k!)"
                 color5.hsl = "\(h!), \(s!), \(l!)"
                 color5.palette = colorPalette
+                color5.belongsToPalette = true
             } else if i == 5 {
                 
                 color6.name = selectedColor?.getName()[1] as? String
@@ -170,6 +175,7 @@ class ColorPaletteView: UIView, UICollectionViewDataSource, UICollectionViewDele
                 color6.cmyk = "\(c!), \(m!), \(y!), \(k!)"
                 color6.hsl = "\(h!), \(s!), \(l!)"
                 color6.palette = colorPalette
+                color6.belongsToPalette = true
             }
             
         }

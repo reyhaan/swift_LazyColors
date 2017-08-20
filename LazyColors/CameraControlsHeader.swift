@@ -183,6 +183,7 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
         color.rgb = selectedColor?.getRgb()
         color.cmyk = "\(c!), \(m!), \(y!), \(k!)"
         color.hsl = "\(h!), \(s!), \(l!)"
+        color.belongsToPalette = false
         
         
         do {

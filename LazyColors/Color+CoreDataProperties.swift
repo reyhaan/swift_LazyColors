@@ -26,6 +26,7 @@ extension Color {
     @NSManaged public var r: Float
     @NSManaged public var rgb: String?
     @NSManaged public var shades: String?
+    @NSManaged public var belongsToPalette: Bool
     @NSManaged public var palette: Palette?
 
 }

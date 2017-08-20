@@ -38,6 +38,7 @@ extension ColorCollectionView {
         if let context = delegate?.persistentContainer.viewContext {
             
             let fetchRequest: NSFetchRequest<Color> = Color.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "belongsToPalette = %@", false as CVarArg)
             
             do {
                 
