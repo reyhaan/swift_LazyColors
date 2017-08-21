@@ -13,10 +13,12 @@ class PaletteColorCell: BaseCell, UICollectionViewDataSource, UICollectionViewDe
     var paletteObject: Palette? {
         didSet {
             paletteName.text = paletteObject?.name
+            pl = [paletteObject?.color ?? "error"]
+            
         }
     }
-    
-    public var palette: Array<UIColor>?
+
+    var pl: NSSet?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -80,8 +82,7 @@ class PaletteColorCell: BaseCell, UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? ColorPaletteCell
-        
-        
+
         return cell!
     }
     
