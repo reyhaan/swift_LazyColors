@@ -13,15 +13,14 @@ class PaletteCollectionView: UIView, UICollectionViewDataSource, UICollectionVie
     weak var delegate: PreviewControllerDelegate?
     weak var delegate2: ViewControllerDelegate?
     
-    var colorsArray: [Color]?
+    var palettesArray: [Palette]?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        colorCollectionView.register(SingleColorCell.self, forCellWithReuseIdentifier: cellId)
-        setupHeader()
+        paletteCollectionView.register(PaletteColorCell.self, forCellWithReuseIdentifier: cellId)
         setupViews()
-//        loadData()
-        //        clearData()
+        loadData()
+//        clearData()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -30,7 +29,7 @@ class PaletteCollectionView: UIView, UICollectionViewDataSource, UICollectionVie
     
     let cellId = "cellId"
     
-    lazy var colorCollectionView: UICollectionView = {
+    lazy var paletteCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = UIColor(red: 246 / 255, green: 246 / 255, blue: 246 / 255, alpha: 1)
@@ -39,41 +38,26 @@ class PaletteCollectionView: UIView, UICollectionViewDataSource, UICollectionVie
         return cv
     }()
     
-    let header: UIView = {
-        let hd = UIView()
-        hd.backgroundColor = UIColor.white
-        return hd
-    }()
-    
-    func setupHeader() {
-        header.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.closeColorCollectionView)))
-    }
-    
-    func closeColorCollectionView () {
-        
-        self.delegate?.goBackToCamera()
-        
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let count = colorsArray?.count {
-            return count
+        if let count = palettesArray?.count {
+            return  count
         }
-        return 0
+        return 8
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? SingleColorCell
-        
-        if let color = colorsArray?[indexPath.item] {
-            cell?.colorObject = color
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? PaletteColorCell
+        cell?.backgroundColor = .blue
+
+        if let palette = palettesArray?[indexPath.item] {
+            cell?.paletteObject = palette
         }
         
         return cell!
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.frame.width / 2 - 20, height: 105)
+        return CGSize(width: self.frame.width, height: 120)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -90,11 +74,11 @@ class PaletteCollectionView: UIView, UICollectionViewDataSource, UICollectionVie
     
     func setupViews() {
         
-        addSubview(header)
-        addSubview(colorCollectionView)
-        addConstraintsWithFormat(format: "V:|[v1(70)]-0-[v0]|", views: colorCollectionView, header)
-        addConstraintsWithFormat(format: "H:|[v0]|", views: colorCollectionView)
-        addConstraintsWithFormat(format: "H:|[v0]|", views: header)
+        paletteCollectionView.showsVerticalScrollIndicator = false
+
+        addSubview(paletteCollectionView)
+        addConstraintsWithFormat(format: "V:|[v0]|", views: paletteCollectionView)
+        addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: paletteCollectionView)
     }
     
 }

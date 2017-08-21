@@ -129,6 +129,7 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
     }
     
     func openColorListViewController() {
+        colorCollectionView.colorCollectionView.reloadData()
         delegate?.openColorsList()
     }
     

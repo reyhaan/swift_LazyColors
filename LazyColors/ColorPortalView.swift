@@ -18,6 +18,7 @@ class ColorPortalView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
     override init(frame: CGRect) {
         super.init(frame: frame)
         colorCollectionView.register(ColorPortalCell.self, forCellWithReuseIdentifier: cellId)
+        colorCollectionView.register(PalettePortalCell.self, forCellWithReuseIdentifier: paletteId)
         setupHeader()
         setupViews()
     }
@@ -27,6 +28,7 @@ class ColorPortalView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     let cellId = "cellId"
+    let paletteId = "paletteId"
     
     lazy var colorCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -75,8 +77,6 @@ class ColorPortalView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
     
     func closeColorCollectionView () {
         
-        print("something")
-        
         self.delegate?.goBackToCamera()
         
     }
@@ -87,11 +87,8 @@ class ColorPortalView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        
         let x = targetContentOffset.pointee.x
-        
         let index = x / self.frame.width
-        
         let indexPath = IndexPath(item: Int(index), section: 0)
         portalMenuBar.menuBarCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
     }
@@ -102,6 +99,16 @@ class ColorPortalView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        
+        if indexPath.item == 0 {
+            
+            return collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+            
+        } else if indexPath.item == 1 {
+            
+            return collectionView.dequeueReusableCell(withReuseIdentifier: paletteId, for: indexPath)
+            
+        }
         
         let color: [UIColor] = [.blue, .red]
         

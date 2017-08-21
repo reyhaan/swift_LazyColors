@@ -11,9 +11,18 @@ import UIKit
 
 class ColorPortalCell: BaseCell {
     
+    let colorList: ColorCollectionView = {
+        let cl = ColorCollectionView()
+        return cl
+    }()
+    
     override func setupViews() {
         super.setupViews()
         
+        addSubview(colorList)
+        
+        addConstraintsWithFormat(format: "V:|-(40)-[v0]-(40)-|", views: colorList)
+        addConstraintsWithFormat(format: "H:|[v0]|", views: colorList)
         
     }
 }
