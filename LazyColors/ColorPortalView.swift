@@ -1,14 +1,14 @@
 //
-//  ColorCollectionView.swift
+//  ColorPortalView.swift
 //  LazyColors
 //
-//  Created by Mohammad Rehaan on 8/13/17.
+//  Created by Mohammad Rehaan on 8/20/17.
 //  Copyright © 2017 Mohammad Rehaan. All rights reserved.
 //
 
 import UIKit
 
-class ColorCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class ColorPortalView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     weak var delegate: PreviewControllerDelegate?
     weak var delegate2: ViewControllerDelegate?
@@ -17,11 +17,9 @@ class ColorCollectionView: UIView, UICollectionViewDataSource, UICollectionViewD
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        colorCollectionView.register(SingleColorCell.self, forCellWithReuseIdentifier: cellId)
+        colorCollectionView.register(ColorPortalCell.self, forCellWithReuseIdentifier: cellId)
         setupHeader()
         setupViews()
-        loadData()
-//        clearData()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -58,6 +56,17 @@ class ColorCollectionView: UIView, UICollectionViewDataSource, UICollectionViewD
         return bi
     }()
     
+    let menuBarContainer: UIView = {
+        let mbc = UIView()
+        return mbc
+    }()
+    
+    lazy var portalMenuBar: PortalMenuBar = {
+        let pm = PortalMenuBar()
+        pm.colorPortalView = self
+        return pm
+    }()
+    
     func setupHeader() {
         backImageView.isUserInteractionEnabled = true
         backButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.closeColorCollectionView)))
@@ -69,36 +78,43 @@ class ColorCollectionView: UIView, UICollectionViewDataSource, UICollectionViewD
         print("something")
         
         self.delegate?.goBackToCamera()
-
+        
+    }
+    
+    func scrollToMenuIndex(menuIndex: Int) {
+        let indexPath = IndexPath(item: menuIndex, section: 0)
+        colorCollectionView.scrollToItem(at: indexPath, at: .init(rawValue: 0), animated: true)
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        let x = targetContentOffset.pointee.x
+        
+        let index = x / self.frame.width
+        
+        let indexPath = IndexPath(item: Int(index), section: 0)
+        portalMenuBar.menuBarCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let count = colorsArray?.count {
-            return count
-        }
-        return 0
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? SingleColorCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
         
-        if let color = colorsArray?[indexPath.item] {
-            cell?.colorObject = color
-        }
+        let color: [UIColor] = [.blue, .red]
         
-        return cell!
+        cell.backgroundColor = color[indexPath.item]
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.frame.width / 2 - 20, height: 105)
+        return CGSize(width: self.frame.width, height: self.frame.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 15
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 10, left: 12, bottom: 10, right: 12)
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -107,8 +123,23 @@ class ColorCollectionView: UIView, UICollectionViewDataSource, UICollectionViewD
     
     func setupViews() {
         
+        if let flowLayout = colorCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.scrollDirection = .horizontal
+        }
+        
+        colorCollectionView.isPagingEnabled = true
+        colorCollectionView.showsHorizontalScrollIndicator = false
+        
         backButton.addSubview(backImageView)
         header.addSubview(backButton)
+        header.addSubview(menuBarContainer)
+        
+        menuBarContainer.addSubview(portalMenuBar)
+        menuBarContainer.addConstraintsWithFormat(format: "V:|[v0]|", views: portalMenuBar)
+        menuBarContainer.addConstraintsWithFormat(format: "H:|[v0]|", views: portalMenuBar)
+        
+        header.addConstraintsWithFormat(format: "V:|-(20)-[v0(50)]|", views: menuBarContainer)
+        header.addConstraintsWithFormat(format: "H:[v0(200)]|", views: menuBarContainer)
         
         addSubview(header)
         addSubview(colorCollectionView)

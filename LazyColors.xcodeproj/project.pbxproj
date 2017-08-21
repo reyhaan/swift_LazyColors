@@ -38,6 +38,11 @@
 		977F301B1F3BF59B00AE1901 /* AppModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 977F30191F3BF59B00AE1901 /* AppModel.xcdatamodeld */; };
 		97889C951F403D9B0028B8D6 /* Proxima Nova Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 97889C941F403D9B0028B8D6 /* Proxima Nova Regular.otf */; };
 		979D55511F4A02D700904A3A /* Color+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979D55501F4A02D700904A3A /* Color+CoreDataProperties.swift */; };
+		979D55541F4A078500904A3A /* PaletteCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979D55531F4A078500904A3A /* PaletteCollectionView.swift */; };
+		979D55571F4A315C00904A3A /* ColorPortalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979D55561F4A315C00904A3A /* ColorPortalView.swift */; };
+		979D55591F4A382D00904A3A /* ColorPortalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979D55581F4A382D00904A3A /* ColorPortalCell.swift */; };
+		979D555B1F4A3B9800904A3A /* PortalMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979D555A1F4A3B9800904A3A /* PortalMenuBar.swift */; };
+		979D555D1F4A567F00904A3A /* PortalMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979D555C1F4A567F00904A3A /* PortalMenuCell.swift */; };
 		97B1073C1F37AA3500E36CF8 /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B1073B1F37AA3500E36CF8 /* PreviewController.swift */; };
 		97B1073E1F37B47A00E36CF8 /* CameraControlsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B1073D1F37B47A00E36CF8 /* CameraControlsOverlay.swift */; };
 		97B107531F3808F500E36CF8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B107521F3808F500E36CF8 /* Extensions.swift */; };
@@ -117,6 +122,11 @@
 		977F301A1F3BF59B00AE1901 /* AppModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AppModel.xcdatamodel; sourceTree = "<group>"; };
 		97889C941F403D9B0028B8D6 /* Proxima Nova Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima Nova Regular.otf"; sourceTree = "<group>"; };
 		979D55501F4A02D700904A3A /* Color+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		979D55531F4A078500904A3A /* PaletteCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteCollectionView.swift; sourceTree = "<group>"; };
+		979D55561F4A315C00904A3A /* ColorPortalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPortalView.swift; sourceTree = "<group>"; };
+		979D55581F4A382D00904A3A /* ColorPortalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPortalCell.swift; sourceTree = "<group>"; };
+		979D555A1F4A3B9800904A3A /* PortalMenuBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortalMenuBar.swift; sourceTree = "<group>"; };
+		979D555C1F4A567F00904A3A /* PortalMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortalMenuCell.swift; sourceTree = "<group>"; };
 		97B1073B1F37AA3500E36CF8 /* PreviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
 		97B1073D1F37B47A00E36CF8 /* CameraControlsOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraControlsOverlay.swift; sourceTree = "<group>"; };
 		97B107521F3808F500E36CF8 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -286,6 +296,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		979D55521F4A075C00904A3A /* PaletteView */ = {
+			isa = PBXGroup;
+			children = (
+				979D55531F4A078500904A3A /* PaletteCollectionView.swift */,
+			);
+			name = PaletteView;
+			sourceTree = "<group>";
+		};
+		979D55551F4A314700904A3A /* ColorPortal */ = {
+			isa = PBXGroup;
+			children = (
+				979D55561F4A315C00904A3A /* ColorPortalView.swift */,
+				979D55581F4A382D00904A3A /* ColorPortalCell.swift */,
+				979D555A1F4A3B9800904A3A /* PortalMenuBar.swift */,
+				979D555C1F4A567F00904A3A /* PortalMenuCell.swift */,
+			);
+			name = ColorPortal;
+			sourceTree = "<group>";
+		};
 		97B107381F379F4600E36CF8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,6 +339,8 @@
 				97EC46E81F4026C3001EA9CC /* ColorNameContainer.swift */,
 				972D35AB1F4544F4002ADD35 /* ColorPalette */,
 				972D357F1F452BBC002ADD35 /* FabButtons */,
+				979D55521F4A075C00904A3A /* PaletteView */,
+				979D55551F4A314700904A3A /* ColorPortal */,
 				977AF4111F40B513007E591D /* ColorsList */,
 				973E7C021F442847001237D3 /* ImagePicker */,
 			);
@@ -512,6 +543,7 @@
 				97C66F7A1F3D2D2300FB8C56 /* Memoization.swift in Sources */,
 				97B107531F3808F500E36CF8 /* Extensions.swift in Sources */,
 				97282EE01F4328080058B1DE /* ImageScrollView.swift in Sources */,
+				979D55591F4A382D00904A3A /* ColorPortalCell.swift in Sources */,
 				97C66F761F3D2D2300FB8C56 /* DominantColors.swift in Sources */,
 				9739C3101F466AD7009B9B3C /* ColorPaletteCell.swift in Sources */,
 				9739C3201F47B19D009B9B3C /* FloatyWindow.swift in Sources */,
@@ -530,8 +562,11 @@
 				972D35AD1F454508002ADD35 /* ColorPaletteView.swift in Sources */,
 				97C66F751F3D2D2300FB8C56 /* ColorSpaceConversion.m in Sources */,
 				97B107571F38154C00E36CF8 /* CameraControlsHeader.swift in Sources */,
+				979D55541F4A078500904A3A /* PaletteCollectionView.swift in Sources */,
 				97B107591F38226600E36CF8 /* BaseCell.swift in Sources */,
+				979D555B1F4A3B9800904A3A /* PortalMenuBar.swift in Sources */,
 				97B1073E1F37B47A00E36CF8 /* CameraControlsOverlay.swift in Sources */,
+				979D55571F4A315C00904A3A /* ColorPortalView.swift in Sources */,
 				973E7C061F4429D8001237D3 /* ImagePickerOptions.swift in Sources */,
 				97C66F791F3D2D2300FB8C56 /* KMeans.swift in Sources */,
 				97C66F781F3D2D2300FB8C56 /* INVector3SwiftExtensions.swift in Sources */,
@@ -545,6 +580,7 @@
 				9739C31E1F47B19D009B9B3C /* FloatyManager.swift in Sources */,
 				9752F0241F36E4D500D9272C /* ViewController.swift in Sources */,
 				973E7C081F4442E5001237D3 /* ImagePickerViewControllerExtension.swift in Sources */,
+				979D555D1F4A567F00904A3A /* PortalMenuCell.swift in Sources */,
 				97D2E3791F49BF2B0086462B /* Palette+CoreDataProperties.swift in Sources */,
 				97C66F771F3D2D2300FB8C56 /* INVector3.m in Sources */,
 				97D2E3701F49B7EF0086462B /* Palette+CoreDataClass.swift in Sources */,

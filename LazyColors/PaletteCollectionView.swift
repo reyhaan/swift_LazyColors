@@ -1,14 +1,14 @@
 //
-//  ColorCollectionView.swift
+//  PaletteCollectionView.swift
 //  LazyColors
 //
-//  Created by Mohammad Rehaan on 8/13/17.
+//  Created by Mohammad Rehaan on 8/20/17.
 //  Copyright © 2017 Mohammad Rehaan. All rights reserved.
 //
 
 import UIKit
 
-class ColorCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class PaletteCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     weak var delegate: PreviewControllerDelegate?
     weak var delegate2: ViewControllerDelegate?
@@ -20,8 +20,8 @@ class ColorCollectionView: UIView, UICollectionViewDataSource, UICollectionViewD
         colorCollectionView.register(SingleColorCell.self, forCellWithReuseIdentifier: cellId)
         setupHeader()
         setupViews()
-        loadData()
-//        clearData()
+//        loadData()
+        //        clearData()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -45,31 +45,14 @@ class ColorCollectionView: UIView, UICollectionViewDataSource, UICollectionViewD
         return hd
     }()
     
-    let backButton: UIView = {
-        let bb = UIView()
-        bb.frame = CGRect(x: 10, y: 32.5, width: 60, height: 30)
-        return bb
-    }()
-    
-    let backImageView: UIImageView = {
-        let bi = UIImageView()
-        bi.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
-        bi.image = UIImage(named: "page_back")
-        return bi
-    }()
-    
     func setupHeader() {
-        backImageView.isUserInteractionEnabled = true
-        backButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.closeColorCollectionView)))
-        backImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.closeColorCollectionView)))
+        header.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.closeColorCollectionView)))
     }
     
     func closeColorCollectionView () {
         
-        print("something")
-        
         self.delegate?.goBackToCamera()
-
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -106,9 +89,6 @@ class ColorCollectionView: UIView, UICollectionViewDataSource, UICollectionViewD
     }
     
     func setupViews() {
-        
-        backButton.addSubview(backImageView)
-        header.addSubview(backButton)
         
         addSubview(header)
         addSubview(colorCollectionView)

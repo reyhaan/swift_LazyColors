@@ -26,11 +26,11 @@ class PreviewController: UIViewController, UINavigationControllerDelegate, Previ
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        colorsList.loadData()
-        colorsList.colorCollectionView.reloadData()
+//        colorsList.loadData()
+//        colorsList.colorCollectionView.reloadData()
     }
     
-    let colorsList = ColorCollectionView()
+    let colorsList = ColorPortalView() // ColorCollectionView()
     
     func goBackToCamera() {
         let transition:CATransition = CATransition()
