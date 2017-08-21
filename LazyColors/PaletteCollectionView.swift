@@ -47,7 +47,6 @@ class PaletteCollectionView: UIView, UICollectionViewDataSource, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? PaletteColorCell
-        cell?.backgroundColor = .blue
 
         if let palette = palettesArray?[indexPath.item] {
             cell?.paletteObject = palette
@@ -57,7 +56,7 @@ class PaletteCollectionView: UIView, UICollectionViewDataSource, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.frame.width, height: 120)
+        return CGSize(width: self.frame.width - 20, height: 120)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -65,7 +64,7 @@ class PaletteCollectionView: UIView, UICollectionViewDataSource, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 10, left: 12, bottom: 10, right: 12)
+        return UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -78,7 +77,7 @@ class PaletteCollectionView: UIView, UICollectionViewDataSource, UICollectionVie
 
         addSubview(paletteCollectionView)
         addConstraintsWithFormat(format: "V:|[v0]|", views: paletteCollectionView)
-        addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: paletteCollectionView)
+        addConstraintsWithFormat(format: "H:|-0-[v0]-0-|", views: paletteCollectionView)
     }
     
 }

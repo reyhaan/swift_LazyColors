@@ -20,7 +20,7 @@
         <relationship name="color" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Color" inverseName="palette" inverseEntity="Color" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Color" positionX="-434" positionY="-306" width="128" height="225"/>
-        <element name="Palette" positionX="-198" positionY="-252" width="126" height="88"/>
+        <element name="Color" positionX="-657" positionY="-459" width="128" height="225"/>
+        <element name="Palette" positionX="-423" positionY="-405" width="126" height="88"/>
     </elements>
 </model>
