@@ -84,101 +84,150 @@ class ColorPaletteView: UIView, UICollectionViewDataSource, UICollectionViewDele
         let color4 = NSEntityDescription.insertNewObject(forEntityName: "Color", into: context!) as! Color
         let color5 = NSEntityDescription.insertNewObject(forEntityName: "Color", into: context!) as! Color
         let color6 = NSEntityDescription.insertNewObject(forEntityName: "Color", into: context!) as! Color
+            
+        let c = palette?[0].getCmyk()[0]
+        let m = palette?[0].getCmyk()[1]
+        let y = palette?[0].getCmyk()[2]
+        let k = palette?[0].getCmyk()[3]
         
-        for i in 0..<6 {
-            
-            let selectedColor = palette?[i]
-            
-            let c = selectedColor?.getCmyk()[0]
-            let m = selectedColor?.getCmyk()[1]
-            let y = selectedColor?.getCmyk()[2]
-            let k = selectedColor?.getCmyk()[3]
-            
-            let h = selectedColor?.getHsl()[0]
-            let s = selectedColor?.getHsl()[1]
-            let l = selectedColor?.getHsl()[2]
+        let h = palette?[0].getHsl()[0]
+        let s = palette?[0].getHsl()[1]
+        let l = palette?[0].getHsl()[2]
+        
+        // -------------------
+        
+        let c1 = palette?[1].getCmyk()[0]
+        let m1 = palette?[1].getCmyk()[1]
+        let y1 = palette?[1].getCmyk()[2]
+        let k1 = palette?[1].getCmyk()[3]
+        
+        let h1 = palette?[1].getHsl()[0]
+        let s1 = palette?[1].getHsl()[1]
+        let l1 = palette?[1].getHsl()[2]
+        
+        //---------------------
+        
+        let c2 = palette?[2].getCmyk()[0]
+        let m2 = palette?[2].getCmyk()[1]
+        let y2 = palette?[2].getCmyk()[2]
+        let k2 = palette?[2].getCmyk()[3]
+       
+        let h2 = palette?[2].getHsl()[0]
+        let s2 = palette?[2].getHsl()[1]
+        let l2 = palette?[2].getHsl()[2]
+        
+        //---------------------
+        
+        let c3 = palette?[3].getCmyk()[0]
+        let m3 = palette?[3].getCmyk()[1]
+        let y3 = palette?[3].getCmyk()[2]
+        let k3 = palette?[3].getCmyk()[3]
+        
+        let h3 = palette?[3].getHsl()[0]
+        let s3 = palette?[3].getHsl()[1]
+        let l3 = palette?[3].getHsl()[2]
+        
+        //-----------------------
+        
+        let c4 = palette?[4].getCmyk()[0]
+        let m4 = palette?[4].getCmyk()[1]
+        let y4 = palette?[4].getCmyk()[2]
+        let k4 = palette?[4].getCmyk()[3]
+        
+        let h4 = palette?[4].getHsl()[0]
+        let s4 = palette?[4].getHsl()[1]
+        let l4 = palette?[4].getHsl()[2]
+        
+        //-------------------------
+        
+        let c5 = palette?[5].getCmyk()[0]
+        let m5 = palette?[5].getCmyk()[1]
+        let y5 = palette?[5].getCmyk()[2]
+        let k5 = palette?[5].getCmyk()[3]
+        
+        let h5 = palette?[5].getHsl()[0]
+        let s5 = palette?[5].getHsl()[1]
+        let l5 = palette?[5].getHsl()[2]
       
-            if i == 0 {
-                
-                color1.name = selectedColor?.getName()[1] as? String
-                color1.r = Float((selectedColor?.redValue)!)
-                color1.g = Float((selectedColor?.greenValue)!)
-                color1.b = Float((selectedColor?.blueValue)!)
-                color1.hex = selectedColor?.getHex()
+
+        
+                color1.name = palette?[0].getName()[1] as? String
+                color1.r = Float((palette?[0].redValue)!)
+                color1.g = Float((palette?[0].greenValue)!)
+                color1.b = Float((palette?[0].blueValue)!)
+                color1.hex = palette?[0].getHex()
                 color1.date = NSDate()
-                color1.rgb = selectedColor?.getRgb()
+                color1.rgb = palette?[0].getRgb()
                 color1.cmyk = "\(c!), \(m!), \(y!), \(k!)"
                 color1.hsl = "\(h!), \(s!), \(l!)"
                 color1.palette = colorPalette
                 color1.belongsToPalette = true
-            } else if i == 1 {
+
                 
-                color2.name = selectedColor?.getName()[1] as? String
-                color2.r = Float((selectedColor?.redValue)!)
-                color2.g = Float((selectedColor?.greenValue)!)
-                color2.b = Float((selectedColor?.blueValue)!)
-                color2.hex = selectedColor?.getHex()
+                color2.name = palette?[1].getName()[1] as? String
+                color2.r = Float((palette?[1].redValue)!)
+                color2.g = Float((palette?[1].greenValue)!)
+                color2.b = Float((palette?[1].blueValue)!)
+                color2.hex = palette?[1].getHex()
                 color2.date = NSDate()
-                color2.rgb = selectedColor?.getRgb()
-                color2.cmyk = "\(c!), \(m!), \(y!), \(k!)"
-                color2.hsl = "\(h!), \(s!), \(l!)"
+                color2.rgb = palette?[1].getRgb()
+                color2.cmyk = "\(c1!), \(m1!), \(y1!), \(k1!)"
+                color2.hsl = "\(h1!), \(s1!), \(l1!)"
                 color2.palette = colorPalette
                 color2.belongsToPalette = true
-            } else if i == 2 {
+
                 
-                color3.name = selectedColor?.getName()[1] as? String
-                color3.r = Float((selectedColor?.redValue)!)
-                color3.g = Float((selectedColor?.greenValue)!)
-                color3.b = Float((selectedColor?.blueValue)!)
-                color3.hex = selectedColor?.getHex()
+                color3.name = palette?[2].getName()[1] as? String
+                color3.r = Float((palette?[2].redValue)!)
+                color3.g = Float((palette?[2].greenValue)!)
+                color3.b = Float((palette?[2].blueValue)!)
+                color3.hex = palette?[2].getHex()
                 color3.date = NSDate()
-                color3.rgb = selectedColor?.getRgb()
-                color3.cmyk = "\(c!), \(m!), \(y!), \(k!)"
-                color3.hsl = "\(h!), \(s!), \(l!)"
+                color3.rgb = palette?[2].getRgb()
+                color3.cmyk = "\(c2!), \(m2!), \(y2!), \(k2!)"
+                color3.hsl = "\(h2!), \(s2!), \(l2!)"
                 color3.palette = colorPalette
                 color3.belongsToPalette = true
-            } else if i == 3 {
+
                 
-                color4.name = selectedColor?.getName()[1] as? String
-                color4.r = Float((selectedColor?.redValue)!)
-                color4.g = Float((selectedColor?.greenValue)!)
-                color4.b = Float((selectedColor?.blueValue)!)
-                color4.hex = selectedColor?.getHex()
+                color4.name = palette?[3].getName()[1] as? String
+                color4.r = Float((palette?[3].redValue)!)
+                color4.g = Float((palette?[3].greenValue)!)
+                color4.b = Float((palette?[3].blueValue)!)
+                color4.hex = palette?[3].getHex()
                 color4.date = NSDate()
-                color4.rgb = selectedColor?.getRgb()
-                color4.cmyk = "\(c!), \(m!), \(y!), \(k!)"
-                color4.hsl = "\(h!), \(s!), \(l!)"
+                color4.rgb = palette?[3].getRgb()
+                color4.cmyk = "\(c3!), \(m3!), \(y3!), \(k3!)"
+                color4.hsl = "\(h3!), \(s3!), \(l3!)"
                 color4.palette = colorPalette
                 color4.belongsToPalette = true
-            } else if i == 4 {
+
                 
-                color5.name = selectedColor?.getName()[1] as? String
-                color5.r = Float((selectedColor?.redValue)!)
-                color5.g = Float((selectedColor?.greenValue)!)
-                color5.b = Float((selectedColor?.blueValue)!)
-                color5.hex = selectedColor?.getHex()
+                color5.name = palette?[4].getName()[1] as? String
+                color5.r = Float((palette?[4].redValue)!)
+                color5.g = Float((palette?[4].greenValue)!)
+                color5.b = Float((palette?[4].blueValue)!)
+                color5.hex = palette?[4].getHex()
                 color5.date = NSDate()
-                color5.rgb = selectedColor?.getRgb()
-                color5.cmyk = "\(c!), \(m!), \(y!), \(k!)"
-                color5.hsl = "\(h!), \(s!), \(l!)"
+                color5.rgb = palette?[4].getRgb()
+                color5.cmyk = "\(c4!), \(m4!), \(y4!), \(k4!)"
+                color5.hsl = "\(h4!), \(s4!), \(l4!)"
                 color5.palette = colorPalette
                 color5.belongsToPalette = true
-            } else if i == 5 {
+
                 
-                color6.name = selectedColor?.getName()[1] as? String
-                color6.r = Float((selectedColor?.redValue)!)
-                color6.g = Float((selectedColor?.greenValue)!)
-                color6.b = Float((selectedColor?.blueValue)!)
-                color6.hex = selectedColor?.getHex()
+                color6.name = palette?[5].getName()[1] as? String
+                color6.r = Float((palette?[5].redValue)!)
+                color6.g = Float((palette?[5].greenValue)!)
+                color6.b = Float((palette?[5].blueValue)!)
+                color6.hex = palette?[5].getHex()
                 color6.date = NSDate()
-                color6.rgb = selectedColor?.getRgb()
-                color6.cmyk = "\(c!), \(m!), \(y!), \(k!)"
-                color6.hsl = "\(h!), \(s!), \(l!)"
+                color6.rgb = palette?[5].getRgb()
+                color6.cmyk = "\(c5!), \(m5!), \(y5!), \(k5!)"
+                color6.hsl = "\(h5!), \(s5!), \(l5!)"
                 color6.palette = colorPalette
                 color6.belongsToPalette = true
-            }
-            
-        }
+
         
         do {
             try context?.save()

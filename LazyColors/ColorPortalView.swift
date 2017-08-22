@@ -17,8 +17,8 @@ class ColorPortalView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        colorCollectionView.register(ColorPortalCell.self, forCellWithReuseIdentifier: cellId)
-        colorCollectionView.register(PalettePortalCell.self, forCellWithReuseIdentifier: paletteId)
+        pageView.register(ColorPortalCell.self, forCellWithReuseIdentifier: cellId)
+        pageView.register(PalettePortalCell.self, forCellWithReuseIdentifier: paletteId)
         setupHeader()
         setupViews()
     }
@@ -30,7 +30,7 @@ class ColorPortalView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
     let cellId = "cellId"
     let paletteId = "paletteId"
     
-    lazy var colorCollectionView: UICollectionView = {
+    lazy var pageView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = UIColor(red: 246 / 255, green: 246 / 255, blue: 246 / 255, alpha: 1)
@@ -83,7 +83,7 @@ class ColorPortalView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
     
     func scrollToMenuIndex(menuIndex: Int) {
         let indexPath = IndexPath(item: menuIndex, section: 0)
-        colorCollectionView.scrollToItem(at: indexPath, at: .init(rawValue: 0), animated: true)
+        pageView.scrollToItem(at: indexPath, at: .init(rawValue: 0), animated: true)
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
@@ -102,17 +102,18 @@ class ColorPortalView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
         
         if indexPath.item == 0 {
             
-            return collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+            let page1 = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+            
+            return page1
             
         } else if indexPath.item == 1 {
             
-            return collectionView.dequeueReusableCell(withReuseIdentifier: paletteId, for: indexPath)
+            let page2 = collectionView.dequeueReusableCell(withReuseIdentifier: paletteId, for: indexPath)
+            
+            return page2
             
         }
         
-        let color: [UIColor] = [.blue, .red]
-        
-        cell.backgroundColor = color[indexPath.item]
         return cell
     }
     
@@ -130,12 +131,12 @@ class ColorPortalView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
     
     func setupViews() {
         
-        if let flowLayout = colorCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+        if let flowLayout = pageView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.scrollDirection = .horizontal
         }
         
-        colorCollectionView.isPagingEnabled = true
-        colorCollectionView.showsHorizontalScrollIndicator = false
+        pageView.isPagingEnabled = true
+        pageView.showsHorizontalScrollIndicator = false
         
         backButton.addSubview(backImageView)
         header.addSubview(backButton)
@@ -149,9 +150,9 @@ class ColorPortalView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
         header.addConstraintsWithFormat(format: "H:[v0(200)]|", views: menuBarContainer)
         
         addSubview(header)
-        addSubview(colorCollectionView)
-        addConstraintsWithFormat(format: "V:|[v1(70)]-0-[v0]|", views: colorCollectionView, header)
-        addConstraintsWithFormat(format: "H:|[v0]|", views: colorCollectionView)
+        addSubview(pageView)
+        addConstraintsWithFormat(format: "V:|[v1(70)]-0-[v0]|", views: pageView, header)
+        addConstraintsWithFormat(format: "H:|[v0]|", views: pageView)
         addConstraintsWithFormat(format: "H:|[v0]|", views: header)
     }
     

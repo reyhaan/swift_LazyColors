@@ -7,21 +7,15 @@
 //
 
 import UIKit
+import CoreData
 
 class PaletteColorCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    var paletteObject: Palette? {
-        didSet {
-            paletteName.text = paletteObject?.name
-            pl = [paletteObject?.color ?? "error"]
-            
-        }
-    }
-
-    var pl: NSSet?
+    var paletteObject: Palette?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         paletteColorCollectionView.register(ColorPaletteCell.self, forCellWithReuseIdentifier: cellId)
         backgroundColor = UIColor.clear
         setupViews()
@@ -71,6 +65,31 @@ class PaletteColorCell: BaseCell, UICollectionViewDataSource, UICollectionViewDe
         return cv
     }()
     
+    func loadColorForPalette(palette: Palette) -> Array<Color> {
+        
+        let delegate = (UIApplication.shared.delegate as? AppDelegate)
+        
+        var colorArray: Array<Color>?
+        
+        if let context = delegate?.persistentContainer.viewContext {
+            
+            let fetchRequest: NSFetchRequest<Color> = Color.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "palette = %@", palette)
+            
+            do {
+                
+                colorArray = try context.fetch(fetchRequest)
+                
+            } catch let err {
+                
+                print(err)
+            }
+        }
+        
+        return colorArray!
+        
+    }
+    
     func reloadData() {
         paletteColorCollectionView.reloadData()
     }
@@ -83,6 +102,13 @@ class PaletteColorCell: BaseCell, UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? ColorPaletteCell
 
+        let palette = paletteObject
+        
+        let colorsArray: Array<Color> = loadColorForPalette(palette: palette!)
+        
+        cell?.backgroundColor = UIColor(red: CGFloat(colorsArray[indexPath.item].r / 255), green: CGFloat(colorsArray[indexPath.item].g / 255), blue: CGFloat(colorsArray[indexPath.item].b / 255), alpha: 1)
+
+        
         return cell!
     }
     

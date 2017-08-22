@@ -26,8 +26,8 @@ class PreviewController: UIViewController, UINavigationControllerDelegate, Previ
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        colorsList.loadData()
-//        colorsList.colorCollectionView.reloadData()
+
+        
     }
     
     let colorsList = ColorPortalView() // ColorCollectionView()

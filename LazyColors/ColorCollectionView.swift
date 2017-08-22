@@ -27,6 +27,10 @@ class ColorCollectionView: UIView, UICollectionViewDataSource, UICollectionViewD
         fatalError("init(coder:) has not been implemented")
     }
     
+    public func reloadData() {
+        colorCollectionView.reloadData()
+    }
+    
     let cellId = "cellId"
     
     lazy var colorCollectionView: UICollectionView = {

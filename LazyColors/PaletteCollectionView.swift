@@ -27,6 +27,10 @@ class PaletteCollectionView: UIView, UICollectionViewDataSource, UICollectionVie
         fatalError("init(coder:) has not been implemented")
     }
     
+    public func reloadData() {
+        paletteCollectionView.reloadData()
+    }
+    
     let cellId = "cellId"
     
     lazy var paletteCollectionView: UICollectionView = {

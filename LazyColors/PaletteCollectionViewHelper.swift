@@ -23,7 +23,6 @@ extension PaletteCollectionView {
         if let context = delegate?.persistentContainer.viewContext {
             
             let fetchRequest: NSFetchRequest<Palette> = Palette.fetchRequest()
-//            fetchRequest.predicate = NSPredicate(format: "belongsToPalette = %@", false as CVarArg)
             
             do {
                 

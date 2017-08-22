@@ -85,7 +85,7 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
             cell.button.layer.cornerRadius = 23
             cell.button.clipsToBounds = true
             
-            cell.button.addTarget(self, action: #selector(self.openColorListViewController), for: .touchDown)
+            cell.button.addTarget(self, action: #selector(self.openColorPortalViewController), for: .touchDown)
      
         } else if indexPath.item == 1 {
             // Capture the color
@@ -128,8 +128,7 @@ class CameraControlsHeader: UIView, UICollectionViewDataSource, UICollectionView
         return cell
     }
     
-    func openColorListViewController() {
-        colorCollectionView.colorCollectionView.reloadData()
+    func openColorPortalViewController() {
         delegate?.openColorsList()
     }
     
