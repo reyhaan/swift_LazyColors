@@ -21,6 +21,7 @@ class PaletteCollectionView: UIView, UICollectionViewDataSource, UICollectionVie
         setupViews()
         loadData()
 //        clearData()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

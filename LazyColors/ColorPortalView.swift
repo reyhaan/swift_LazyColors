@@ -99,6 +99,9 @@ class ColorPortalView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        let page2 = collectionView.dequeueReusableCell(withReuseIdentifier: paletteId, for: indexPath)
+        
+        print("######## something cool")
         
         if indexPath.item == 0 {
             
@@ -107,8 +110,6 @@ class ColorPortalView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
             return page1
             
         } else if indexPath.item == 1 {
-            
-            let page2 = collectionView.dequeueReusableCell(withReuseIdentifier: paletteId, for: indexPath)
             
             return page2
             

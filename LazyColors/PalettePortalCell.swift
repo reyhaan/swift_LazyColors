@@ -17,7 +17,7 @@ class PalettePortalCell: BaseCell {
     
     override func setupViews() {
         super.setupViews()
-        
+
         addSubview(paletteList)
         
         addConstraintsWithFormat(format: "V:|-(40)-[v0]-(40)-|", views: paletteList)

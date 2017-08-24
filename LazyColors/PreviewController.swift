@@ -22,15 +22,19 @@ class PreviewController: UIViewController, UINavigationControllerDelegate, Previ
         
         setupViews()
         
-        colorsList.delegate = self
+        colorPortal.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
-
+        
         
     }
     
-    let colorsList = ColorPortalView() // ColorCollectionView()
+    override func viewWillAppear(_ animated: Bool) {
+        colorPortal.pageView.reloadData()
+    }
+    
+    let colorPortal = ColorPortalView() // ColorCollectionView()
     
     func goBackToCamera() {
         let transition:CATransition = CATransition()
@@ -44,10 +48,10 @@ class PreviewController: UIViewController, UINavigationControllerDelegate, Previ
     
     func setupViews() {
         
-        view.addSubview(colorsList)
+        view.addSubview(colorPortal)
         
-        view.addConstraintsWithFormat(format: "H:|[v0]|", views: colorsList)
-        view.addConstraintsWithFormat(format: "V:|[v0]|", views: colorsList)
+        view.addConstraintsWithFormat(format: "H:|[v0]|", views: colorPortal)
+        view.addConstraintsWithFormat(format: "V:|[v0]|", views: colorPortal)
         
     }
 
