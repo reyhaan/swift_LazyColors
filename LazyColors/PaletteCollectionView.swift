@@ -47,7 +47,7 @@ class PaletteCollectionView: UIView, UICollectionViewDataSource, UICollectionVie
         if let count = palettesArray?.count {
             return  count
         }
-        return 8
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

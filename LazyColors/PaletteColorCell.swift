@@ -11,7 +11,11 @@ import CoreData
 
 class PaletteColorCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    var paletteObject: Palette?
+    var paletteObject: Palette? {
+        didSet {
+            paletteName.text = ((paletteObject?.name)!)
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)

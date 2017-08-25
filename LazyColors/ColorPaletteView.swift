@@ -70,12 +70,40 @@ class ColorPaletteView: UIView, UICollectionViewDataSource, UICollectionViewDele
         animate(view: self, x: 10, y: -150, width: self.frame.width, height: self.frame.height)
     }
     
+    func paletteCount() -> Int? {
+        
+        let delegate = (UIApplication.shared.delegate as? AppDelegate)
+        
+        let count: Int?
+        
+        if let context = delegate?.persistentContainer.viewContext {
+            
+            let fetchRequest: NSFetchRequest<Palette> = Palette.fetchRequest()
+            
+            do {
+                
+                count = try context.count(for: fetchRequest)
+                
+                return count
+                
+            } catch let err {
+                
+                print(err)
+            }
+            
+        }
+        
+        return nil
+    }
+    
     func savePalette() {
         
         let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
         let colorPalette = NSEntityDescription.insertNewObject(forEntityName: "Palette", into: context!) as! Palette
         
-        colorPalette.name = Date().toString()
+        let count = self.paletteCount()!
+        
+        colorPalette.name = "Palette #\(String(describing: count))"
         colorPalette.date = NSDate()
         
         let color1 = NSEntityDescription.insertNewObject(forEntityName: "Color", into: context!) as! Color
