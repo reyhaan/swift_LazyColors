@@ -51,12 +51,19 @@ class ColorPortalView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
         return bb
     }()
     
-    let backImageView: UIImageView = {
-        let bi = UIImageView()
-        bi.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
-        bi.image = UIImage(named: "page_back")
-        return bi
+    let backButtonView: UIButton = {
+        let bb = UIButton()
+        
+        bb.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+        return bb
     }()
+    
+//    let backImageView: UIImageView = {
+//        let bi = UIImageView()
+//        bi.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+//        bi.image = UIImage(named: "page_back")
+//        return bi
+//    }()
     
     let menuBarContainer: UIView = {
         let mbc = UIView()
@@ -70,9 +77,8 @@ class ColorPortalView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
     }()
     
     func setupHeader() {
-        backImageView.isUserInteractionEnabled = true
         backButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.closeColorCollectionView)))
-        backImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.closeColorCollectionView)))
+        backButtonView.addTarget(self, action: #selector(self.closeColorCollectionView), for: .touchDown)
     }
     
     func closeColorCollectionView () {
@@ -99,11 +105,10 @@ class ColorPortalView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        let page1 = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
         let page2 = collectionView.dequeueReusableCell(withReuseIdentifier: paletteId, for: indexPath)
         
         if indexPath.item == 0 {
-            
-            let page1 = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
             
             return page1
             
@@ -134,10 +139,12 @@ class ColorPortalView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
             flowLayout.scrollDirection = .horizontal
         }
         
+        backButtonView.setImage(UIImage(named: "page_back"), for: UIControlState.normal)
+        
         pageView.isPagingEnabled = true
         pageView.showsHorizontalScrollIndicator = false
         
-        backButton.addSubview(backImageView)
+        backButton.addSubview(backButtonView)
         header.addSubview(backButton)
         header.addSubview(menuBarContainer)
         
@@ -146,7 +153,7 @@ class ColorPortalView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
         menuBarContainer.addConstraintsWithFormat(format: "H:|[v0]|", views: portalMenuBar)
         
         header.addConstraintsWithFormat(format: "V:|-(20)-[v0(50)]|", views: menuBarContainer)
-        header.addConstraintsWithFormat(format: "H:[v0(200)]|", views: menuBarContainer)
+        header.addConstraintsWithFormat(format: "H:[v0(140)]|", views: menuBarContainer)
         
         addSubview(header)
         addSubview(pageView)

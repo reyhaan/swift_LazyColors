@@ -31,7 +31,7 @@ class PortalMenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegat
     lazy var menuBarCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = UIColor(red: 246 / 255, green: 246 / 255, blue: 246 / 255, alpha: 1)
+        cv.backgroundColor = .clear
         cv.dataSource = self
         cv.delegate = self
         return cv
@@ -44,6 +44,18 @@ class PortalMenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PortalMenuCell
+        
+        if indexPath.item == 0 {
+            
+            cell.icon.image = UIImage(named: "color_list")!
+            cell.icon.image = cell.icon.image?.maskWithColor(color: .orange)
+            
+        } else if indexPath.item == 1 {
+            
+            cell.icon.image = UIImage(named: "hue_white")!
+            cell.icon.image = cell.icon.image?.maskWithColor(color: .lightGray)
+        }
+        
         return cell
     }
     
