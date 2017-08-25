@@ -283,7 +283,7 @@ open class Floaty: UIView {
 
             overlayViewDidCompleteOpenAnimation = false
             animationGroup.enter()
-            UIView.animate(withDuration: 0.3, delay: 0,
+            UIView.animate(withDuration: 1, delay: 0,
                 usingSpringWithDamping: 0.55,
                 initialSpringVelocity: 0.3,
                 options: UIViewAnimationOptions(), animations: { () -> Void in
@@ -328,7 +328,7 @@ open class Floaty: UIView {
         if(items.count > 0){
             self.overlayView.removeTarget(self, action: #selector(close), for: UIControlEvents.touchUpInside)
             animationGroup.enter()
-            UIView.animate(withDuration: 0.3, delay: 0,
+            UIView.animate(withDuration: 1, delay: 0,
                 usingSpringWithDamping: 0.6,
                 initialSpringVelocity: 0.8,
                 options: [], animations: { () -> Void in

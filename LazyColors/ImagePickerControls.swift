@@ -162,6 +162,7 @@ class ImagePickerControls: UIView, UICollectionViewDataSource, UICollectionViewD
         color.rgb = selectedColor?.getRgb()
         color.cmyk = "\(c!), \(m!), \(y!), \(k!)"
         color.hsl = "\(h!), \(s!), \(l!)"
+        color.belongsToPalette = false
         
         
         do {

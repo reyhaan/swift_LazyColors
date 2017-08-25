@@ -7,3 +7,5 @@ extern uint64_t dispatch_benchmark(size_t count, void (^block)(void));
 #import "DominantColor.h"
 #import "INVector3.h"
 #import "ColorSpaceConversion.h"
+#import "WXWaveView.h"
+#import "WXWeakObject.h"

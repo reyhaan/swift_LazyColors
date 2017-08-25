@@ -37,6 +37,8 @@
 		977F30181F3BF55900AE1901 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 977F30101F3BF32D00AE1901 /* CoreData.framework */; };
 		977F301B1F3BF59B00AE1901 /* AppModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 977F30191F3BF59B00AE1901 /* AppModel.xcdatamodeld */; };
 		97889C951F403D9B0028B8D6 /* Proxima Nova Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 97889C941F403D9B0028B8D6 /* Proxima Nova Regular.otf */; };
+		978E2B281F50948600D38AB9 /* WXWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 978E2B251F50948600D38AB9 /* WXWaveView.m */; };
+		978E2B291F50948600D38AB9 /* WXWeakObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 978E2B271F50948600D38AB9 /* WXWeakObject.m */; };
 		979D55511F4A02D700904A3A /* Color+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979D55501F4A02D700904A3A /* Color+CoreDataProperties.swift */; };
 		979D55541F4A078500904A3A /* PaletteCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979D55531F4A078500904A3A /* PaletteCollectionView.swift */; };
 		979D55571F4A315C00904A3A /* ColorPortalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979D55561F4A315C00904A3A /* ColorPortalView.swift */; };
@@ -124,6 +126,10 @@
 		977F30161F3BF52000AE1901 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		977F301A1F3BF59B00AE1901 /* AppModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AppModel.xcdatamodel; sourceTree = "<group>"; };
 		97889C941F403D9B0028B8D6 /* Proxima Nova Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima Nova Regular.otf"; sourceTree = "<group>"; };
+		978E2B241F50948600D38AB9 /* WXWaveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXWaveView.h; sourceTree = "<group>"; };
+		978E2B251F50948600D38AB9 /* WXWaveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXWaveView.m; sourceTree = "<group>"; };
+		978E2B261F50948600D38AB9 /* WXWeakObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXWeakObject.h; sourceTree = "<group>"; };
+		978E2B271F50948600D38AB9 /* WXWeakObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXWeakObject.m; sourceTree = "<group>"; };
 		979D55501F4A02D700904A3A /* Color+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		979D55531F4A078500904A3A /* PaletteCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteCollectionView.swift; sourceTree = "<group>"; };
 		979D55561F4A315C00904A3A /* ColorPortalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPortalView.swift; sourceTree = "<group>"; };
@@ -251,6 +257,7 @@
 		9752F0201F36E4D500D9272C /* LazyColors */ = {
 			isa = PBXGroup;
 			children = (
+				978E2B231F50948600D38AB9 /* WXWaveView */,
 				9739C3131F47B189009B9B3C /* Floaty */,
 				97EC46EA1F403666001EA9CC /* Resources */,
 				97C66F671F3D2CDD00FB8C56 /* DominantColor */,
@@ -300,6 +307,17 @@
 				977F30101F3BF32D00AE1901 /* CoreData.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		978E2B231F50948600D38AB9 /* WXWaveView */ = {
+			isa = PBXGroup;
+			children = (
+				978E2B241F50948600D38AB9 /* WXWaveView.h */,
+				978E2B251F50948600D38AB9 /* WXWaveView.m */,
+				978E2B261F50948600D38AB9 /* WXWeakObject.h */,
+				978E2B271F50948600D38AB9 /* WXWeakObject.m */,
+			);
+			path = WXWaveView;
 			sourceTree = "<group>";
 		};
 		979D55521F4A075C00904A3A /* PaletteView */ = {
@@ -572,6 +590,7 @@
 				97C66F751F3D2D2300FB8C56 /* ColorSpaceConversion.m in Sources */,
 				97B107571F38154C00E36CF8 /* CameraControlsHeader.swift in Sources */,
 				979D55541F4A078500904A3A /* PaletteCollectionView.swift in Sources */,
+				978E2B281F50948600D38AB9 /* WXWaveView.m in Sources */,
 				97B107591F38226600E36CF8 /* BaseCell.swift in Sources */,
 				979D555B1F4A3B9800904A3A /* PortalMenuBar.swift in Sources */,
 				97B1073E1F37B47A00E36CF8 /* CameraControlsOverlay.swift in Sources */,
@@ -579,6 +598,7 @@
 				973E7C061F4429D8001237D3 /* ImagePickerOptions.swift in Sources */,
 				97C66F791F3D2D2300FB8C56 /* KMeans.swift in Sources */,
 				97C66F781F3D2D2300FB8C56 /* INVector3SwiftExtensions.swift in Sources */,
+				978E2B291F50948600D38AB9 /* WXWeakObject.m in Sources */,
 				977AF4131F40EC4F007E591D /* ColorCollectionViewHelper.swift in Sources */,
 				977AF40E1F40A74F007E591D /* ViewControllerExtension.swift in Sources */,
 				97B1075D1F38281700E36CF8 /* CameraControlsHeaderCell.swift in Sources */,

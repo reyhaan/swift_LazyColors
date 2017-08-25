@@ -15,6 +15,8 @@ class ColorCollectionView: UIView, UICollectionViewDataSource, UICollectionViewD
     
     var colorsArray: [Color]?
     
+    var waveView: WXWaveView?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         colorCollectionView.register(SingleColorCell.self, forCellWithReuseIdentifier: cellId)
@@ -42,6 +44,24 @@ class ColorCollectionView: UIView, UICollectionViewDataSource, UICollectionViewD
         return cv
     }()
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath.item)
+        let cell = colorCollectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? SingleColorCell
+        
+        print(cell ?? "error")
+        
+        cell?.frame.size.height = 10
+        
+        cell?.backgroundColor = .gray
+        
+        cell?.superview?.bringSubview(toFront: cell!)
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
+            cell?.frame = self.colorCollectionView.bounds
+        }, completion: nil)
+
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let count = colorsArray?.count {
             return count
@@ -50,7 +70,7 @@ class ColorCollectionView: UIView, UICollectionViewDataSource, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? SingleColorCell
+        let cell = colorCollectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? SingleColorCell
         
         if let color = colorsArray?[indexPath.item] {
             cell?.colorObject = color
@@ -60,6 +80,7 @@ class ColorCollectionView: UIView, UICollectionViewDataSource, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        print("size recalculated")
         return CGSize(width: self.frame.width / 2 - 20, height: 105)
     }
     

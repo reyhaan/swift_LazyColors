@@ -123,7 +123,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func setupFloaty() {
         let floaty = Floaty()
-        floaty.buttonImage = UIImage(named: "settings_white")
+        floaty.buttonImage = UIImage(named: "plus_white")
+        floaty.rotationDegrees = 225
         floaty.paddingX = 30
         floaty.paddingY = 60
         floaty.size = 45
@@ -184,14 +185,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         touchX = (location?.x)!
         touchY = (location?.y)!
         
-        animate(view: target, x: touchX! - 9, y: touchY! - 9, width: target.frame.width, height: target.frame.height)
-        
-        if isFrameFrozen {
-            generateLivePreview()
+        if touchY! < self.view.frame.height - 90 {
+            animate(view: target, x: touchX! - 9, y: touchY! - 9, width: target.frame.width, height: target.frame.height)
+            
+            if isFrameFrozen {
+                generateLivePreview()
+            }
+            
+            
+            view.setNeedsLayout()
         }
         
         
-        view.setNeedsLayout()
     }
     
     func addCameraControls () {

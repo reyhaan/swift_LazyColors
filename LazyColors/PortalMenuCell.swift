@@ -29,6 +29,7 @@ class PortalMenuCell: BaseCell {
     
     var icon: UIImageView = {
         let ic = UIImageView()
+        ic.contentMode = .scaleAspectFill
         return ic
     }()
     
@@ -39,11 +40,15 @@ class PortalMenuCell: BaseCell {
         
         addSubview(icon)
         
-        addConstraintsWithFormat(format: "V:[v0(16)]", views: icon)
+        addConstraintsWithFormat(format: "V:[v0(18)]", views: icon)
         addConstraintsWithFormat(format: "H:[v0(18)]", views: icon)
         
         addConstraint(NSLayoutConstraint(item: icon, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
         addConstraint(NSLayoutConstraint(item: icon, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
+        
+        container.layer.cornerRadius = 2
+        container.clipsToBounds = true
+        container.layer.masksToBounds = true
         
         addSubview(container)
         
@@ -51,7 +56,6 @@ class PortalMenuCell: BaseCell {
         addConstraintsWithFormat(format: "H:|[v0]|", views: container)
         
         addConstraint(NSLayoutConstraint(item: container, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
-        addConstraint(NSLayoutConstraint(item: container, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
         
         
         

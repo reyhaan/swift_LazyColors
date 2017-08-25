@@ -47,23 +47,16 @@ class ColorPortalView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
     
     let backButton: UIView = {
         let bb = UIView()
-        bb.frame = CGRect(x: 10, y: 32.5, width: 60, height: 30)
+        bb.frame = CGRect(x: 0, y: 20, width: 60, height: 50)
         return bb
     }()
     
     let backButtonView: UIButton = {
         let bb = UIButton()
-        
-        bb.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+        bb.contentEdgeInsets = UIEdgeInsetsMake(12, 15, 12, 15)
+        bb.frame = CGRect(x: 0, y: 0, width: 60, height: 50)
         return bb
     }()
-    
-//    let backImageView: UIImageView = {
-//        let bi = UIImageView()
-//        bi.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
-//        bi.image = UIImage(named: "page_back")
-//        return bi
-//    }()
     
     let menuBarContainer: UIView = {
         let mbc = UIView()
@@ -77,7 +70,7 @@ class ColorPortalView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
     }()
     
     func setupHeader() {
-        backButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.closeColorCollectionView)))
+//        backButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.closeColorCollectionView)))
         backButtonView.addTarget(self, action: #selector(self.closeColorCollectionView), for: .touchDown)
     }
     
@@ -108,11 +101,20 @@ class ColorPortalView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
         let page1 = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
         let page2 = collectionView.dequeueReusableCell(withReuseIdentifier: paletteId, for: indexPath)
         
+        cell.layer.shouldRasterize = true;
+        cell.layer.rasterizationScale = UIScreen.main.scale
+        
         if indexPath.item == 0 {
+            
+            page1.layer.shouldRasterize = true;
+            page1.layer.rasterizationScale = UIScreen.main.scale
             
             return page1
             
         } else if indexPath.item == 1 {
+            
+            page2.layer.shouldRasterize = true;
+            page2.layer.rasterizationScale = UIScreen.main.scale
             
             return page2
             
@@ -140,6 +142,7 @@ class ColorPortalView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
         }
         
         backButtonView.setImage(UIImage(named: "page_back"), for: UIControlState.normal)
+        backButtonView.imageView?.contentMode = .scaleAspectFill
         
         pageView.isPagingEnabled = true
         pageView.showsHorizontalScrollIndicator = false

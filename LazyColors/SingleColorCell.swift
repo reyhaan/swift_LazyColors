@@ -89,5 +89,7 @@ class SingleColorCell: BaseCell {
         addConstraintsWithFormat(format: "V:|-0-[v0(105)]-0-|", views: mainContainer)
         addConstraintsWithFormat(format: "H:|-0-[v0]-0-|", views: mainContainer)
         
+        
+        
     }
 }
