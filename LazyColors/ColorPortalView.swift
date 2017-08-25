@@ -101,8 +101,6 @@ class ColorPortalView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
         let page2 = collectionView.dequeueReusableCell(withReuseIdentifier: paletteId, for: indexPath)
         
-        print("######## something cool")
-        
         if indexPath.item == 0 {
             
             let page1 = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)

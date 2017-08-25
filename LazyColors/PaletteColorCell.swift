@@ -113,7 +113,7 @@ class PaletteColorCell: BaseCell, UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (self.frame.width / CGFloat(6)), height: 70)
+        return CGSize(width: (self.frame.width / CGFloat(6)), height: 50)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -148,7 +148,7 @@ class PaletteColorCell: BaseCell, UICollectionViewDataSource, UICollectionViewDe
         subContainer.addSubview(buttonContainer)
         subContainer.addSubview(paletteContainer)
     
-        subContainer.addConstraintsWithFormat(format: "V:|[v1(70)]-0-[v0(50)]|", views: buttonContainer, paletteContainer)
+        subContainer.addConstraintsWithFormat(format: "V:|[v1(50)]-0-[v0(40)]|", views: buttonContainer, paletteContainer)
         subContainer.addConstraintsWithFormat(format: "H:|[v0]|", views: paletteContainer)
         subContainer.addConstraintsWithFormat(format: "H:|[v0]|", views: buttonContainer)
         
@@ -157,7 +157,7 @@ class PaletteColorCell: BaseCell, UICollectionViewDataSource, UICollectionViewDe
         parentContainer.addConstraintsWithFormat(format: "H:|[v0]|", views: subContainer)
         
         addSubview(parentContainer)
-        addConstraintsWithFormat(format: "V:|[v0(120)]|", views: parentContainer)
+        addConstraintsWithFormat(format: "V:|[v0(90)]|", views: parentContainer)
         addConstraintsWithFormat(format: "H:|[v0]|", views: parentContainer)
     }
 }

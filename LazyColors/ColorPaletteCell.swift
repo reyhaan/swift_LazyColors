@@ -28,7 +28,7 @@ class ColorPaletteCell: BaseCell {
 
         addSubview(color)
         
-        addConstraintsWithFormat(format: "V:|[v0(70)]|", views: color)
+        addConstraintsWithFormat(format: "V:|[v0(70)]", views: color)
         addConstraintsWithFormat(format: "H:|[v0]|", views: color)
         
     }
