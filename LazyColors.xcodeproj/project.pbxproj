@@ -43,6 +43,9 @@
 		979AE8C11F520805001F4624 /* ColorDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979AE8C01F520805001F4624 /* ColorDetails.swift */; };
 		979AE8C31F523855001F4624 /* ColorCodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979AE8C21F523855001F4624 /* ColorCodeCell.swift */; };
 		979AE8C91F525E09001F4624 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 979AE8C81F525E09001F4624 /* MBProgressHUD.m */; };
+		979AE8D41F535CED001F4624 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979AE8D01F535CED001F4624 /* UIColor.swift */; };
+		979AE8D51F535CED001F4624 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979AE8D11F535CED001F4624 /* UIImage.swift */; };
+		979AE8D61F535CED001F4624 /* ZAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979AE8D21F535CED001F4624 /* ZAlertView.swift */; };
 		979D55511F4A02D700904A3A /* Color+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979D55501F4A02D700904A3A /* Color+CoreDataProperties.swift */; };
 		979D55541F4A078500904A3A /* PaletteCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979D55531F4A078500904A3A /* PaletteCollectionView.swift */; };
 		979D55571F4A315C00904A3A /* ColorPortalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979D55561F4A315C00904A3A /* ColorPortalView.swift */; };
@@ -140,6 +143,9 @@
 		979AE8C61F525E09001F4624 /* MBProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
 		979AE8C71F525E09001F4624 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		979AE8C81F525E09001F4624 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		979AE8D01F535CED001F4624 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		979AE8D11F535CED001F4624 /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		979AE8D21F535CED001F4624 /* ZAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZAlertView.swift; sourceTree = "<group>"; };
 		979D55501F4A02D700904A3A /* Color+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		979D55531F4A078500904A3A /* PaletteCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteCollectionView.swift; sourceTree = "<group>"; };
 		979D55561F4A315C00904A3A /* ColorPortalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPortalView.swift; sourceTree = "<group>"; };
@@ -267,6 +273,7 @@
 		9752F0201F36E4D500D9272C /* LazyColors */ = {
 			isa = PBXGroup;
 			children = (
+				979AE8CE1F535CED001F4624 /* Classes */,
 				979AE8C51F525DF3001F4624 /* Toast */,
 				978E2B231F50948600D38AB9 /* WXWaveView */,
 				9739C3131F47B189009B9B3C /* Floaty */,
@@ -341,6 +348,16 @@
 				979AE8C81F525E09001F4624 /* MBProgressHUD.m */,
 			);
 			name = Toast;
+			sourceTree = "<group>";
+		};
+		979AE8CE1F535CED001F4624 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				979AE8D01F535CED001F4624 /* UIColor.swift */,
+				979AE8D11F535CED001F4624 /* UIImage.swift */,
+				979AE8D21F535CED001F4624 /* ZAlertView.swift */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		979D55521F4A075C00904A3A /* PaletteView */ = {
@@ -610,6 +627,7 @@
 				9739C31C1F47B19D009B9B3C /* FloatyDelegate.swift in Sources */,
 				97C66F7B1F3D2D2300FB8C56 /* PlatformExtensions.swift in Sources */,
 				97D2E3721F49B7EF0086462B /* Color+CoreDataClass.swift in Sources */,
+				979AE8D51F535CED001F4624 /* UIImage.swift in Sources */,
 				972D35AD1F454508002ADD35 /* ColorPaletteView.swift in Sources */,
 				97C66F751F3D2D2300FB8C56 /* ColorSpaceConversion.m in Sources */,
 				97B107571F38154C00E36CF8 /* CameraControlsHeader.swift in Sources */,
@@ -619,6 +637,7 @@
 				979D555B1F4A3B9800904A3A /* PortalMenuBar.swift in Sources */,
 				979AE8BF1F51FDD7001F4624 /* ColorDetailController.swift in Sources */,
 				97B1073E1F37B47A00E36CF8 /* CameraControlsOverlay.swift in Sources */,
+				979AE8D61F535CED001F4624 /* ZAlertView.swift in Sources */,
 				979D55571F4A315C00904A3A /* ColorPortalView.swift in Sources */,
 				973E7C061F4429D8001237D3 /* ImagePickerOptions.swift in Sources */,
 				97C66F791F3D2D2300FB8C56 /* KMeans.swift in Sources */,
@@ -632,6 +651,7 @@
 				97282EE21F4328450058B1DE /* ImagePickerViewController.swift in Sources */,
 				97C66F691F3D2D0700FB8C56 /* ColorDifference.swift in Sources */,
 				9739C31D1F47B19D009B9B3C /* FloatyItem.swift in Sources */,
+				979AE8D41F535CED001F4624 /* UIColor.swift in Sources */,
 				979D55631F4A857100904A3A /* PaletteCollectionViewHelper.swift in Sources */,
 				972D35811F452BDA002ADD35 /* FabButtonsView.swift in Sources */,
 				9739C31E1F47B19D009B9B3C /* FloatyManager.swift in Sources */,

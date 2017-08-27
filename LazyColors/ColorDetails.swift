@@ -79,6 +79,11 @@ class ColorDetails: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         return ccl
     }()
     
+    let alertContainer: UIView = {
+        let ac = UIView()
+        return ac
+    }()
+    
     
     lazy var colorCodeCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -88,6 +93,15 @@ class ColorDetails: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         cv.delegate = self
         return cv
     }()
+    
+    func showAlert() {
+        alertContainer.frame.size.height = 100
+        alertContainer.frame.size.width = 200
+        alertContainer.frame.origin.x = (self.frame.width / 2) - 100
+        alertContainer.frame.origin.y = (self.frame.height / 2) - 50
+        alertContainer.backgroundColor = .gray
+        addSubview(alertContainer)
+    }
     
     // EMAIL STUFF ====================
     
@@ -154,26 +168,50 @@ class ColorDetails: UIView, UICollectionViewDataSource, UICollectionViewDelegate
                 
                 let something: [Color] = try context.fetch(fetchRequest)
                 
-                for object in something {
-                    if object.objectID == (colorDetail?.objectID)! {
-                        context.delete(object)
-                    }
-                }
+                let dialog = ZAlertView(title: "", message: "Are you sure?", isOkButtonLeft: false, okButtonText: "YES", cancelButtonText: "CANCEL",
+                                        
+                okButtonHandler: { ZAlertView in
                 
-                do {
-                    try context.save() // <- remember to put this :)
+                    for object in something {
+                        if object.objectID == (self.colorDetail?.objectID)! {
+                            context.delete(object)
+                        }
+                    }
                     
-                    UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.1, options: .curveEaseIn, animations: {
-                        self.superview?.alpha = 0
-                        self.superview?.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
-                    }, completion: {(f) -> Void in
-                        self.superview?.removeFromSuperview()
-                        self.delegate?.reloadData()
-                    })
+                    do {
+                            try context.save() // <- remember to put this :)
+                        
+                            ZAlertView.dismissAlertView()
+                        
+                            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.1, options: .curveEaseIn, animations: {
+                                self.superview?.alpha = 0
+                                self.superview?.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
+                            }, completion: {(f) -> Void in
+                                self.superview?.removeFromSuperview()
+                                self.delegate?.reloadData()
+                            })
+                        
+                    } catch {
+                        // Do something... fatalerror
+                    }
                     
-                } catch {
-                    // Do something... fatalerror
-                }
+                }, cancelButtonHandler: { ZAlertView in
+                    
+                    ZAlertView.dismissAlertView()
+                
+                })
+                
+                ZAlertView.buttonTitleColor         = UIColor.color("#777777")
+                ZAlertView.positiveColor            = UIColor.color("#FFFFFF")
+                ZAlertView.negativeColor            = UIColor.color("#FFFFFF")
+                ZAlertView.blurredBackground        = true
+                ZAlertView.showAnimation            = .bounceBottom
+                ZAlertView.hideAnimation            = .bounceRight
+                ZAlertView.initialSpringVelocity    = 0.9
+                
+                dialog.show()
+                
+                
                 
             } catch let err {
                 
