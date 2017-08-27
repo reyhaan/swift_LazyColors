@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import MessageUI
 
 protocol PreviewControllerDelegate: class {
     func goBackToCamera()
+    func openMail(view: MFMailComposeViewController)
 }
 
-class PreviewController: UIViewController, UINavigationControllerDelegate, PreviewControllerDelegate {
+class PreviewController: UIViewController, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate, PreviewControllerDelegate {
     
     weak var delegate: ViewControllerDelegate?
     
@@ -23,16 +25,22 @@ class PreviewController: UIViewController, UINavigationControllerDelegate, Previ
         setupViews()
         
         colorPortal.delegate = self
+        cd.delegate = self
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .default
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         colorPortal.pageView.reloadData()
     }
+    
+    let cd = ColorDetails()
     
     let colorPortal = ColorPortalView() // ColorCollectionView()
     
@@ -46,10 +54,20 @@ class PreviewController: UIViewController, UINavigationControllerDelegate, Previ
         navigationController?.popViewController(animated: false)
     }
     
+    func openMail(view: MFMailComposeViewController) {
+        let transition:CATransition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromTop
+        navigationController!.view.layer.add(transition, forKey: kCATransition)
+        navigationController?.present(view, animated: false)
+    }
+    
     func setupViews() {
         
         view.addSubview(colorPortal)
-        
+
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: colorPortal)
         view.addConstraintsWithFormat(format: "V:|[v0]|", views: colorPortal)
         

@@ -17,10 +17,17 @@ class ColorCollectionView: UIView, UICollectionViewDataSource, UICollectionViewD
     
     var waveView: WXWaveView?
     
+    var clickedCell: UICollectionViewCell?
+    
+    var scrollOffsetY: CGFloat = 0
+    
+    var waveNotApplied: Bool = true
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         colorCollectionView.register(SingleColorCell.self, forCellWithReuseIdentifier: cellId)
         setupViews()
+        setupInfoOverlay()
         loadData()
 //        clearData()
     }
@@ -44,21 +51,87 @@ class ColorCollectionView: UIView, UICollectionViewDataSource, UICollectionViewD
         return cv
     }()
     
+    // Cel info stuff
+    
+    let cellInfoOverlay: UIView = {
+        let ci = UIView()
+        ci.alpha = 0
+        ci.backgroundColor = .white
+        return ci
+    }()
+    
+    let infoCloseButton: UIButton = {
+        let cb = UIButton()
+        cb.setImage(UIImage(named: "page_back_white"), for: .normal)
+        cb.titleLabel?.backgroundColor = .gray
+        return cb
+    }()
+    
+    let cd = ColorDetails()
+    
+    func setupInfoOverlay() {
+        infoCloseButton.addTarget(self, action: #selector(self.closeOverlay), for: .touchDown)
+        infoCloseButton.frame = CGRect(x: 10, y: 20, width: 40, height: 40)
+        cellInfoOverlay.addSubview(infoCloseButton)
+        
+    }
+    
+    func closeOverlay() {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.1, options: .curveEaseIn, animations: {
+            self.cellInfoOverlay.alpha = 0
+            self.cellInfoOverlay.frame = (self.clickedCell?.frame)!
+            self.cellInfoOverlay.frame.origin.y = ((self.clickedCell?.frame.origin.y)! - self.scrollOffsetY) + 60
+        }, completion: {(f) -> Void in
+            self.cellInfoOverlay.removeFromSuperview()
+        })
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        scrollOffsetY = targetContentOffset.pointee.y
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.item)
-        let cell = colorCollectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? SingleColorCell
+
+        clickedCell = colorCollectionView.cellForItem(at: indexPath)
+        clickedCell?.superview?.bringSubview(toFront: clickedCell!)
+        cellInfoOverlay.frame = (clickedCell?.frame)!
+        cellInfoOverlay.frame.origin.y = cellInfoOverlay.frame.origin.y - self.scrollOffsetY
         
-        print(cell ?? "error")
-        
-        cell?.frame.size.height = 10
-        
-        cell?.backgroundColor = .gray
-        
-        cell?.superview?.bringSubview(toFront: cell!)
-        
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
-            cell?.frame = self.colorCollectionView.bounds
-        }, completion: nil)
+        if let window = UIApplication.shared.keyWindow {
+            
+            var preferredStatusBarStyle: UIStatusBarStyle {
+                return .lightContent
+            }
+            
+            cd.backgroundColor = UIColor(red: 246 / 255, green: 246 / 255, blue: 246 / 255, alpha: 1)
+            cd.colorDetail = colorsArray?[indexPath.item]
+            cellInfoOverlay.addSubview(cd)
+            cellInfoOverlay.bringSubview(toFront: infoCloseButton)
+            cd.colorCodeCollectionView.reloadData()
+            cellInfoOverlay.addConstraintsWithFormat(format: "V:|[v0]|", views: cd)
+            cellInfoOverlay.addConstraintsWithFormat(format: "H:|[v0]|", views: cd)
+            
+            window.addSubview(cellInfoOverlay)
+            
+            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.1, options: .curveEaseIn, animations: {
+                self.cellInfoOverlay.alpha = 1
+                self.cellInfoOverlay.frame = window.bounds
+                
+            }, completion: {(f) -> Void in
+                
+                if self.waveNotApplied {
+                    self.waveView = WXWaveView.add(to: self.cd.colorContainer, withFrame: CGRect(x: 0, y: self.cd.colorContainer.frame.size.height - 5, width: self.cd.colorContainer.frame.width, height: 5))
+                    // Optional Setting
+                    self.waveView?.waveTime = 0;     // When 0, the wave will never stop;
+                    self.waveView?.waveColor = UIColor(red: 246 / 255, green: 246 / 255, blue: 246 / 255, alpha: 1)
+                    self.waveView?.waveSpeed = 5;
+                    self.waveView?.angularSpeed = 1.8;
+                    self.waveView?.wave()
+                    self.waveNotApplied = false
+                }
+            })
+        }
+       
 
     }
     
@@ -80,7 +153,6 @@ class ColorCollectionView: UIView, UICollectionViewDataSource, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        print("size recalculated")
         return CGSize(width: self.frame.width / 2 - 20, height: 105)
     }
     

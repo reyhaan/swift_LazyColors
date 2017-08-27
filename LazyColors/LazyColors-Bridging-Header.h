@@ -9,3 +9,5 @@ extern uint64_t dispatch_benchmark(size_t count, void (^block)(void));
 #import "ColorSpaceConversion.h"
 #import "WXWaveView.h"
 #import "WXWeakObject.h"
+#import "MBProgressHUD.h"
+#import "MBProgressHUD.m"

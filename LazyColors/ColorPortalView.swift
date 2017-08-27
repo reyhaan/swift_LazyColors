@@ -141,6 +141,8 @@ class ColorPortalView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
             flowLayout.scrollDirection = .horizontal
         }
         
+        header.backgroundColor = .white
+        
         backButtonView.setImage(UIImage(named: "page_back"), for: UIControlState.normal)
         backButtonView.imageView?.contentMode = .scaleAspectFill
         

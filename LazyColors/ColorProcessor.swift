@@ -1683,7 +1683,7 @@ extension UIColor {
     }
     
     func getRgb() -> String {
-        return "(\(self.redValue), \(self.greenValue), \(self.blueValue))"
+        return "\(self.redValue), \(self.greenValue), \(self.blueValue)"
     }
     
     func getHsl() -> Array<Any> {
