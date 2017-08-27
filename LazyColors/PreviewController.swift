@@ -12,6 +12,7 @@ import MessageUI
 protocol PreviewControllerDelegate: class {
     func goBackToCamera()
     func openMail(view: MFMailComposeViewController)
+    func reloadData()
 }
 
 class PreviewController: UIViewController, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate, PreviewControllerDelegate {
@@ -25,7 +26,6 @@ class PreviewController: UIViewController, UINavigationControllerDelegate, MFMai
         setupViews()
         
         colorPortal.delegate = self
-        cd.delegate = self
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -52,6 +52,10 @@ class PreviewController: UIViewController, UINavigationControllerDelegate, MFMai
         transition.subtype = kCATransitionFromBottom
         navigationController!.view.layer.add(transition, forKey: kCATransition)
         navigationController?.popViewController(animated: false)
+    }
+    
+    func reloadData() {
+        colorPortal.pageView.reloadData()
     }
     
     func openMail(view: MFMailComposeViewController) {

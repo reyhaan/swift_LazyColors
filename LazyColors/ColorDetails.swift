@@ -8,10 +8,11 @@
 
 import UIKit
 import MessageUI
+import CoreData
 
 class ColorDetails: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, MFMailComposeViewControllerDelegate, UINavigationControllerDelegate {
     
-    weak var delegate: PreviewControllerDelegate?
+    var delegate: ColorCollectionViewDelegate?
     
     public var colorDetail: Color? {
         didSet {
@@ -143,6 +144,44 @@ class ColorDetails: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         toast?.hide(animated: true, afterDelay: 2)
     }
     
+    func deleteColor() {
+        let delegate = (UIApplication.shared.delegate as? AppDelegate)
+        
+        if let context = delegate?.persistentContainer.viewContext {
+            
+            let fetchRequest: NSFetchRequest<Color> = Color.fetchRequest()
+            do {
+                
+                let something: [Color] = try context.fetch(fetchRequest)
+                
+                for object in something {
+                    if object.objectID == (colorDetail?.objectID)! {
+                        context.delete(object)
+                    }
+                }
+                
+                do {
+                    try context.save() // <- remember to put this :)
+                    
+                    UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.1, options: .curveEaseIn, animations: {
+                        self.superview?.alpha = 0
+                        self.superview?.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
+                    }, completion: {(f) -> Void in
+                        self.superview?.removeFromSuperview()
+                        self.delegate?.reloadData()
+                    })
+                    
+                } catch {
+                    // Do something... fatalerror
+                }
+                
+            } catch let err {
+                
+                print(err)
+            }
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4
     }
@@ -193,6 +232,8 @@ class ColorDetails: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         
         if indexPath.item == 0 {
             
+            print(colorDetail?.objectID)
+            
             UIPasteboard.general.string = "\((colorDetail?.rgb)!)"
             showToast(msg: "Copied")
             
@@ -235,6 +276,7 @@ class ColorDetails: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         mainContainer.addSubview(colorShare)
         
         colorShare.addTarget(self, action: #selector(self.sendEmailButtonTapped), for: .touchDown)
+        colorDelete.addTarget(self, action: #selector(self.deleteColor), for: .touchDown)
 
         colorDelete.topAnchor.constraint(equalTo: colorContainer.bottomAnchor, constant: 30).isActive = true
         colorShare.topAnchor.constraint(equalTo: colorContainer.bottomAnchor, constant: 30).isActive = true

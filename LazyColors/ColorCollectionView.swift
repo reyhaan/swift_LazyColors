@@ -8,7 +8,11 @@
 
 import UIKit
 
-class ColorCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+protocol ColorCollectionViewDelegate {
+    func reloadData()
+}
+
+class ColorCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, ColorCollectionViewDelegate {
     
     weak var delegate: PreviewControllerDelegate?
     weak var delegate2: ViewControllerDelegate?
@@ -30,6 +34,8 @@ class ColorCollectionView: UIView, UICollectionViewDataSource, UICollectionViewD
         setupInfoOverlay()
         loadData()
 //        clearData()
+        
+        cd.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -37,6 +43,7 @@ class ColorCollectionView: UIView, UICollectionViewDataSource, UICollectionViewD
     }
     
     public func reloadData() {
+        loadData()
         colorCollectionView.reloadData()
     }
     
