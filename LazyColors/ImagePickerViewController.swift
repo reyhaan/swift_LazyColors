@@ -45,6 +45,13 @@ class ImagePickerViewController: UIViewController, UINavigationControllerDelegat
         
         setupFloaty()
         
+        target.frame.origin.x = touchX! - 9
+        target.frame.origin.y = touchY! - 9
+        
+        ciImage =  CIImage(cgImage: (pickedImage?.cgImage)!)
+        
+        generateLivePreview()
+        
         imagePicker = headerContainer
         imagePicker?.delegate = self
         
