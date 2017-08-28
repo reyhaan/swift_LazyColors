@@ -17,9 +17,10 @@ class PaletteColorCell: BaseCell, UICollectionViewDataSource, UICollectionViewDe
         }
     }
     
+    var colorCount: Int?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         paletteColorCollectionView.register(ColorPaletteCell.self, forCellWithReuseIdentifier: cellId)
         backgroundColor = UIColor.clear
         setupViews()
@@ -100,7 +101,8 @@ class PaletteColorCell: BaseCell, UICollectionViewDataSource, UICollectionViewDe
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return loadColorForPalette(palette: paletteObject!).count
+        colorCount = loadColorForPalette(palette: paletteObject!).count
+        return colorCount!
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -117,7 +119,7 @@ class PaletteColorCell: BaseCell, UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (self.frame.width / CGFloat(6)), height: 50)
+        return CGSize(width: (self.frame.width / CGFloat(colorCount!)), height: 50)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

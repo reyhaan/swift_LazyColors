@@ -49,6 +49,7 @@
 		979AE8D81F538DCF001F4624 /* PaletteDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979AE8D71F538DCF001F4624 /* PaletteDetail.swift */; };
 		979AE8DA1F5392DF001F4624 /* PaletteColorsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979AE8D91F5392DF001F4624 /* PaletteColorsList.swift */; };
 		979AE8DC1F539366001F4624 /* PaletteColorsListHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979AE8DB1F539366001F4624 /* PaletteColorsListHelper.swift */; };
+		979AE8DE1F53B1AF001F4624 /* PaletteColorDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979AE8DD1F53B1AF001F4624 /* PaletteColorDetails.swift */; };
 		979D55511F4A02D700904A3A /* Color+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979D55501F4A02D700904A3A /* Color+CoreDataProperties.swift */; };
 		979D55541F4A078500904A3A /* PaletteCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979D55531F4A078500904A3A /* PaletteCollectionView.swift */; };
 		979D55571F4A315C00904A3A /* ColorPortalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979D55561F4A315C00904A3A /* ColorPortalView.swift */; };
@@ -152,6 +153,7 @@
 		979AE8D71F538DCF001F4624 /* PaletteDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteDetail.swift; sourceTree = "<group>"; };
 		979AE8D91F5392DF001F4624 /* PaletteColorsList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteColorsList.swift; sourceTree = "<group>"; };
 		979AE8DB1F539366001F4624 /* PaletteColorsListHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteColorsListHelper.swift; sourceTree = "<group>"; };
+		979AE8DD1F53B1AF001F4624 /* PaletteColorDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteColorDetails.swift; sourceTree = "<group>"; };
 		979D55501F4A02D700904A3A /* Color+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		979D55531F4A078500904A3A /* PaletteCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteCollectionView.swift; sourceTree = "<group>"; };
 		979D55561F4A315C00904A3A /* ColorPortalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPortalView.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 				979AE8D71F538DCF001F4624 /* PaletteDetail.swift */,
 				979AE8D91F5392DF001F4624 /* PaletteColorsList.swift */,
 				979AE8DB1F539366001F4624 /* PaletteColorsListHelper.swift */,
+				979AE8DD1F53B1AF001F4624 /* PaletteColorDetails.swift */,
 			);
 			name = PaletteView;
 			sourceTree = "<group>";
@@ -658,6 +661,7 @@
 				979AE8C91F525E09001F4624 /* MBProgressHUD.m in Sources */,
 				977AF40E1F40A74F007E591D /* ViewControllerExtension.swift in Sources */,
 				97B1075D1F38281700E36CF8 /* CameraControlsHeaderCell.swift in Sources */,
+				979AE8DE1F53B1AF001F4624 /* PaletteColorDetails.swift in Sources */,
 				97282EE21F4328450058B1DE /* ImagePickerViewController.swift in Sources */,
 				97C66F691F3D2D0700FB8C56 /* ColorDifference.swift in Sources */,
 				9739C31D1F47B19D009B9B3C /* FloatyItem.swift in Sources */,

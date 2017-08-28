@@ -34,6 +34,7 @@ class PaletteDetailController: UIViewController, UINavigationControllerDelegate,
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        pd.ccv.selectedPalette = selectedPalette!
         pd.ccv.colorsArray = loadColorForPalette(palette: selectedPalette!)
         pd.ccv.reloadData()
     }

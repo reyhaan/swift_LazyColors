@@ -19,6 +19,8 @@ class PaletteColorsList: UIView, UICollectionViewDataSource, UICollectionViewDel
     
     var colorsArray: [Color]?
     
+    var selectedPalette: Palette?
+    
     var waveView: WXWaveView?
     
     var clickedCell: UICollectionViewCell?
@@ -74,7 +76,7 @@ class PaletteColorsList: UIView, UICollectionViewDataSource, UICollectionViewDel
         return cb
     }()
     
-    let cd = ColorDetails()
+    let cd = PaletteColorDetails()
     
     func setupInfoOverlay() {
         infoCloseButton.addTarget(self, action: #selector(self.closeOverlay), for: .touchDown)

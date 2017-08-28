@@ -59,6 +59,10 @@ class PaletteDetail: UIView {
         let appDelegate : AppDelegate? = UIApplication.shared.delegate as? AppDelegate
         if let unwrappedAppdelegate = appDelegate {
             
+            let pdc = PaletteDetailController()
+            
+            pdc.selectedPalette = ccv.selectedPalette
+            
             unwrappedAppdelegate.window!.rootViewController?.dismiss(animated: true, completion: nil)
         }
         
@@ -78,7 +82,7 @@ class PaletteDetail: UIView {
         header.addSubview(menuBarContainer)
         
         header.addConstraintsWithFormat(format: "V:|-(20)-[v0(50)]|", views: menuBarContainer)
-        header.addConstraintsWithFormat(format: "H:[v0(140)]|", views: menuBarContainer)
+        header.addConstraintsWithFormat(format: "H:[v0(60)]|", views: menuBarContainer)
         
         addSubview(header)
         addSubview(ccv)
