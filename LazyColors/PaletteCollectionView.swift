@@ -8,15 +8,19 @@
 
 import UIKit
 
-class PaletteCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+protocol PaletteCollectionDelegate {
+    func reloadData()
+}
+
+class PaletteCollectionView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, PaletteCollectionDelegate {
     
     weak var delegate: PreviewControllerDelegate?
     weak var delegate2: ViewControllerDelegate?
-    
     var palettesArray: [Palette]?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         paletteCollectionView.register(PaletteColorCell.self, forCellWithReuseIdentifier: cellId)
         setupViews()
         loadData()
@@ -31,6 +35,8 @@ class PaletteCollectionView: UIView, UICollectionViewDataSource, UICollectionVie
     }
     
     public func reloadData() {
+        loadData()
+        pdc.pd.ccv.reloadData(object: nil)
         paletteCollectionView.reloadData()
     }
     

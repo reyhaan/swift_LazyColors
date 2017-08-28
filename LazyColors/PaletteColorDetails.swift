@@ -12,7 +12,7 @@ import CoreData
 
 class PaletteColorDetails: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, MFMailComposeViewControllerDelegate, UINavigationControllerDelegate {
     
-    var delegate: ColorCollectionViewDelegate?
+    var delegate: PaletteColorsListDelegate?
     
     public var colorDetail: Color? {
         didSet {
@@ -112,11 +112,8 @@ class PaletteColorDetails: UIView, UICollectionViewDataSource, UICollectionViewD
             
             let appDelegate : AppDelegate? = UIApplication.shared.delegate as? AppDelegate
             if let unwrappedAppdelegate = appDelegate {
-                
                 unwrappedAppdelegate.window!.rootViewController!.dismiss(animated: true, completion: nil)
-                
                 unwrappedAppdelegate.window!.rootViewController!.show(mailComposeViewController, sender: nil)
-                
                 unwrappedAppdelegate.window!.exchangeSubview(at: 0, withSubviewAt: 1)
             }
             
@@ -173,31 +170,31 @@ class PaletteColorDetails: UIView, UICollectionViewDataSource, UICollectionViewD
                 
                 let dialog = ZAlertView(title: "", message: "Are you sure?", isOkButtonLeft: false, okButtonText: "YES", cancelButtonText: "CANCEL",
                                         
-                                        okButtonHandler: { ZAlertView in
-                                            
-                                            for object in something {
-                                                if object.objectID == (self.colorDetail?.objectID)! {
-                                                    context.delete(object)
-                                                }
-                                            }
-                                            
-                                            do {
-                                                try context.save() // <- remember to put this :)
-                                                
-                                                ZAlertView.dismissAlertView()
-                                                
-                                                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.1, options: .curveEaseIn, animations: {
-                                                    self.superview?.alpha = 0
-                                                    self.superview?.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
-                                                }, completion: {(f) -> Void in
-                                                    self.superview?.removeFromSuperview()
-                                                    self.delegate?.reloadData()
-                                                })
-                                                
-                                            } catch {
-                                                // Do something... fatalerror
-                                            }
-                                            
+                okButtonHandler: { ZAlertView in
+                    
+                    for object in something {
+                        if object.objectID == (self.colorDetail?.objectID)! {
+                            context.delete(object)
+                        }
+                    }
+                    
+                    do {
+                        try context.save() // <- remember to put this :)
+                        
+                        ZAlertView.dismissAlertView()
+                        
+                        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.1, options: .curveEaseIn, animations: {
+                            self.superview?.alpha = 0
+                            self.superview?.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
+                        }, completion: {(f) -> Void in
+                            self.superview?.removeFromSuperview()
+                            self.delegate?.reloadData(object: self.colorDetail)
+                        })
+                        
+                    } catch {
+                        // Do something... fatalerror
+                    }
+                    
                 }, cancelButtonHandler: { ZAlertView in
                     
                     ZAlertView.dismissAlertView()

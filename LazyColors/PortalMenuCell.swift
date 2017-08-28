@@ -14,11 +14,7 @@ class PortalMenuCell: BaseCell {
     override var isSelected: Bool {
         didSet {
             container.backgroundColor = isSelected ? .orange : .white
-//            self.backgroundColor = isSelected ? UIColor(red: 205/255.0, green: 205/255.0, blue: 205/255.0, alpha: 1) : .white
-//            icon.image = isSelected ? UIImage(named: "color_list") : UIImage(named: "")
             icon.image = isSelected ? icon.image?.maskWithColor(color: .orange) : icon.image?.maskWithColor(color: .lightGray)
-            
-//            icon.image = isSelected ? UIImage(named: "color_list_orange")! : UIImage(named: "color_list")
         }
     }
     

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol PaletteColorsListDelegate {
-    func reloadData()
+    func reloadData(object: Any?)
 }
 
 class PaletteColorsList: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, PaletteColorsListDelegate {
@@ -34,18 +34,18 @@ class PaletteColorsList: UIView, UICollectionViewDataSource, UICollectionViewDel
         colorCollectionView.register(SingleColorCell.self, forCellWithReuseIdentifier: cellId)
         setupViews()
         setupInfoOverlay()
-//        loadData()
-        //        clearData()
         
-//        cd.delegate = self
+        cd.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func reloadData() {
-//        loadData()
+    public func reloadData(object: Any?) {
+        
+        colorsArray = colorsArray?.filter {$0 != object as? Color}
+        
         colorCollectionView.reloadData()
     }
     
@@ -145,6 +145,7 @@ class PaletteColorsList: UIView, UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         if let count = colorsArray?.count {
             return count
         }
@@ -155,7 +156,9 @@ class PaletteColorsList: UIView, UICollectionViewDataSource, UICollectionViewDel
         let cell = colorCollectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? SingleColorCell
         
         if let color = colorsArray?[indexPath.item] {
-            cell?.colorObject = color
+            if color.name != nil {
+                cell?.colorObject = color
+            }
         }
         
         return cell!

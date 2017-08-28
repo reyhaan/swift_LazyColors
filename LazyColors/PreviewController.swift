@@ -36,7 +36,9 @@ class PreviewController: UIViewController, UINavigationControllerDelegate, MFMai
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         colorPortal.pageView.reloadData()
+
     }
     
     let cd = ColorDetails()

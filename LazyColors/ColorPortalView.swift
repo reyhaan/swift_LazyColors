@@ -70,7 +70,6 @@ class ColorPortalView: UIView, UICollectionViewDataSource, UICollectionViewDeleg
     }()
     
     func setupHeader() {
-//        backButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.closeColorCollectionView)))
         backButtonView.addTarget(self, action: #selector(self.closeColorCollectionView), for: .touchDown)
     }
     

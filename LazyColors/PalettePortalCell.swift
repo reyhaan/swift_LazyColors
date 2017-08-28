@@ -17,6 +17,8 @@ class PalettePortalCell: BaseCell {
     
     override func setupViews() {
         super.setupViews()
+        
+        paletteList.reloadData()
 
         addSubview(paletteList)
         
