@@ -11,7 +11,6 @@ import MessageUI
 
 protocol PreviewControllerDelegate: class {
     func goBackToCamera()
-    func openMail(view: MFMailComposeViewController)
     func reloadData()
 }
 
@@ -56,16 +55,6 @@ class PreviewController: UIViewController, UINavigationControllerDelegate, MFMai
     
     func reloadData() {
         colorPortal.pageView.reloadData()
-    }
-    
-    func openMail(view: MFMailComposeViewController) {
-        let transition:CATransition = CATransition()
-        transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionPush
-        transition.subtype = kCATransitionFromTop
-        navigationController!.view.layer.add(transition, forKey: kCATransition)
-        navigationController?.present(view, animated: false)
     }
     
     func setupViews() {

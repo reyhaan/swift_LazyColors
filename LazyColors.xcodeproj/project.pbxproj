@@ -39,13 +39,16 @@
 		97889C951F403D9B0028B8D6 /* Proxima Nova Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 97889C941F403D9B0028B8D6 /* Proxima Nova Regular.otf */; };
 		978E2B281F50948600D38AB9 /* WXWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 978E2B251F50948600D38AB9 /* WXWaveView.m */; };
 		978E2B291F50948600D38AB9 /* WXWeakObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 978E2B271F50948600D38AB9 /* WXWeakObject.m */; };
-		979AE8BF1F51FDD7001F4624 /* ColorDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979AE8BE1F51FDD7001F4624 /* ColorDetailController.swift */; };
+		979AE8BF1F51FDD7001F4624 /* PaletteDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979AE8BE1F51FDD7001F4624 /* PaletteDetailController.swift */; };
 		979AE8C11F520805001F4624 /* ColorDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979AE8C01F520805001F4624 /* ColorDetails.swift */; };
 		979AE8C31F523855001F4624 /* ColorCodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979AE8C21F523855001F4624 /* ColorCodeCell.swift */; };
 		979AE8C91F525E09001F4624 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 979AE8C81F525E09001F4624 /* MBProgressHUD.m */; };
 		979AE8D41F535CED001F4624 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979AE8D01F535CED001F4624 /* UIColor.swift */; };
 		979AE8D51F535CED001F4624 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979AE8D11F535CED001F4624 /* UIImage.swift */; };
 		979AE8D61F535CED001F4624 /* ZAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979AE8D21F535CED001F4624 /* ZAlertView.swift */; };
+		979AE8D81F538DCF001F4624 /* PaletteDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979AE8D71F538DCF001F4624 /* PaletteDetail.swift */; };
+		979AE8DA1F5392DF001F4624 /* PaletteColorsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979AE8D91F5392DF001F4624 /* PaletteColorsList.swift */; };
+		979AE8DC1F539366001F4624 /* PaletteColorsListHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979AE8DB1F539366001F4624 /* PaletteColorsListHelper.swift */; };
 		979D55511F4A02D700904A3A /* Color+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979D55501F4A02D700904A3A /* Color+CoreDataProperties.swift */; };
 		979D55541F4A078500904A3A /* PaletteCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979D55531F4A078500904A3A /* PaletteCollectionView.swift */; };
 		979D55571F4A315C00904A3A /* ColorPortalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979D55561F4A315C00904A3A /* ColorPortalView.swift */; };
@@ -137,7 +140,7 @@
 		978E2B251F50948600D38AB9 /* WXWaveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXWaveView.m; sourceTree = "<group>"; };
 		978E2B261F50948600D38AB9 /* WXWeakObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXWeakObject.h; sourceTree = "<group>"; };
 		978E2B271F50948600D38AB9 /* WXWeakObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXWeakObject.m; sourceTree = "<group>"; };
-		979AE8BE1F51FDD7001F4624 /* ColorDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorDetailController.swift; sourceTree = "<group>"; };
+		979AE8BE1F51FDD7001F4624 /* PaletteDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteDetailController.swift; sourceTree = "<group>"; };
 		979AE8C01F520805001F4624 /* ColorDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorDetails.swift; sourceTree = "<group>"; };
 		979AE8C21F523855001F4624 /* ColorCodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCodeCell.swift; sourceTree = "<group>"; };
 		979AE8C61F525E09001F4624 /* MBProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
@@ -146,6 +149,9 @@
 		979AE8D01F535CED001F4624 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		979AE8D11F535CED001F4624 /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		979AE8D21F535CED001F4624 /* ZAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZAlertView.swift; sourceTree = "<group>"; };
+		979AE8D71F538DCF001F4624 /* PaletteDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteDetail.swift; sourceTree = "<group>"; };
+		979AE8D91F5392DF001F4624 /* PaletteColorsList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteColorsList.swift; sourceTree = "<group>"; };
+		979AE8DB1F539366001F4624 /* PaletteColorsListHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteColorsListHelper.swift; sourceTree = "<group>"; };
 		979D55501F4A02D700904A3A /* Color+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		979D55531F4A078500904A3A /* PaletteCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteCollectionView.swift; sourceTree = "<group>"; };
 		979D55561F4A315C00904A3A /* ColorPortalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPortalView.swift; sourceTree = "<group>"; };
@@ -366,6 +372,9 @@
 				979D55531F4A078500904A3A /* PaletteCollectionView.swift */,
 				979D55601F4A723300904A3A /* PaletteColorCell.swift */,
 				979D55621F4A857100904A3A /* PaletteCollectionViewHelper.swift */,
+				979AE8D71F538DCF001F4624 /* PaletteDetail.swift */,
+				979AE8D91F5392DF001F4624 /* PaletteColorsList.swift */,
+				979AE8DB1F539366001F4624 /* PaletteColorsListHelper.swift */,
 			);
 			name = PaletteView;
 			sourceTree = "<group>";
@@ -422,7 +431,7 @@
 				977AF40D1F40A74F007E591D /* ViewControllerExtension.swift */,
 				97282EE11F4328450058B1DE /* ImagePickerViewController.swift */,
 				973E7C071F4442E5001237D3 /* ImagePickerViewControllerExtension.swift */,
-				979AE8BE1F51FDD7001F4624 /* ColorDetailController.swift */,
+				979AE8BE1F51FDD7001F4624 /* PaletteDetailController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -606,6 +615,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				979AE8DA1F5392DF001F4624 /* PaletteColorsList.swift in Sources */,
 				977AF40C1F40A5D2007E591D /* ColorCollectionView.swift in Sources */,
 				97EC46E91F4026C3001EA9CC /* ColorNameContainer.swift in Sources */,
 				97C66F7A1F3D2D2300FB8C56 /* Memoization.swift in Sources */,
@@ -635,7 +645,7 @@
 				978E2B281F50948600D38AB9 /* WXWaveView.m in Sources */,
 				97B107591F38226600E36CF8 /* BaseCell.swift in Sources */,
 				979D555B1F4A3B9800904A3A /* PortalMenuBar.swift in Sources */,
-				979AE8BF1F51FDD7001F4624 /* ColorDetailController.swift in Sources */,
+				979AE8BF1F51FDD7001F4624 /* PaletteDetailController.swift in Sources */,
 				97B1073E1F37B47A00E36CF8 /* CameraControlsOverlay.swift in Sources */,
 				979AE8D61F535CED001F4624 /* ZAlertView.swift in Sources */,
 				979D55571F4A315C00904A3A /* ColorPortalView.swift in Sources */,
@@ -652,11 +662,13 @@
 				97C66F691F3D2D0700FB8C56 /* ColorDifference.swift in Sources */,
 				9739C31D1F47B19D009B9B3C /* FloatyItem.swift in Sources */,
 				979AE8D41F535CED001F4624 /* UIColor.swift in Sources */,
+				979AE8D81F538DCF001F4624 /* PaletteDetail.swift in Sources */,
 				979D55631F4A857100904A3A /* PaletteCollectionViewHelper.swift in Sources */,
 				972D35811F452BDA002ADD35 /* FabButtonsView.swift in Sources */,
 				9739C31E1F47B19D009B9B3C /* FloatyManager.swift in Sources */,
 				9752F0241F36E4D500D9272C /* ViewController.swift in Sources */,
 				973E7C081F4442E5001237D3 /* ImagePickerViewControllerExtension.swift in Sources */,
+				979AE8DC1F539366001F4624 /* PaletteColorsListHelper.swift in Sources */,
 				979D555D1F4A567F00904A3A /* PortalMenuCell.swift in Sources */,
 				979D555F1F4A6D0800904A3A /* PalettePortalCell.swift in Sources */,
 				97D2E3791F49BF2B0086462B /* Palette+CoreDataProperties.swift in Sources */,

@@ -270,8 +270,6 @@ class ColorDetails: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         
         if indexPath.item == 0 {
             
-            print(colorDetail?.objectID)
-            
             UIPasteboard.general.string = "\((colorDetail?.rgb)!)"
             showToast(msg: "Copied")
             

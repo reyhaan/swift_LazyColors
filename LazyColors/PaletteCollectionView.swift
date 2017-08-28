@@ -24,6 +24,8 @@ class PaletteCollectionView: UIView, UICollectionViewDataSource, UICollectionVie
         
     }
     
+    let pdc = PaletteDetailController()
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -74,6 +76,17 @@ class PaletteCollectionView: UIView, UICollectionViewDataSource, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let appDelegate : AppDelegate? = UIApplication.shared.delegate as? AppDelegate
+        if let unwrappedAppdelegate = appDelegate {
+            
+            pdc.selectedPalette = self.palettesArray?[indexPath.item]
+            
+            unwrappedAppdelegate.window!.rootViewController?.present(pdc, animated: true, completion: nil)
+        }
+        print("selected")
     }
     
     func setupViews() {
