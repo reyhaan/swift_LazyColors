@@ -37,9 +37,17 @@ class PreviewController: UIViewController, UINavigationControllerDelegate, MFMai
     
     override func viewWillAppear(_ animated: Bool) {
         
+        let sec = IndexSet(integer: 0)
+        
+        colorPortal.removeFromSuperview()
+        
+        setupViews()
+        
         let index = IndexPath(item: 1, section: 0)
         
-        colorPortal.pageView.reloadItems(at: [index])
+        colorPortal.pageView.dequeueReusableCell(withReuseIdentifier: "paletteId", for: index)
+        
+        colorPortal.pageView.reloadSections(sec)
         
         colorPortal.pageView.reloadData()
 
