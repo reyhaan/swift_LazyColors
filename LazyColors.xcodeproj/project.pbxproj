@@ -28,11 +28,11 @@
 		9752F0371F36E4D500D9272C /* LazyColorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9752F0361F36E4D500D9272C /* LazyColorsTests.swift */; };
 		9752F0421F36E4D500D9272C /* LazyColorsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9752F0411F36E4D500D9272C /* LazyColorsUITests.swift */; };
 		9766F17D1F3F843B005A9637 /* ntc.js in Resources */ = {isa = PBXBuildFile; fileRef = 9766F17C1F3F843B005A9637 /* ntc.js */; };
+		9774B45D1F550C8100D8ABB4 /* Proxima Nova Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9774B45C1F550C8100D8ABB4 /* Proxima Nova Bold.otf */; };
 		977AF40C1F40A5D2007E591D /* ColorCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AF40B1F40A5D2007E591D /* ColorCollectionView.swift */; };
 		977AF40E1F40A74F007E591D /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AF40D1F40A74F007E591D /* ViewControllerExtension.swift */; };
 		977AF4101F40A88F007E591D /* SingleColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AF40F1F40A88F007E591D /* SingleColorCell.swift */; };
 		977AF4131F40EC4F007E591D /* ColorCollectionViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AF4121F40EC4F007E591D /* ColorCollectionViewHelper.swift */; };
-		977AF4551F410513007E591D /* Proxima Nova Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 977AF4541F410513007E591D /* Proxima Nova Bold.otf */; };
 		977F30171F3BF52000AE1901 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 977F30161F3BF52000AE1901 /* Main.storyboard */; };
 		977F30181F3BF55900AE1901 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 977F30101F3BF32D00AE1901 /* CoreData.framework */; };
 		977F301B1F3BF59B00AE1901 /* AppModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 977F30191F3BF59B00AE1901 /* AppModel.xcdatamodeld */; };
@@ -128,11 +128,11 @@
 		9752F0411F36E4D500D9272C /* LazyColorsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyColorsUITests.swift; sourceTree = "<group>"; };
 		9752F0431F36E4D500D9272C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9766F17C1F3F843B005A9637 /* ntc.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ntc.js; sourceTree = "<group>"; };
+		9774B45C1F550C8100D8ABB4 /* Proxima Nova Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima Nova Bold.otf"; sourceTree = "<group>"; };
 		977AF40B1F40A5D2007E591D /* ColorCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCollectionView.swift; sourceTree = "<group>"; };
 		977AF40D1F40A74F007E591D /* ViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		977AF40F1F40A88F007E591D /* SingleColorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleColorCell.swift; sourceTree = "<group>"; };
 		977AF4121F40EC4F007E591D /* ColorCollectionViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCollectionViewHelper.swift; sourceTree = "<group>"; };
-		977AF4541F410513007E591D /* Proxima Nova Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Proxima Nova Bold.otf"; path = "../../../../../Desktop/ProximaNova/Proxima Nova Bold.otf"; sourceTree = "<group>"; };
 		977F30101F3BF32D00AE1901 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		977F30161F3BF52000AE1901 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		977F301A1F3BF59B00AE1901 /* AppModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AppModel.xcdatamodel; sourceTree = "<group>"; };
@@ -473,7 +473,7 @@
 			isa = PBXGroup;
 			children = (
 				97889C941F403D9B0028B8D6 /* Proxima Nova Regular.otf */,
-				977AF4541F410513007E591D /* Proxima Nova Bold.otf */,
+				9774B45C1F550C8100D8ABB4 /* Proxima Nova Bold.otf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -592,8 +592,8 @@
 				9752F0291F36E4D500D9272C /* Assets.xcassets in Resources */,
 				97889C951F403D9B0028B8D6 /* Proxima Nova Regular.otf in Resources */,
 				977F30171F3BF52000AE1901 /* Main.storyboard in Resources */,
+				9774B45D1F550C8100D8ABB4 /* Proxima Nova Bold.otf in Resources */,
 				9766F17D1F3F843B005A9637 /* ntc.js in Resources */,
-				977AF4551F410513007E591D /* Proxima Nova Bold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
